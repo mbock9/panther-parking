@@ -1,8 +1,8 @@
 {
-  "name": "project",
+  "name": "panther-parking",
   "version": "0.1.0",
   "private": true,
-  "description": "Describe your project",
+  "description": "Interactive informational parking application.",
   "engines": {
     "node": "10.15.x"
   },
@@ -17,8 +17,12 @@
   ],
   "keywords": [],
   "contributors": [
-    "Student1 <student1@middlebury.edu>",
-    "Student2 <student2@middlebury.edu>"
+    "Aumit Leon <aleon@middlebury.edu>",
+    "Joey Hernandez <jocelynh@middlebury.edu>",
+    "Hamza Kiyani <mkiyani@middlebury.edu>",
+    "Miles Bock <mbock@middlebury.edu>",
+    "Ben Vandenbosch <bvandenbosch@middlebury.edu>",
+    "Graham Rainsby <grainsby@middlebury.edu>"
   ],
   "license": "Apache-2.0",
   "devDependencies": {
