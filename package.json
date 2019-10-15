@@ -19,6 +19,8 @@
   "contributors": [
     "Aumit Leon <aleon@middlebury.edu>",
     "Joey Hernandez <jocelynh@middlebury.edu>"
+    "Miles Bock <mbock@middlebury.edu>",
+    "Ben Vandenbosch <bvandenbosch@middlebury.edu>"
   ],
   "license": "Apache-2.0",
   "devDependencies": {
