@@ -1,6 +1,8 @@
 # Panther Parking
 [![Build Status](https://travis-ci.com/csci312-f19/project-parking.svg?token=y2Bft5xpM6zVA2WT1qt5&branch=master)](https://travis-ci.com/csci312-f19/project-parking)
 
+[Heroku App](https://panther-parking.herokuapp.com)
+
 Middlebury college students, faculty, and visitors are often at a loss when it comes to figuring out where they can and can't park. This is due in large part to the confusing collection of parking permits and rules that make it difficult to understand where there is parking available, and if a particular permit is allowed to park in that area.
 
 Panther Parking is an interactive informational application that aims to provide insight into where students, faculty, and visitors are allowed to park on campus.
