@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-//import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const DropDownSelect = styled.select`
@@ -17,7 +17,7 @@ const Container = styled.div`
   background: rgb(10, 100, 100);
 `;
 
-const DropDown = ({
+const Form = ({
   permitType,
   setPermit,
   userType,
@@ -25,9 +25,16 @@ const DropDown = ({
   timeIn,
   setTimeIn,
   timeOut,
-  setTimeOut,
-  createMap
+  setTimeOut
 }) => {
+  /*
+  For testing purposes
+  console.log("permit type:", permitType);
+  console.log("user type:", userType);
+  console.log("timein:", timeIn);
+  console.log("timeout:", timeOut);
+  */
+
   return (
     <Container>
       <h3>Please select your permit type:</h3>
@@ -36,7 +43,6 @@ const DropDown = ({
         value={permitType}
         onChange={event => {
           setPermit(event.target.value);
-          console.log(permitType); // just to test it. Change this to whatever you want.
         }}
       >
         <option value="x">PermitX</option>
@@ -50,10 +56,9 @@ const DropDown = ({
         value={userType}
         onChange={event => {
           setUser(event.target.value);
-          console.log(userType); // just to test it. Change this to whatever you want.
         }}
       >
-        <option value="admin">Aministration</option>
+        <option value="admin">Admin</option>
         <option value="student">Student</option>
         <option value="visitor">Visitor</option>
       </DropDownSelect>
@@ -64,7 +69,6 @@ const DropDown = ({
         value={timeIn}
         onChange={event => {
           setTimeIn(event.target.value);
-          console.log(timeIn); // just to test it. Change this to whatever you want.
         }}
       >
         <option value="1:00AM">1:00AM</option>
@@ -78,19 +82,25 @@ const DropDown = ({
         value={timeOut}
         onChange={event => {
           setTimeOut(event.target.value);
-          console.log(timeOut); // just to test it. Change this to whatever you want.
         }}
       >
         <option value="1:00AM">1:00AM</option>
         <option value="1:30AM">1:30AM</option>
         <option value="12:00AM">12:00AM</option>
       </DropDownSelect>
-
-      <h3></h3>
-
-      <button onclick={() => createMap(true)}>FIND PARKING!</button>
     </Container>
   );
 };
 
-export default DropDown;
+Form.propTypes = {
+  permitType: PropTypes.string.isRequired,
+  setPermit: PropTypes.func.isRequired,
+  userType: PropTypes.string.isRequired,
+  setUser: PropTypes.func.isRequired,
+  timeIn: PropTypes.string.isRequired,
+  setTimeIn: PropTypes.func.isRequired,
+  timeOut: PropTypes.string.isRequired,
+  setTimeOut: PropTypes.func.isRequired
+};
+
+export default Form;
