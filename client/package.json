@@ -22,10 +22,12 @@
   ],
   "license": "Apache-2.0",
   "dependencies": {
-    "react": "^16.10.2",
-    "react-dom": "^16.10.2",
+    "prop-types": "^15.7.2",
+    "react": "^16.10.1",
+    "react-dom": "^16.10.1",
+    "react-immutable-proptypes": "^2.1.0",
     "react-scripts": "2.1.5",
-    "reactstrap": "^8.1.1"
+    "styled-components": "^4.4.1"
   },
   "devDependencies": {
     "enzyme": "^3.10.0",
