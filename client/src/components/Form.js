@@ -6,6 +6,17 @@ const DropDownSelect = styled.select`
   font-size: 12px;
 `;
 
+const Container = styled.div`
+  width: 100%;
+  height: 500px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  color: white;
+  background: rgb(10, 100, 100);
+`;
+
 const DropDown = ({
   permitType,
   setPermit,
@@ -15,11 +26,10 @@ const DropDown = ({
   setTimeIn,
   timeOut,
   setTimeOut,
-  clicked,
-  setButton
+  createMap
 }) => {
   return (
-    <div>
+    <Container>
       <h3>Please select your permit type:</h3>
 
       <DropDownSelect
@@ -48,7 +58,7 @@ const DropDown = ({
         <option value="visitor">Visitor</option>
       </DropDownSelect>
 
-      <h3>Please select time you wish to park:</h3>
+      <h3>Please select a time you wish to park:</h3>
 
       <DropDownSelect
         value={timeIn}
@@ -78,8 +88,8 @@ const DropDown = ({
 
       <h3></h3>
 
-      <button onclick={() => setButton(true)}>FIND PARKING!</button>
-    </div>
+      <button onclick={() => createMap(true)}>FIND PARKING!</button>
+    </Container>
   );
 };
 

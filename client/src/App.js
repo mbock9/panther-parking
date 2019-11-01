@@ -10,7 +10,7 @@ function App() {
   const [userType, setUser] = useState(false);
   const [timeIn, setTimeIn] = useState(false);
   const [timeOut, setTimeOut] = useState(false);
-  const [clicked, setButton] = useState(false);
+  const [map, createMap] = useState(false);
   // state instantiations need to happen inside of the exported component
   // might want to define these in App.js, and then pass them as props to this component.
   //first have to create all the props we have created
@@ -21,9 +21,7 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         <h1 className="App-title">Welcome beta Panther Parking</h1>
       </header>
-      <p className="App-intro">
-        To get started, edit <code>src/App.js</code> and save to reload.
-      </p>
+      <p className="App-intro">Ready to find parking?</p>
       <Form
         permitType={setPermit}
         userType={setUser}
