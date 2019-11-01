@@ -10,7 +10,9 @@ function App() {
   const [permitType, setPermit] = useState('x');
   const [userType, setUser] = useState('student');
   const [timeIn, setTimeIn] = useState('1:00AM');
-  const [timeOut, setTimeOut] = useState('1:30AM');
+  // Don't need an initial time out
+  // timeOut can automatically be set to 30 mins after timeIn provided by the user in the form component
+  const [timeOut, setTimeOut] = useState('');
 
   // state instantiations need to happen inside of the exported component
   // might want to define these in App.js, and then pass them as props to this component.

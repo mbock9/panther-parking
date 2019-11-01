@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+const moment = require('moment');
 
 const DropDownSelect = styled.select`
   font-size: 12px;
@@ -54,7 +55,22 @@ const Form = ({
   }
 
   // Create option elements for each time in the array
-  const timeOptions = times.map(time => (
+  const timeInOptions = times.map(time => (
+    <option key={time} value={time}>
+      {time}
+    </option>
+  ));
+
+  // Filter times array based on timeIn
+  // Edge case: if timeIn is 11:30PM, then filtered array is empty.
+  const timesOutArr = times.filter(
+    time =>
+      Date.parse(moment(time, 'hh:mm A')) >
+      Date.parse(moment(timeIn, 'hh:mm A'))
+  );
+
+  // Create timeout options
+  const timeOutOptions = timesOutArr.map(time => (
     <option key={time} value={time}>
       {time}
     </option>
@@ -96,7 +112,7 @@ const Form = ({
           setTimeIn(event.target.value);
         }}
       >
-        {timeOptions}
+        {timeInOptions}
       </DropDownSelect>
 
       <h3>Please select a time you wish to leave:</h3>
@@ -107,7 +123,7 @@ const Form = ({
           setTimeOut(event.target.value);
         }}
       >
-        {timeOptions}
+        {timeOutOptions}
       </DropDownSelect>
     </Container>
   );
