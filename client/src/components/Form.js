@@ -35,6 +35,31 @@ const Form = ({
   console.log("timeout:", timeOut);
   */
 
+  // Generate an array of times
+  const interval = 30; // minutes interval
+  const times = []; // time array
+  let startTime = 0; // start time
+  const ap = ['AM', 'PM']; // AM-PM
+
+  // Loop to increment the time and push results in array
+  for (let i = 0; startTime < 24 * 60; i++) {
+    const hours = Math.floor(startTime / 60); // getting hours of day in 0-24 format
+    const minutes = startTime % 60; // getting minutes of the hour in 0-55 format
+    times[i] =
+      ('' + (hours === 12 || hours === 0 ? 12 : hours % 12)).slice(-2) +
+      ':' +
+      ('0' + minutes).slice(-2) +
+      ap[Math.floor(hours / 12)]; // pushing data in array in [00:00 - 12:00 AM/PM format]
+    startTime = startTime + interval;
+  }
+
+  // Create option elements for each time in the array
+  const timeOptions = times.map(time => (
+    <option key={time} value={time}>
+      {time}
+    </option>
+  ));
+
   return (
     <Container>
       <h3>Please select your permit type:</h3>
@@ -71,9 +96,7 @@ const Form = ({
           setTimeIn(event.target.value);
         }}
       >
-        <option value="1:00AM">1:00AM</option>
-        <option value="1:30AM">1:30AM</option>
-        <option value="12:00AM">12:00AM</option>
+        {timeOptions}
       </DropDownSelect>
 
       <h3>Please select a time you wish to leave:</h3>
@@ -84,9 +107,7 @@ const Form = ({
           setTimeOut(event.target.value);
         }}
       >
-        <option value="1:00AM">1:00AM</option>
-        <option value="1:30AM">1:30AM</option>
-        <option value="12:00AM">12:00AM</option>
+        {timeOptions}
       </DropDownSelect>
     </Container>
   );
