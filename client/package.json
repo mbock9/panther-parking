@@ -23,8 +23,8 @@
   "license": "Apache-2.0",
   "dependencies": {
     "prop-types": "^15.7.2",
-    "react": "^16.10.1",
-    "react-dom": "^16.10.1",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2",
     "react-immutable-proptypes": "^2.1.0",
     "react-scripts": "2.1.5",
     "styled-components": "^4.4.1"
