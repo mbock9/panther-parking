@@ -6,26 +6,101 @@ const DropDownSelect = styled.select`
   font-size: 12px;
 `;
 
-const DropDown = props => {
-  // state instantiations need to happen inside of the exported component
-  // might want to define these in App.js, and then pass them as props to this component.
-  //first have to create all the props we have created
-  const [permitType, setpermit] = useState(false);
-  //const [userType, setUser] = useState(false);
-  //const [timeIn, setTimeIn] = useState(false);
-  //const [timeOut, setTimeOut] = useState(false);
+const Container = styled.div`
+  width: 100%;
+  height: 500px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  color: white;
+  background: rgb(10, 100, 100);
+`;
+
+const Form = ({
+  permitType,
+  setPermit,
+  userType,
+  setUser,
+  timeIn,
+  setTimeIn,
+  timeOut,
+  setTimeOut
+}) => {
+  /*
+  For testing purposes
+  console.log("permit type:", permitType);
+  console.log("user type:", userType);
+  console.log("timein:", timeIn);
+  console.log("timeout:", timeOut);
+  */
+
   return (
-    <DropDownSelect
-      value={permitType}
-      onChange={event => {
-        alert(event.target.value); // just to test it. Change this to whatever you want.
-      }}
-    >
-      <option value="x">PermitX</option>
-      <option value="y">PermitY</option>
-      <option value="z">PermitZ</option>
-    </DropDownSelect>
+    <Container>
+      <h3>Please select your permit type:</h3>
+
+      <DropDownSelect
+        value={permitType}
+        onChange={event => {
+          setPermit(event.target.value);
+        }}
+      >
+        <option value="x">PermitX</option>
+        <option value="y">PermitY</option>
+        <option value="z">PermitZ</option>
+      </DropDownSelect>
+
+      <h3>Please select your user type:</h3>
+
+      <DropDownSelect
+        value={userType}
+        onChange={event => {
+          setUser(event.target.value);
+        }}
+      >
+        <option value="admin">Admin</option>
+        <option value="student">Student</option>
+        <option value="visitor">Visitor</option>
+      </DropDownSelect>
+
+      <h3>Please select a time you wish to park:</h3>
+
+      <DropDownSelect
+        value={timeIn}
+        onChange={event => {
+          setTimeIn(event.target.value);
+        }}
+      >
+        <option value="1:00AM">1:00AM</option>
+        <option value="1:30AM">1:30AM</option>
+        <option value="12:00AM">12:00AM</option>
+      </DropDownSelect>
+
+      <h3>Please select a time you wish to leave:</h3>
+
+      <DropDownSelect
+        value={timeOut}
+        onChange={event => {
+          setTimeOut(event.target.value);
+        }}
+      >
+        <option value="1:00AM">1:00AM</option>
+        <option value="1:30AM">1:30AM</option>
+        <option value="12:00AM">12:00AM</option>
+      </DropDownSelect>
+    </Container>
   );
 };
 
-export default DropDown;
+Form.propTypes = {
+  permitType: PropTypes.string.isRequired,
+  setPermit: PropTypes.func.isRequired,
+  userType: PropTypes.string.isRequired,
+  setUser: PropTypes.func.isRequired,
+  timeIn: PropTypes.string.isRequired,
+  setTimeIn: PropTypes.func.isRequired,
+  timeOut: PropTypes.string.isRequired,
+  setTimeOut: PropTypes.func.isRequired
+};
+
+export default Form;
