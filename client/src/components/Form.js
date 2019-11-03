@@ -86,9 +86,11 @@ const Form = ({
           setPermit(event.target.value);
         }}
       >
-        <option value="x">PermitX</option>
-        <option value="y">PermitY</option>
-        <option value="z">PermitZ</option>
+        <option value="sPermit">PermitS</option>
+        <option value="pPermit">PermitP</option>
+        <option value="uPermit">PermitU</option>
+        <option value="ePermit">PermitE</option>
+        <option value="tPermit">PermitT</option>
       </DropDownSelect>
 
       <h3>Please select your user type:</h3>
