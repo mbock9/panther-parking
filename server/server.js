@@ -16,11 +16,11 @@ if (process.env.NODE_ENV === 'production') {
 
 // TODO: Add your routes here
 // Notice the "next" argument to the handler
-app.get('/api/map', (request, response, next) => {
+app.get('/api/map', (request, response) => {
   response.sendFile(path.join(dataPath, 'midd-lots.geojson'));
 });
 
-app.get('/api/map/:key', (request, response, next) => {
+app.get('/api/map/:key', (request, response) => {
   response.send(process.env.MAPBOX_KEY);
 });
 

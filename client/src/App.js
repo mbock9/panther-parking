@@ -23,6 +23,8 @@ function App() {
       .catch(err => console.log(err));
   }, []);
 
+  console.log(geoData);
+
   return (
     <div className="App">
       <header className="App-header">
@@ -32,7 +34,7 @@ function App() {
       <p className="App-intro">
         To get started, edit <code>src/App.js</code> and save to reload.
       </p>
-      <div className="mapbox"></div>
+      <div className="mapbox" />
     </div>
   );
 }
