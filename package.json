@@ -41,5 +41,8 @@
       "prettier --single-quote --write",
       "git add"
     ]
+  },
+  "dependencies": {
+    "moment": "^2.24.0"
   }
 }
