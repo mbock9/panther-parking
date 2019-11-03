@@ -3,17 +3,20 @@
     {
       "type": "Feature",
       "properties": {
-        "description": "Restricted Faculty/Staff",
-        "title": "Proctor Lot",
-        "permits": "N/A",
-        "timeIn": "N/A",
+        "ePermit": "false",
         "timeOut": "N/A",
         "users": "Faculty",
-        "lotId": "N-Lot",
-        "ePermit": "false",
         "pPermit": "false",
+        "lotId": "N-Lot",
         "sPermit": "false",
-        "tPermit": "false"
+        "tPermit": "false",
+        "timeIn": "N/A",
+        "title": "Proctor Lot",
+        "permits": "N/A",
+        "description": "Restricted Faculty/Staff",
+        "facultyUser": "true",
+        "studentUser": "false",
+        "visitorUser": "false"
       },
       "geometry": {
         "coordinates": [
@@ -55,17 +58,20 @@
     {
       "type": "Feature",
       "properties": {
-        "title": "McCardell Bicentennial Hall Lot",
-        "description": "Faculty/Staff, Visitor & Student T Permit.",
-        "permits": "T",
-        "timeIn": "N/A",
+        "ePermit": "false",
         "timeOut": "N/A",
         "users": "Faculty,Visitor,Student",
-        "lotId": "S-Lot",
-        "ePermit": "false",
         "pPermit": "false",
+        "lotId": "S-Lot",
         "sPermit": "fales",
-        "tPermit": "True"
+        "tPermit": "True",
+        "timeIn": "N/A",
+        "title": "McCardell Bicentennial Hall Lot",
+        "permits": "T",
+        "description": "Faculty/Staff, Visitor & Student T Permit.",
+        "facultyUser": "true",
+        "studentUser": "true",
+        "visitorUser": "true"
       },
       "geometry": {
         "coordinates": [
@@ -99,17 +105,20 @@
     {
       "type": "Feature",
       "properties": {
-        "title": "Peterson Athletic Center Lot",
-        "description": "Faculty/Staff",
-        "permits": "N/A",
-        "timeIn": "N/A",
+        "ePermit": "false",
         "timeOut": "N/A",
         "users": "Faculty",
-        "lotId": "T-Lot",
-        "ePermit": "false",
         "pPermit": "false",
+        "lotId": "T-Lot",
         "sPermit": "false",
-        "tPermit": "false"
+        "tPermit": "false",
+        "timeIn": "N/A",
+        "title": "Peterson Athletic Center Lot",
+        "permits": "N/A",
+        "description": "Faculty/Staff",
+        "facultyUser": "true",
+        "studentUser": "false",
+        "visitorUser": "false"
       },
       "geometry": {
         "coordinates": [
@@ -143,17 +152,20 @@
     {
       "type": "Feature",
       "properties": {
-        "description": "Parkiing available on college street",
+        "ePermit": "true",
+        "timeOut": "12:00AM",
+        "users": "Faculty,Student",
+        "pPermit": "true",
+        "lotId": "O-Lot",
+        "sPermit": "true",
+        "tPermit": "true",
+        "timeIn": "N/A",
         "title": "College Street",
         "permits": "S,P,E,T,U,LS,LSI",
-        "timeIn": "N/A",
-        "timeOut": "12:00AM",
-        "users": "Faculty,Visitor,Student",
-        "lotId": "O-Lot",
-        "ePermit": "true",
-        "pPermit": "true",
-        "sPermit": "true",
-        "tPermit": "true"
+        "description": "Parkiing available on college street",
+        "facultyUser": "true",
+        "studentUser": "true",
+        "visitorUser": "true"
       },
       "geometry": {
         "coordinates": [
@@ -187,17 +199,20 @@
     {
       "type": "Feature",
       "properties": {
-        "description": "Student S, P & E Permits (specific rows only).",
-        "title": "Riedeline Woods Lot",
-        "permits": "S,P,E",
-        "timeIn": "N/A",
+        "ePermit": "true",
         "timeOut": "N/A",
         "users": "Student",
+        "pPermit": "true",
         "lotId": "R-Lot",
         "sPermit": "true",
-        "pPermit": "true",
-        "ePermit": "true",
-        "tPermit": "true"
+        "tPermit": "true",
+        "timeIn": "N/A",
+        "title": "Riedeline Woods Lot",
+        "permits": "S,P,E",
+        "description": "Student S, P & E Permits (specific rows only).",
+        "facultyUser": "false",
+        "studentUser": "true",
+        "visitorUser": "false"
       },
       "geometry": {
         "coordinates": [
@@ -231,17 +246,20 @@
     {
       "type": "Feature",
       "properties": {
-        "title": "Wright Memorial Theatre Lot",
-        "description": "Parking Lot outside of the Wright Memorial Theatre.",
-        "permits": "N/A",
-        "timeIn": "N/A",
+        "ePermit": "false",
         "timeOut": "N/A",
         "users": "Faculty",
-        "lotId": "E-Lot",
-        "ePermit": "false",
         "pPermit": "false",
+        "lotId": "E-Lot",
         "sPermit": "false",
-        "tPermit": "false"
+        "tPermit": "false",
+        "timeIn": "N/A",
+        "title": "Wright Memorial Theatre Lot",
+        "permits": "N/A",
+        "description": "Parking Lot outside of the Wright Memorial Theatre.",
+        "facultyUser": "true",
+        "studentUser": "false",
+        "visitorUser": "false"
       },
       "geometry": {
         "coordinates": [
@@ -295,17 +313,20 @@
     {
       "type": "Feature",
       "properties": {
-        "description": "Multiple permit lot T, E, S, P, U, LS, LSI, Faculty/Staff & Visitors. Pay attention to signage.",
-        "title": "Mahaney Center for the Arts Lot",
-        "permits": "S,P,E,T,U,LS,LSI",
-        "timeIn": "12:00AM",
+        "ePermit": "true",
         "timeOut": "5:00AM",
         "users": "Faculty,Visitor,Student",
-        "lotId": "Q-Lot",
-        "ePermit": "true",
         "pPermit": "true",
+        "lotId": "Q-Lot",
         "sPermit": "true",
-        "tPermit": "true"
+        "tPermit": "true",
+        "timeIn": "12:00AM",
+        "title": "Mahaney Center for the Arts Lot",
+        "permits": "S,P,E,T,U,LS,LSI",
+        "description": "Multiple permit lot T, E, S, P, U, LS, LSI, Faculty/Staff & Visitors. Pay attention to signage.",
+        "facultyUser": "true",
+        "studentUser": "true",
+        "visitorUser": "true"
       },
       "geometry": {
         "coordinates": [
@@ -351,17 +372,20 @@
     {
       "type": "Feature",
       "properties": {
-        "title": "Freeman Way Lot",
-        "description": "Parking lot outside of the Freeman International Center",
-        "permits": "S",
-        "timeIn": "N/A",
+        "ePermit": "false",
         "timeOut": "N/A",
         "users": "Faculty,Student",
-        "lotId": "C-Lot",
-        "ePermit": "false",
         "pPermit": "false",
+        "lotId": "C-Lot",
         "sPermit": "true",
-        "tPermit": "false"
+        "tPermit": "false",
+        "timeIn": "N/A",
+        "title": "Freeman Way Lot",
+        "permits": "S",
+        "description": "Parking lot outside of the Freeman International Center",
+        "facultyUser": "true",
+        "studentUser": "true",
+        "visitorUser": "false"
       },
       "geometry": {
         "coordinates": [
@@ -433,7 +457,10 @@
         "timeIn": "N/A",
         "title": "Atwater Lot",
         "permits": "S",
-        "description": "Student S permit, Faculty/Staff & Restricted F/S"
+        "description": "Student S permit, Faculty/Staff & Restricted F/S",
+        "facultyUser": "true",
+        "studentUser": "true",
+        "visitorUser": "false"
       },
       "geometry": {
         "coordinates": [
@@ -497,7 +524,10 @@
         "timeIn": "false",
         "title": "Kenyon Arena Lot",
         "permits": "N/A",
-        "description": "Closed for Construction"
+        "description": "Closed for Construction",
+        "facultyUser": "true",
+        "studentUser": "false",
+        "visitorUser": "false"
       },
       "geometry": {
         "coordinates": [
@@ -527,17 +557,20 @@
     {
       "type": "Feature",
       "properties": {
-        "description": "Restricted Faculty/Staff",
-        "title": "Robert A. Jones House Lot",
-        "permits": "N/A",
-        "timeIn": "N/A",
+        "ePermit": "false",
         "timeOut": "N/A",
         "users": "Faculty",
-        "lotId": "K-Lot",
-        "ePermit": "false",
         "pPermit": "false",
+        "lotId": "K-Lot",
         "sPermit": "false",
-        "tPermit": "false"
+        "tPermit": "false",
+        "timeIn": "N/A",
+        "title": "Robert A. Jones House Lot",
+        "permits": "N/A",
+        "description": "Restricted Faculty/Staff",
+        "facultyUser": "true",
+        "studentUser": "false",
+        "visitorUser": "false"
       },
       "geometry": {
         "coordinates": [
