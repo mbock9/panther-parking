@@ -63,7 +63,7 @@
         "users": "Faculty,Visitor,Student",
         "pPermit": "false",
         "lotId": "S-Lot",
-        "sPermit": "fales",
+        "sPermit": "false",
         "tPermit": "True",
         "timeIn": "N/A",
         "title": "McCardell Bicentennial Hall Lot",
