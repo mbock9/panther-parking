@@ -56,7 +56,13 @@ function App() {
       />
 
       <div id="map">
-        <ParkingMap dataSet={geoData} />
+        <ParkingMap
+          dataSet={geoData}
+          permitType={permitType}
+          userType={userType}
+          timeIn={timeIn}
+          timeOut={timeOut}
+        />
       </div>
     </div>
   );

@@ -12,7 +12,7 @@ const ParkingMap = props => {
       height: 400,
       latitude: 44.0082,
       longitude: -73.176,
-      zoom: 13
+      zoom: 14
     }
   });
 
@@ -26,8 +26,11 @@ const ParkingMap = props => {
     })
     .catch(err => console.log(err));
 
-  // Example using a student permit to filter on (this info will be passed in from form)
-  let permType = 'sPermit';
+  // Grab the permitType from props (and adjust if value not currently valid)
+  let permType = '';
+  if (props.permitType != 'x' && props.permitType != 'uPermit') {
+    permType = props.permitType;
+  }
 
   // Create geojson skeletons for lots that match/don't match filter criteria
   let parkable = { features: [], type: 'FeatureCollection' };
