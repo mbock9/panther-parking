@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Form from './components/Form';
+import ParkingMap from './components/ParkingMap';
 
 /* eslint-disable react/prefer-stateless-function */
 
@@ -35,8 +36,6 @@ function App() {
       .catch(err => console.log(err));
   }, []);
 
-  console.log(geoData);
-
   return (
     <div className="App">
       <header className="App-header">
@@ -56,7 +55,15 @@ function App() {
         setTimeOut={setTimeOut}
       />
 
-      <div className="mapbox" />
+      <div id="map">
+        <ParkingMap
+          dataSet={geoData}
+          permitType={permitType}
+          userType={userType}
+          timeIn={timeIn}
+          timeOut={timeOut}
+        />
+      </div>
     </div>
   );
 }
