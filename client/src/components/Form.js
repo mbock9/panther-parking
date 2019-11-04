@@ -46,11 +46,9 @@ const Form = ({
   for (let i = 0; startTime < 24 * 60; i++) {
     const hours = Math.floor(startTime / 60); // getting hours of day in 0-24 format
     const minutes = startTime % 60; // getting minutes of the hour in 0-55 format
-    times[i] =
-      ('' + (hours === 12 || hours === 0 ? 12 : hours % 12)).slice(-2) +
-      ':' +
-      ('0' + minutes).slice(-2) +
-      ap[Math.floor(hours / 12)]; // pushing data in array in [00:00 - 12:00 AM/PM format]
+    times[i] = `${`${hours === 12 || hours === 0 ? 12 : hours % 12}`.slice(
+      -2
+    )}:${`0${minutes}`.slice(-2)}${ap[Math.floor(hours / 12)]}`; // pushing data in array in [00:00 - 12:00 AM/PM format]
     startTime = startTime + interval;
   }
 

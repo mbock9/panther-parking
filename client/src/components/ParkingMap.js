@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import mapboxgl from 'mapbox-gl';
+import React, { useState } from 'react';
 import ReactMapGL, { Source, Layer } from 'react-map-gl';
 
 const ParkingMap = props => {
@@ -28,16 +26,16 @@ const ParkingMap = props => {
 
   // Grab the permitType from props (and adjust if value not currently valid)
   let permType = '';
-  if (props.permitType != 'x' && props.permitType != 'uPermit') {
+  if (props.permitType !== 'x' && props.permitType !== 'uPermit') {
     permType = props.permitType;
   }
 
   // Create geojson skeletons for lots that match/don't match filter criteria
   let parkable = { features: [], type: 'FeatureCollection' };
-  let nonParkable = { features: [], type: 'FeatureCollection' };
+  const nonParkable = { features: [], type: 'FeatureCollection' };
 
   // Iterate through lot data and update lists accordingly
-  if (props.dataSet.features != undefined) {
+  if (props.dataSet.features !== undefined) {
     if (permType) {
       props.dataSet.features.forEach(feature => {
         if (feature.properties[permType].toUpperCase() === 'TRUE') {
