@@ -12,8 +12,13 @@
   },
   "keywords": [],
   "contributors": [
-    "Student1 <student1@middlebury.edu>",
-    "Student2 <student2@middlebury.edu>"
+    "Aumit Leon <aleon@middlebury.edu>",
+    "Joey Hernandez <jocelynh@middlebury.edu>",
+    "Hamza Kiyani <mkiyani@middlebury.edu>",
+    "Miles Bock <mbock@middlebury.edu>",
+    "Ben Vandenbosch <bvandenbosch@middlebury.edu>",
+    "Graham Rainsby <grainsby@middlebury.edu>",
+    "Christian Woldemdhin <cwoldemdhin@middlebury.edu>"
   ],
   "license": "Apache-2.0",
   "devDependencies": {

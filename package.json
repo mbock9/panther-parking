@@ -22,7 +22,8 @@
     "Hamza Kiyani <mkiyani@middlebury.edu>",
     "Miles Bock <mbock@middlebury.edu>",
     "Ben Vandenbosch <bvandenbosch@middlebury.edu>",
-    "Graham Rainsby <grainsby@middlebury.edu>"
+    "Graham Rainsby <grainsby@middlebury.edu>",
+    "Christian Woldemdhin <cwoldemdhin@middlebury.edu>"
   ],
   "license": "Apache-2.0",
   "devDependencies": {
