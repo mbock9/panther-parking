@@ -1,17 +1,10 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { mount } from 'enzyme';
 
 import Form from './Form';
 
 const testCase1 = {
   permitType: 'x',
-  userType: 'student',
-  timeIn: '1:00AM',
-  timeOut: ''
-};
-
-const testCase2 = {
-  permitType: 's',
   userType: 'student',
   timeIn: '1:00AM',
   timeOut: ''
