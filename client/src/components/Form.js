@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import logo from '../Panther_Parking_logo-removebg-preview.png';
 const moment = require('moment');
 
 const DropDownSelect = styled.select`
@@ -8,13 +9,22 @@ const DropDownSelect = styled.select`
 `;
 
 const Container = styled.div`
-  width: 100%;
-  height: 500px;
+  margin-left: 70px
+  width: 90%;
+  height: 40px;
   padding-top: 10px;
   padding-bottom: 10px;
   padding-left: 10px;
   padding-right: 10px;
   color: white;
+  background: rgb(10, 100, 100);
+  display: flex;
+  justify-content: space-around;
+  flex-items: margin-left;
+  text-align: center;
+`;
+
+const View = styled.div`
   background: rgb(10, 100, 100);
 `;
 
@@ -75,57 +85,104 @@ const Form = ({
   ));
 
   return (
-    <Container>
-      <h3>Please select your permit type:</h3>
+    <View>
+      <Container>
+        <img
+          src={logo}
+          className="App-logo"
+          alt="logo"
+          style={{ height: '80px', marginTop: '-15px' }}
+        />
+        <h4
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginTop: '15px',
+            marginRight: '-20px'
+          }}
+        >
+          Permit type:
+        </h4>
+        <DropDownSelect
+          value={permitType}
+          onChange={event => {
+            setPermit(event.target.value);
+          }}
+        >
+          <option value="sPermit">PermitS</option>
+          <option value="pPermit">PermitP</option>
+          <option value="uPermit">PermitU</option>
+          <option value="ePermit">PermitE</option>
+          <option value="tPermit">PermitT</option>
+        </DropDownSelect>
 
-      <DropDownSelect
-        value={permitType}
-        onChange={event => {
-          setPermit(event.target.value);
-        }}
-      >
-        <option value="sPermit">PermitS</option>
-        <option value="pPermit">PermitP</option>
-        <option value="uPermit">PermitU</option>
-        <option value="ePermit">PermitE</option>
-        <option value="tPermit">PermitT</option>
-      </DropDownSelect>
+        <h4
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginTop: '15px',
+            marginRight: '-20px'
+          }}
+        >
+          User type:
+        </h4>
 
-      <h3>Please select your user type:</h3>
+        <DropDownSelect
+          value={userType}
+          onChange={event => {
+            setUser(event.target.value);
+          }}
+        >
+          <option value="admin">Admin</option>
+          <option value="student">Student</option>
+          <option value="visitor">Visitor</option>
+        </DropDownSelect>
 
-      <DropDownSelect
-        value={userType}
-        onChange={event => {
-          setUser(event.target.value);
-        }}
-      >
-        <option value="admin">Admin</option>
-        <option value="student">Student</option>
-        <option value="visitor">Visitor</option>
-      </DropDownSelect>
+        <h4
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginTop: '15px',
+            marginRight: '-20px'
+          }}
+        >
+          Time in:
+        </h4>
 
-      <h3>Please select a time you wish to park:</h3>
+        <DropDownSelect
+          value={timeIn}
+          onChange={event => {
+            setTimeIn(event.target.value);
+          }}
+        >
+          {timeInOptions}
+        </DropDownSelect>
 
-      <DropDownSelect
-        value={timeIn}
-        onChange={event => {
-          setTimeIn(event.target.value);
-        }}
-      >
-        {timeInOptions}
-      </DropDownSelect>
+        <h4
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginTop: '15px',
+            marginRight: '-20px'
+          }}
+        >
+          Time out:
+        </h4>
 
-      <h3>Please select a time you wish to leave:</h3>
-
-      <DropDownSelect
-        value={timeOut}
-        onChange={event => {
-          setTimeOut(event.target.value);
-        }}
-      >
-        {timeOutOptions}
-      </DropDownSelect>
-    </Container>
+        <DropDownSelect
+          value={timeOut}
+          onChange={event => {
+            setTimeOut(event.target.value);
+          }}
+        >
+          {timeOutOptions}
+        </DropDownSelect>
+      </Container>
+    </View>
   );
 };
 
