@@ -37,17 +37,6 @@ describe('Form tests', () => {
 
   test('Renders form', () => {
     const formItems = form.find(Form).find('select');
-    console.log(formItems.filterWhere(n => n).debug());
-    expect(
-      formItems
-        .filterWhere(n => {
-          n.value === 'student';
-        })
-        .text()
-        .toEqual(testCase1.permitType)
-    );
-    // expect(formItems.map(select => select.text())).toEqual(
-    //   toSections(sampleArticles)
-    // );
+    expect(formItems).toHaveLength(4);
   });
 });

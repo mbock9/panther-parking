@@ -10,7 +10,7 @@ describe('App shallow rendering tests', () => {
   let app;
 
   beforeEach(() => {
-    app = shallow(<App />);
+    app = mount(<App />);
   });
 
   describe('App component initial content', () => {
@@ -24,11 +24,11 @@ describe('App shallow rendering tests', () => {
     });
 
     test('Contains a form component', () => {
-      expect(app).toContainExactlyOneMatchingElement(Form);
+      expect(app.contains(Form)).toEqual(true);
     });
 
     test('Contains a parking map component', () => {
-      expect(app.toContainMatchingElement(ParkingMap));
+      expect(app.contains(ParkingMap)).toEqual(true);
     });
   });
 });
