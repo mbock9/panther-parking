@@ -14,15 +14,6 @@ describe('App shallow rendering tests', () => {
   });
 
   describe('App component initial content', () => {
-    test('Has title', () => {
-      // toContainMatchingElement doesn't seem to work with JSX
-      expect(
-        app.containsMatchingElement(
-          <h1 className="App-title">Welcome to beta Panther Parking 1.0</h1>
-        )
-      ).toBe(true);
-    });
-
     test('Contains a form component', () => {
       expect(app.contains(Form)).toEqual(true);
     });
