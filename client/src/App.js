@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Form from './components/Form';
 import ParkingMap from './components/ParkingMap';
-
 /* eslint-disable react/prefer-stateless-function */
 
 function App() {
@@ -38,12 +36,6 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1 className="App-title">Welcome to beta Panther Parking 1.0</h1>
-      </header>
-
-      <p className="App-intro">Ready to find parking?</p>
       <Form
         permitType={permitType}
         setPermit={setPermit}

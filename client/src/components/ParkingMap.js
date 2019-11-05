@@ -6,8 +6,8 @@ const ParkingMap = props => {
   // to Mapbox as the callback for changes to viewport
   const [mapState, setMapState] = useState({
     viewport: {
-      width: 400,
-      height: 400,
+      width: '100vw',
+      height: '100vh',
       latitude: 44.0082,
       longitude: -73.176,
       zoom: 14
