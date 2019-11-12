@@ -26,6 +26,7 @@ const ParkingMap = props => {
 
   // Grab the permitType from props (and adjust if value not currently valid)
   let permType = '';
+
   if (props.permitType !== 'x' && props.permitType !== 'uPermit') {
     permType = props.permitType;
   }
@@ -35,9 +36,11 @@ const ParkingMap = props => {
   const nonParkable = { features: [], type: 'FeatureCollection' };
 
   // Iterate through lot data and update lists accordingly
-  if (props.dataSet.features !== undefined) {
+  if (props.dataSet !== undefined) {
+    let geoJsonData = { features: props.dataSet, type: 'FeatureCollection' };
+
     if (permType) {
-      props.dataSet.features.forEach(feature => {
+      geoJsonData.features.forEach(feature => {
         if (feature.properties[permType].toUpperCase() === 'TRUE') {
           parkable.features.push(feature);
         } else {
@@ -47,11 +50,13 @@ const ParkingMap = props => {
     }
     // If no filters are defined, render all lots as parkable
     else {
-      parkable = props.dataSet;
+      parkable = geoJsonData;
     }
   }
 
   if (key !== '' && props.dataSet !== undefined) {
+    // console.log("parkable lots")
+    // console.log(parkable.features);
     return (
       <ReactMapGL
         {...mapState.viewport}
