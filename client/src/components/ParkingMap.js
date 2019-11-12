@@ -37,7 +37,7 @@ const ParkingMap = props => {
 
   // Iterate through lot data and update lists accordingly
   if (props.dataSet !== undefined) {
-    let geoJsonData = { features: props.dataSet, type: 'FeatureCollection' };
+    const geoJsonData = { features: props.dataSet, type: 'FeatureCollection' };
 
     if (permType) {
       geoJsonData.features.forEach(feature => {

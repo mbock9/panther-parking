@@ -1,10 +1,8 @@
 const express = require('express');
 const path = require('path'); // eslint-disable-line global-require
-const { ObjectID, MongoError } = require('mongodb');
 
 // Resolve client build directory as absolute path to avoid errors in express
 const buildPath = path.resolve(__dirname, '../client/build');
-const dataPath = path.resolve(__dirname, 'data');
 const app = express();
 
 // Express only serves static assets in production
@@ -22,7 +20,6 @@ app.get('/api/map', (request, response, next) => {
     .find()
     .toArray()
     .then(documents => {
-      console.log(documents);
       response.send(documents);
     }, next); // use "next" as rejection handler
 });
