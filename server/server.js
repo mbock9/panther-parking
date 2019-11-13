@@ -20,7 +20,8 @@ app.get('/api/map', (request, response, next) => {
     .find()
     .toArray()
     .then(documents => {
-      response.send(documents);
+      const geoJsonData = { features: documents, type: 'FeatureCollection' };
+      response.send(geoJsonData);
     }, next); // use "next" as rejection handler
 });
 
