@@ -22,3 +22,6 @@ yarn-error.log*
 
 # MongoDB
 /data
+
+# Data operations
+/raw-data/midd-lots-raw.geojson
