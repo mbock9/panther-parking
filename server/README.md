@@ -25,7 +25,7 @@ storage:
     dbPath: ./data
 ```
 
-The raw geojson file used to seed the database is located in [`server/raw-data/midd-lots.geojson`](raw-data/midd-lots.geojson). If you update the geojson file for any reason (i.e, adding parking lots, modifying properties, etc), make sure to replace the `midd-lots.geojson` file in `server/raw-data`. _Note_: `server/raw-data` has 2 files: `midd-lots.geojson` and `midd-lots-raw.geojson`. The former is the file that gets processed with `jq` for ingestion, and the latter is the file that gets produced and is actually ingested into mongodb.
+The raw geojson file used to seed the database is located in [`server/raw-data/midd-lots.geojson`](raw-data/midd-lots.geojson). If you update the geojson file for any reason (i.e, adding parking lots, modifying properties, etc), make sure to replace the `midd-lots.geojson` file in `server/raw-data`. _Note_: After seeding, `server/raw-data` has 2 files: `midd-lots.geojson` and `midd-lots-raw.geojson`. The former is the file that gets processed with `jq` for ingestion, and the latter is the file that gets produced and is actually ingested into mongodb.
 
 _Note_: All of the example commands for the database shown here assume you are located in the root of the project repo (hence, all the commands have the flag `--prefix server`).
 
