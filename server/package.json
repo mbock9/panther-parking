@@ -12,6 +12,8 @@
     "data:clean": "jq --compact-output '.features' raw-data/midd-lots.geojson > raw-data/midd-lots-raw.geojson",
     "mongo:start": "mongod --config mongod.conf",
     "mongo:seed": "mongoimport --host localhost:5000 --db midd-lots -c parkingLots --file 'raw-data/midd-lots-raw.geojson' --jsonArray",
+    "mongo:purge": "mongo localhost:5000/midd-lots --eval 'db.dropDatabase()'",
+    "mongo:init": "npm run data:clean; npm run mongo:purge; npm run mongo:seed",
     "watch": "nodemon --exec 'node -r dotenv/config' --ignore '*.test.js' index.js"
   },
   "keywords": [],
