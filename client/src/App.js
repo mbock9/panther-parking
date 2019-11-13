@@ -29,7 +29,6 @@ function App() {
       })
       .then(data => {
         setData(data);
-        //setData(data);
       })
       .catch(err => console.log(err));
   }, []);

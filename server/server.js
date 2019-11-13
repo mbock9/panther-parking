@@ -3,7 +3,6 @@ const path = require('path'); // eslint-disable-line global-require
 
 // Resolve client build directory as absolute path to avoid errors in express
 const buildPath = path.resolve(__dirname, '../client/build');
-const dataPath = path.resolve(__dirname, 'data');
 const app = express();
 
 // Express only serves static assets in production
@@ -15,9 +14,14 @@ if (process.env.NODE_ENV === 'production') {
 // TODO: Add any middleware here
 
 // TODO: Add your routes here
-// Notice the "next" argument to the handler
-app.get('/api/map', (request, response) => {
-  response.sendFile(path.join(dataPath, 'midd-lots.geojson'));
+app.get('/api/map', (request, response, next) => {
+  app.locals.db
+    .collection('parkingLots')
+    .find()
+    .toArray()
+    .then(documents => {
+      response.send(documents);
+    }, next); // use "next" as rejection handler
 });
 
 app.get('/api/map/:key', (request, response) => {
