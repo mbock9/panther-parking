@@ -36,11 +36,9 @@ const ParkingMap = props => {
   const nonParkable = { features: [], type: 'FeatureCollection' };
 
   // Iterate through lot data and update lists accordingly
-  if (props.dataSet !== undefined) {
-    const geoJsonData = { features: props.dataSet, type: 'FeatureCollection' };
-
+  if (props.dataSet.features !== undefined) {
     if (permType) {
-      geoJsonData.features.forEach(feature => {
+      props.dataSet.features.forEach(feature => {
         if (feature.properties[permType].toUpperCase() === 'TRUE') {
           parkable.features.push(feature);
         } else {
@@ -50,7 +48,7 @@ const ParkingMap = props => {
     }
     // If no filters are defined, render all lots as parkable
     else {
-      parkable = geoJsonData;
+      parkable = props.dataSet;
     }
   }
 
