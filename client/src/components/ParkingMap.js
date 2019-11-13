@@ -55,8 +55,6 @@ const ParkingMap = props => {
   }
 
   if (key !== '' && props.dataSet !== undefined) {
-    // console.log("parkable lots")
-    // console.log(parkable.features);
     return (
       <ReactMapGL
         {...mapState.viewport}
