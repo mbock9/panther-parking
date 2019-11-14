@@ -41,7 +41,12 @@ Once the database begins successfully, create and seed the databse with:
 npm run --prefix server mongo:init
 ```
 
-Finally, run `npm start` to begin the app.
+In order to render a Mapbox map on the client, make sure the proper API key is specified in in `server/.env` as follows:
+```
+MAPBOX_KEY=insert-key-value-here
+```
+
+Finally, run `npm start` to start the app.
 
 If you're interested in the npm scripts used to automate mongo configuration, checkout [`server/package.json`](package.json)
 
