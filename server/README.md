@@ -12,7 +12,7 @@ You should install the dependencies from the "top-level" package as described in
 
 ## Configuring The Database
 
-Install [mongodb](https://docs.mongodb.com/manual/administration/install-community/) on your computer. The `mongodb` node package is installed as part of the dependencies for the server package (see `server/package.json`). _Note_: The node package and the local installation are both required -- the local isntallation is the actual mongodb installation, and the node package is the JavaScript interface that allows us to interface with the actual database.
+Install [mongodb](https://docs.mongodb.com/manual/administration/install-community/) on your computer. The `mongodb` node package is installed as part of the dependencies for the server package (see `server/package.json`). _Note_: The node package and the local installation are both required -- the local installation is the actual mongodb installation, and the node package is the JavaScript interface that allows us to interface with the actual database.
 
 Install [jq](https://stedolan.github.io/jq/download/). Our automation scripts will use jq to transform raw geojson into a format that can be digested by mongodb.
 
