@@ -23,6 +23,12 @@ npm install --prefix client
 npm install --prefix server
 ```
 
+You can run all three of these steps in sequence form th eroot of the repository with:
+
+```
+npm run setup:local
+```
+
 The `--prefix` option treats the supplied path as the package root. In this case it is equivalent to `cd client` then `npm install` then `cd ..`.
 
 **Windows Users**: There appears to be an [error](https://stackoverflow.com/q/50653324) using the `prefix` argument on Windows. Instead of using `prefix` you will need to manually change to the client and server directories before running `npm install` and possibly other `npm` commands.
