@@ -110,11 +110,11 @@ const Form = ({
             setPermit(event.target.value);
           }}
         >
-          <option value="sPermit">PermitS</option>
-          <option value="pPermit">PermitP</option>
-          <option value="uPermit">PermitU</option>
-          <option value="ePermit">PermitE</option>
-          <option value="tPermit">PermitT</option>
+          <option value="sPass">PermitS</option>
+          <option value="pPass">PermitP</option>
+          <option value="uPass">PermitU</option>
+          <option value="ePass">PermitE</option>
+          <option value="tPass">PermitT</option>
         </DropDownSelect>
 
         <h4
