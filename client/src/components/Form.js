@@ -114,10 +114,8 @@ const Form = ({
                   />
                 </Toolbar>
                 <FormControl className={classes.formControl}>
-                  <InputLabel id="demo-mutiple-name-label">Permit</InputLabel>
+                  <InputLabel>Permit</InputLabel>
                   <Select
-                    labelId="demo-mutiple-name-label"
-                    id="demo-mutiple-name"
                     value={permitType}
                     onChange={event => {
                       setPermit(event.target.value);
@@ -133,12 +131,8 @@ const Form = ({
                   </Select>
                 </FormControl>
                 <FormControl className={classes.formControl}>
-                  <InputLabel id="demo-mutiple-name-label">
-                    User type
-                  </InputLabel>
+                  <InputLabel>User type</InputLabel>
                   <Select
-                    labelId="demo-mutiple-name-label"
-                    id="demo-mutiple-name"
                     value={userType}
                     onChange={event => {
                       setUser(event.target.value);
