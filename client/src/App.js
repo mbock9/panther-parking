@@ -1,22 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import Form from './components/Form';
 import ParkingMap from './components/ParkingMap';
+import Form from './components/Form';
+
 /* eslint-disable react/prefer-stateless-function */
 
 function App() {
-  const [permitType, setPermit] = useState('x');
-  const [userType, setUser] = useState('student');
-  const [timeIn, setTimeIn] = useState('1:00AM');
-  // Don't need an initial time out
-  // timeOut can automatically be set to 30 mins after timeIn provided by the user in the form component
-  const [timeOut, setTimeOut] = useState('');
+  const [permitType, setPermit] = useState('');
+  const [userType, setUser] = useState('');
+  const [timeIn, setTimeIn] = useState(new Date());
+  const [timeOut, setTimeOut] = useState(new Date());
+  const [date, setDate] = useState(new Date());
 
-  // state instantiations need to happen inside of the exported component
-  // might want to define these in App.js, and then pass them as props to this component.
-  //first have to create all the props we have created
-
-  const [geoData, setData] = useState('');
+  // Set the data
+  const [geoData, setData] = useState({});
 
   // Use an effect hook to get the geojson data
   useEffect(() => {
@@ -44,8 +41,9 @@ function App() {
         setTimeIn={setTimeIn}
         timeOut={timeOut}
         setTimeOut={setTimeOut}
+        date={date}
+        setDate={setDate}
       />
-
       <div id="map">
         <ParkingMap
           dataSet={geoData}
@@ -53,6 +51,7 @@ function App() {
           userType={userType}
           timeIn={timeIn}
           timeOut={timeOut}
+          date={date}
         />
       </div>
     </div>

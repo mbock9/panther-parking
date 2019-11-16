@@ -1,35 +1,43 @@
 import React from 'react';
-import { mount } from 'enzyme';
-
+import { shallow } from 'enzyme';
+import Select from '@material-ui/core/Select';
+import { KeyboardTimePicker, KeyboardDatePicker } from '@material-ui/pickers';
 import Form from './Form';
 
 const testCase1 = {
-  permitType: 'x',
-  userType: 'student',
-  timeIn: '1:00AM',
-  timeOut: ''
+  permitType: 'sPass',
+  userType: 'Student',
+  timeIn: new Date(),
+  timeOut: new Date(),
+  date: new Date()
 };
 
 describe('Form tests', () => {
-  let form;
+  let wrapper;
 
   beforeEach(() => {
-    form = mount(
-      <Form
-        permitType={testCase1.permitType}
-        setPermit={jest.fn}
-        userType={testCase1.userType}
-        setUser={jest.fn}
-        timeIn={testCase1.timeIn}
-        setTimeIn={jest.fn}
-        timeOut={testCase1.timeOut}
-        setTimeOut={jest.fn}
-      />
-    );
+    const props = {
+      permitType: testCase1.permitType,
+      setPermit: jest.fn,
+      userType: testCase1.userType,
+      setUser: jest.fn,
+      timeIn: testCase1.timeIn,
+      setTimeIn: jest.fn,
+      timeOut: testCase1.timeOut,
+      setTimeOut: jest.fn,
+      date: testCase1.date,
+      setDate: jest.fn
+    };
+    wrapper = shallow(<Form {...props} />);
   });
 
-  test('Renders form', () => {
-    const formItems = form.find(Form).find('select');
-    expect(formItems).toHaveLength(4);
+  test('Renders form with 2 select fields (for Permit and Users type)', () => {
+    expect(wrapper.find(Select)).toHaveLength(2);
+  });
+  test('Renders form with 2 KeyboardTimePicker elements (for timeIn and timeOut)', () => {
+    expect(wrapper.find(KeyboardTimePicker)).toHaveLength(2);
+  });
+  test('Renders form with 1 KeyboardDatePicker element', () => {
+    expect(wrapper.find(KeyboardDatePicker)).toHaveLength(1);
   });
 });

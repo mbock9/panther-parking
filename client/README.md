@@ -10,6 +10,12 @@ The development server will attempt to proxy API requests to the server specifie
 
 ## Development
 
+### Component Library
+
+The [`Form` component](src/components/Form.js) is developed using [Material UI](https://material-ui.com/). Material UI is a Framework on top of react for building more robust and user friendly components. The component library obviates the need for tedious and monotonous UI development and instead lets devolopers focus on higher level conceptual tasks, such as how individual components should be built with respect to the application architecture.
+
+For more inofrmation on Material UI components, check out their [documentation](https://material-ui.com/getting-started/usage/).
+
 ### Testing
 
 The tests use both Jest and Enzyme has described in the [CRA documentation](https://facebook.github.io/create-react-app/docs/running-tests).

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ReactMapGL, { Source, Layer } from 'react-map-gl';
+import PropTypes from 'prop-types';
 
 const ParkingMap = props => {
   // Represent the viewport for the map as a state. Pass the setting function
@@ -10,7 +11,7 @@ const ParkingMap = props => {
       height: '100vh',
       latitude: 44.0082,
       longitude: -73.176,
-      zoom: 14
+      zoom: 15
     }
   });
 
@@ -27,7 +28,7 @@ const ParkingMap = props => {
   // Grab the permitType from props (and adjust if value not currently valid)
   let permType = '';
 
-  if (props.permitType !== 'x' && props.permitType !== 'uPermit') {
+  if (props.permitType !== '' && props.permitType !== 'uPass') {
     permType = props.permitType;
   }
 
@@ -58,7 +59,7 @@ const ParkingMap = props => {
         {...mapState.viewport}
         mapboxApiAccessToken={key}
         onViewportChange={viewport => setMapState({ viewport })}
-        mapStyle="mapbox://styles/mapbox/streets-v11"
+        mapStyle="mapbox://styles/mapbox/outdoors-v11"
       >
         <Source id="parkable-regions" type="geojson" data={parkable}>
           <Layer
@@ -66,7 +67,7 @@ const ParkingMap = props => {
             type="fill"
             paint={{
               'fill-outline-color': '#105e01',
-              'fill-color': '#1fb302',
+              'fill-color': '#4800b3',
               'fill-opacity': 0.75
             }}
           />
@@ -87,6 +88,15 @@ const ParkingMap = props => {
   } else {
     return <p>Loading...</p>;
   }
+};
+
+ParkingMap.propTypes = {
+  permitType: PropTypes.string.isRequired,
+  userType: PropTypes.string.isRequired,
+  dataSet: PropTypes.object.isRequired,
+  timeIn: PropTypes.instanceOf(Date).isRequired,
+  timeOut: PropTypes.instanceOf(Date).isRequired,
+  date: PropTypes.instanceOf(Date).isRequired
 };
 
 export default ParkingMap;
