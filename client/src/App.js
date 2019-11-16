@@ -14,7 +14,7 @@ function App() {
   const [date, setDate] = useState(new Date());
 
   // Set the data
-  const [geoData, setData] = useState('');
+  const [geoData, setData] = useState({});
 
   // Use an effect hook to get the geojson data
   useEffect(() => {
@@ -50,6 +50,8 @@ function App() {
           dataSet={geoData}
           permitType={permitType}
           userType={userType}
+          timeIn={timeIn}
+          timeOut={timeOut}
           date={date}
         />
       </div>
