@@ -1,36 +1,6 @@
-.App-logo {
-  text-align: left;
-  height: 120px;
-  transform: rotate(-30deg);
-}
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
 #mapbox {
   position: absolute;
   top: 0;
   bottom: 0;
   width: 100%;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
