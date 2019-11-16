@@ -10,7 +10,7 @@ const ParkingMap = props => {
       height: '100vh',
       latitude: 44.0082,
       longitude: -73.176,
-      zoom: 14
+      zoom: 15
     }
   });
 
@@ -27,7 +27,7 @@ const ParkingMap = props => {
   // Grab the permitType from props (and adjust if value not currently valid)
   let permType = '';
 
-  if (props.permitType !== 'x' && props.permitType !== 'uPermit') {
+  if (props.permitType !== '' && props.permitType !== 'uPermit') {
     permType = props.permitType;
   }
 
@@ -58,7 +58,7 @@ const ParkingMap = props => {
         {...mapState.viewport}
         mapboxApiAccessToken={key}
         onViewportChange={viewport => setMapState({ viewport })}
-        mapStyle="mapbox://styles/mapbox/streets-v11"
+        mapStyle="mapbox://styles/mapbox/outdoors-v11"
       >
         <Source id="parkable-regions" type="geojson" data={parkable}>
           <Layer
@@ -66,7 +66,7 @@ const ParkingMap = props => {
             type="fill"
             paint={{
               'fill-outline-color': '#105e01',
-              'fill-color': '#1fb302',
+              'fill-color': '#4800b3',
               'fill-opacity': 0.75
             }}
           />
