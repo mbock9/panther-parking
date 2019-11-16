@@ -1,5 +1,8 @@
 import React from 'react';
 import 'date-fns';
+import PropTypes from 'prop-types';
+
+// Material-ui imports
 import { makeStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -34,6 +37,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+// Dropdown Menu styling
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 const MenuProps = {
@@ -191,6 +195,19 @@ const Form = ({
       </div>
     </div>
   );
+};
+
+Form.propTypes = {
+  permitType: PropTypes.string.isRequired,
+  setPermit: PropTypes.func.isRequired,
+  userType: PropTypes.string.isRequired,
+  setUser: PropTypes.func.isRequired,
+  timeIn: PropTypes.instanceOf(Date).isRequired,
+  setTimeIn: PropTypes.func.isRequired,
+  timeOut: PropTypes.instanceOf(Date).isRequired,
+  setTimeOut: PropTypes.func.isRequired,
+  date: PropTypes.instanceOf(Date).isRequired,
+  setDate: PropTypes.func.isRequired
 };
 
 export default Form;
