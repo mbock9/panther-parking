@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import ParkingMap from './components/ParkingMap';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import Form from './components/Form';
 
 /* eslint-disable react/prefer-stateless-function */
