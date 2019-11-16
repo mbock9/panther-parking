@@ -28,7 +28,7 @@ const ParkingMap = props => {
   // Grab the permitType from props (and adjust if value not currently valid)
   let permType = '';
 
-  if (props.permitType !== '' && props.permitType !== 'uPermit') {
+  if (props.permitType !== '' && props.permitType !== 'uPass') {
     permType = props.permitType;
   }
 
