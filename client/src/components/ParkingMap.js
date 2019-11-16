@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ReactMapGL, { Source, Layer } from 'react-map-gl';
+import PropTypes from 'prop-types';
 
 const ParkingMap = props => {
   // Represent the viewport for the map as a state. Pass the setting function
@@ -87,6 +88,15 @@ const ParkingMap = props => {
   } else {
     return <p>Loading...</p>;
   }
+};
+
+ParkingMap.propTypes = {
+  permitType: PropTypes.string.isRequired,
+  userType: PropTypes.string.isRequired,
+  dataSet: PropTypes.object.isRequired,
+  timeIn: PropTypes.instanceOf(Date).isRequired,
+  timeOut: PropTypes.instanceOf(Date).isRequired,
+  date: PropTypes.instanceOf(Date).isRequired
 };
 
 export default ParkingMap;
