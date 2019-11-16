@@ -73,9 +73,9 @@ const Form = ({
   // console.log("timeout:", timeOut);
 
   // Define handlers for date and timeIn and timeOut changes.
-  const handleDateChange = date => {
-    if (Object.prototype.toString.call(date) === '[object Date]') {
-      setDate(date);
+  const handleDateChange = selectedDate => {
+    if (Object.prototype.toString.call(selectedDate) === '[object Date]') {
+      setDate(selectedDate);
     }
   };
 
@@ -101,16 +101,11 @@ const Form = ({
               className={classes.menuButton}
               color="inherit"
               aria-label="menu"
-            ></IconButton>
+            />
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
               <Grid container justify="space-around" spacing={1}>
                 <Toolbar>
-                  <img
-                    src={logo}
-                    className="App-logo"
-                    alt="logo"
-                    className={classes.logo}
-                  />
+                  <img src={logo} alt="logo" className={classes.logo} />
                 </Toolbar>
                 <FormControl className={classes.formControl}>
                   <InputLabel>Permit</InputLabel>

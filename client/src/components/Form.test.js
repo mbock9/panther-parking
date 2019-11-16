@@ -1,13 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-// import { createMount } from '@material-ui/core/test-utils';
 import Select from '@material-ui/core/Select';
-import {
-  MuiPickersUtilsProvider,
-  KeyboardTimePicker,
-  KeyboardDatePicker
-} from '@material-ui/pickers';
-
+import { KeyboardTimePicker, KeyboardDatePicker } from '@material-ui/pickers';
 import Form from './Form';
 
 const testCase1 = {
@@ -19,21 +13,7 @@ const testCase1 = {
 };
 
 describe('Form tests', () => {
-  let form;
-  let mount;
   let wrapper;
-  // const props = {
-  //   permitType: testCase1.permitType,
-  //   setPermit: jest.fn,
-  //   userType: testCase1.userType,
-  //   setUser: jest.fn,
-  //   timeIn: testCase1.timeIn,
-  //   setTimeIn: jest.fn,
-  //   timeOut: testCase1.timeOut,
-  //   setTimeOut: jest.fn,
-  //   date: testCase1.date,
-  //   setDate: jest.fn
-  // }
 
   beforeEach(() => {
     const props = {
