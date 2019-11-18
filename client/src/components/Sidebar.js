@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Styled from 'styled-components';
 
+// style for components
 const Side = Styled.div`
 height: 100%; 
 width: 18%; 
@@ -18,10 +19,36 @@ const Item = Styled.li`
     transition: 0.3s;
 `;
 
-const Sidebar = props => {
+const Sidebar = () => {
+  const [summary, setSummary] = useState();
+
+  // Fetch and use 'name', 'description' and 'permits_allowed'
+  fetch('/api/lots/basicInfo')
+    .then(response => response.text())
+    .then(body => {
+      setSummary(body);
+    })
+    .catch(err => console.log(err));
+
+  const Info = () => {
+    summary.forEach(element => {
+      const name = element.name;
+      const desc = element.description;
+      const allowed = element.permits_allowed;
+
+      return (
+        <div>
+          <text>{name}</text>
+          <text>{desc}</text>
+          <text>{allowed}</text>
+        </div>
+      );
+    });
+  };
+
   return (
     <Side>
-      <Item>MAP 1</Item>
+      <Info />
       <Item>MAP 2</Item>
       <Item>MAP 3</Item>
       <Item>MAP 4</Item>
