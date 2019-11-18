@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import ParkingMap from './components/ParkingMap';
 import Form from './components/Form';
+import Sidebar from './components/Sidebar';
 
 /* eslint-disable react/prefer-stateless-function */
 
@@ -44,6 +45,7 @@ function App() {
         date={date}
         setDate={setDate}
       />
+      <Sidebar />
       <div id="map">
         <ParkingMap
           dataSet={geoData}
