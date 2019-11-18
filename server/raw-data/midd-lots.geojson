@@ -3,15 +3,11 @@
     {
       "type": "Feature",
       "properties": {
-        "pPass": "false",
-        "sPass": "false",
+        "permits": [],
         "visitors": "false",
-        "tPass": "false",
-        "uPass": "false",
         "lot_type": "U",
         "f/s": "true",
         "name": "Fitness Center",
-        "ePass": "false",
         "description": "Parking lot near the indoor tennis courts and fitness center.",
         "f/s_r": "false"
       },
@@ -47,15 +43,11 @@
     {
       "type": "Feature",
       "properties": {
-        "pPass": "true",
-        "sPass": "true",
+        "permits": ["pPass", "sPass", "ePass"],
         "visitors": "false",
-        "tPass": "false",
-        "uPass": "false",
         "lot_type": "R",
         "f/s": "false",
         "name": "Ridgeline Rd.",
-        "ePass": "true",
         "description": "Student parking lot located below the Ridgeline buildings.",
         "f/s_r": "false"
       },
@@ -109,13 +101,9 @@
       "properties": {
         "description": "Multi-purpose parking lot adjacent to the Peterson Family Athletics Complex.",
         "visitors": "true",
+        "permits": ["sPass", "pPass", "ePass", "tPass", "uPass"],
         "f/s": "true",
         "f/s_r": "true",
-        "sPass": "true",
-        "pPass": "true",
-        "ePass": "true",
-        "tPass": "true",
-        "uPass": "true",
         "name": "Field House",
         "lot_type": "T"
       },
@@ -153,11 +141,7 @@
       "properties": {
         "description": "Faculty, staff, and student lot adjacent to the Squash pavillion and Kenyon Arena.",
         "name": "Kenyon Arena",
-        "sPass": "true",
-        "pPass": "true",
-        "uPass": "true",
-        "ePass": "true",
-        "tPass": "true",
+        "permits": ["sPass", "pPass", "ePass", "tPass", "uPass"],
         "f/s": "true",
         "f/s_r": "true",
         "lot_type": "T",
@@ -191,15 +175,11 @@
     {
       "type": "Feature",
       "properties": {
-        "pPass": "false",
-        "sPass": "true",
+        "permits": ["sPass"],
         "visitors": "false",
-        "tPass": "false",
-        "uPass": "false",
         "lot_type": "C",
         "f/s": "true",
         "name": "E-Lot",
-        "ePass": "false",
         "description": "Faculty/staff and student parking lot positioned in between 75 Shannon Street and Atwater Dining Hall.",
         "f/s_r": "true"
       },
@@ -251,14 +231,10 @@
     {
       "type": "Feature",
       "properties": {
+        "permits": ["sPass", "pPass", "ePass", "tPass", "uPass"],
         "visitors": "true",
         "f/s": "true",
         "f/s_r": "true",
-        "sPass": "true",
-        "pPass": "true",
-        "uPass": "true",
-        "ePass": "true",
-        "tPass": "true",
         "name": "CFA (Kevin P. Mahaney '84 Center for the Arts)",
         "description": "Large multi-purpose parking lot on the south side of campus.",
         "lot_type": "T"
@@ -307,14 +283,10 @@
     {
       "type": "Feature",
       "properties": {
-        "pPass": "true",
-        "sPass": "true",
+        "permits": ["sPass", "pPass", "ePass", "tPass", "uPass"],
         "visitors": "true",
-        "tPass": "true",
-        "uPass": "true",
         "f/s": "false",
         "name": "true",
-        "ePass": "true",
         "description": "Overflow parking for students.",
         "f/s_r": "false",
         "lot_type": "none"
@@ -351,14 +323,10 @@
     {
       "type": "Feature",
       "properties": {
-        "pPass": "false",
-        "sPass": "false",
+        "permits": [],
         "visitors": "false",
-        "tPass": "false",
-        "uPass": "false",
         "f/s": "false",
         "name": "Proctor Hall",
-        "ePass": "false",
         "f/s_r": "true",
         "description": "Faculty and staff spaces in between Proctor Hall and the Hillcrest Environmental Center.",
         "lot_type": "N"
@@ -403,14 +371,10 @@
     {
       "type": "Feature",
       "properties": {
-        "pPass": "false",
-        "sPass": "false",
+        "permits": [],
         "visitors": "true",
-        "tPass": "false",
-        "uPass": "false",
         "f/s": "true",
         "name": "College St.",
-        "ePass": "false",
         "f/s_r": "false",
         "description": "Parallel spaces along College street.",
         "lot_type": "O"
@@ -447,15 +411,11 @@
     {
       "type": "Feature",
       "properties": {
-        "pPass": "false",
-        "sPass": "false",
+        "permits": [],
         "visitors": "true",
-        "tPass": "false",
-        "uPass": "false",
         "lot_type": "A",
         "f/s": "true",
         "name": "Admissions (Emma Willard House)",
-        "ePass": "false",
         "description": "Parking lot for faculty, staff, and visitors next to the admissions office.",
         "f/s_r": "false"
       },
@@ -491,15 +451,11 @@
     {
       "type": "Feature",
       "properties": {
-        "pPass": "false",
-        "sPass": "true",
+        "permits": ["sPass"],
         "visitors": "false",
-        "tPass": "false",
-        "uPass": "false",
         "lot_type": "C",
         "f/s": "true",
         "name": "Coffrin Hall & Freeman International Center",
-        "ePass": "false",
         "description": "Student and faculty lot located below Freeman International Center and Coffrin Hall.",
         "f/s_r": "true"
       },
@@ -563,14 +519,10 @@
     {
       "type": "Feature",
       "properties": {
+        "permits": ["tPass"],
         "visitors": "true",
         "f/s": "true",
         "f/s_r": "false",
-        "sPass": "false",
-        "pPass": "false",
-        "uPass": "false",
-        "ePass": "false",
-        "tPass": "true",
         "description": "Parking lot located behind McCardell Bicentennial Hall.",
         "lot_type": "S",
         "name": "McCardell Bicentennial Hall"
@@ -607,14 +559,10 @@
     {
       "type": "Feature",
       "properties": {
-        "pPass": "false",
-        "sPass": "false",
+        "permits": [],
         "visitors": "false",
-        "tPass": "false",
-        "uPass": "false",
         "f/s": "false",
         "name": "Robert A. Jones '59 House",
-        "ePass": "false",
         "f/s_r": "true",
         "description": "Parking lot adjacent to the Robert A. Jones '59 House for faculty and staff.",
         "lot_type": "K"
@@ -659,14 +607,10 @@
     {
       "type": "Feature",
       "properties": {
+        "permits": ["sPass"],
         "visitors": "false",
         "f/s": "false",
-        "f/s_r": "false",
-        "sPass": "true",
-        "pPass": "false",
-        "uPass": "false",
-        "ePass": "false",
-        "tPass": "false"
+        "f/s_r": "false"
       },
       "geometry": {
         "coordinates": [
@@ -708,15 +652,11 @@
     {
       "type": "Feature",
       "properties": {
-        "pPass": "false",
-        "sPass": "false",
+        "permits": [],
         "visitors": "true",
-        "tPass": "false",
-        "uPass": "false",
         "lot_type": "H",
         "f/s": "true",
         "name": "Old Chapel Rd.",
-        "ePass": "false",
         "description": "Strip of perpendicular spaces along Old Chapel Rd.",
         "f/s_r": "false"
       },
@@ -780,15 +720,11 @@
     {
       "type": "Feature",
       "properties": {
-        "pPass": "false",
-        "sPass": "false",
+        "permits": [],
         "visitors": "false",
-        "tPass": "false",
-        "uPass": "false",
         "lot_type": "J",
         "f/s": "true",
-        "name": "Stewart Hal",
-        "ePass": "false",
+        "name": "Stewart Hall",
         "description": "Parking lot adjacent to Stewart Hall.",
         "f/s_r": "false"
       },
