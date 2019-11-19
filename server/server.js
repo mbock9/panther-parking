@@ -13,7 +13,7 @@ if (process.env.NODE_ENV === 'production') {
 
 // TODO: Add any middleware here
 
-// TODO: Add your routes here
+// Return map with all lots available
 app.get('/api/map', (request, response, next) => {
   app.locals.db
     .collection('parkingLots')
@@ -25,8 +25,22 @@ app.get('/api/map', (request, response, next) => {
     }, next); // use "next" as rejection handler
 });
 
+// Get the mapbox API key from environment
 app.get('/api/map/:key', (request, response) => {
   response.send(process.env.MAPBOX_KEY);
+});
+
+// Return a list of parkable/non-parkable lots based on filter criteria
+app.get('/api/map/filter/:permitType', (request, response, next) => {
+  console.log(request.params.permitType);
+  app.locals.db
+    .collection('parkingLots')
+    .find({ 'properties.permits': 'sPass' })
+    .toArray()
+    .then(documents => {
+      const geoJsonData = { features: documents, type: 'FeatureCollection' };
+      response.send(geoJsonData);
+    }, next); // Use "next" as rejection handler
 });
 
 // Express only serves static assets in production
