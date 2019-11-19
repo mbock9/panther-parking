@@ -13,6 +13,24 @@ if (process.env.NODE_ENV === 'production') {
 
 // TODO: Add any middleware here
 
+const checkIfWeekend = (day, hourIn, hourOut) => {
+  console.log(day);
+  if (day == 0 || day == 6) {
+    return true;
+  }
+  if (day == 5) {
+    if (hourIn >= 17) {
+      return true;
+    }
+  }
+  if (day == 1) {
+    if (hourOut <= 9) {
+      return true;
+    }
+  }
+  return false;
+};
+
 // Return map with all lots available
 app.get('/api/map', (request, response, next) => {
   app.locals.db
@@ -151,23 +169,6 @@ app.get(
 
     // Declare a function to check if it is the weekend (on the right day or
     // before/after the right time)
-    const checkIfWeekend = (day, hourIn, hourOut) => {
-      console.log(day);
-      if (day == 0 || day == 6) {
-        return true;
-      }
-      if (day == 5) {
-        if (hourIn >= 17) {
-          return true;
-        }
-      }
-      if (day == 1) {
-        if (hourOut <= 9) {
-          return true;
-        }
-      }
-      return false;
-    };
 
     let query = undefined;
 

@@ -92,6 +92,8 @@ function App() {
             setTimeOut={setTimeOut}
             landing={landingPage}
             update={setUpdate}
+            setDate={setDate}
+            date={date}
           />
           <button
             style={{
