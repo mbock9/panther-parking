@@ -11,11 +11,9 @@ function App() {
   const [timeIn, setTimeIn] = useState(new Date());
   const [timeOut, setTimeOut] = useState(new Date());
   const [date, setDate] = useState(new Date());
-  // const [landingPage, changeLandingPage] = useState(true);
   // Set the data
   const [geoData, setData] = useState({});
-  const [updated, setUpdate] = useState(false);
-  console.log(updated);
+
   // Use an effect hook to get the geojson data
   useEffect(() => {
     fetch(`/api/map/`)
@@ -46,7 +44,6 @@ function App() {
         setTimeOut={setTimeOut}
         date={date}
         setDate={setDate}
-        update={setUpdate}
       />
       <Sidebar
         permitType={permitType}

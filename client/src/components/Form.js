@@ -62,8 +62,7 @@ const Form = ({
   timeOut,
   setTimeOut,
   date,
-  setDate,
-  update
+  setDate
 }) => {
   // Instantiate style classes
   const classes = useStyles();
