@@ -50,7 +50,7 @@ const MenuProps = {
 };
 
 const names = ['sPass', 'ePass', 'pPass', 'tPass', 'uPass'];
-const users = ['Student', 'Admin', 'Visitor'];
+const users = ['Student', 'Admin', 'Visitor', 'Faculty'];
 
 const Form = ({
   permitType,
@@ -110,7 +110,7 @@ const Form = ({
                 <FormControl className={classes.formControl}>
                   <InputLabel>Permit</InputLabel>
                   <Select
-                    value={permitType}
+                    value={permitType === 'initial' ? '' : permitType}
                     onChange={event => {
                       setPermit(event.target.value);
                     }}
@@ -127,7 +127,7 @@ const Form = ({
                 <FormControl className={classes.formControl}>
                   <InputLabel>User type</InputLabel>
                   <Select
-                    value={userType}
+                    value={userType === 'initial' ? '' : userType}
                     onChange={event => {
                       setUser(event.target.value);
                     }}

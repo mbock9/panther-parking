@@ -2,22 +2,21 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import ParkingMap from './components/ParkingMap';
 import Form from './components/Form';
-
+import Sidebar from './components/Sidebar';
 /* eslint-disable react/prefer-stateless-function */
 
 function App() {
-  const [permitType, setPermit] = useState('');
-  const [userType, setUser] = useState('');
+  const [permitType, setPermit] = useState('initial');
+  const [userType, setUser] = useState('initial');
   const [timeIn, setTimeIn] = useState(new Date());
   const [timeOut, setTimeOut] = useState(new Date());
   const [date, setDate] = useState(new Date());
-
   // Set the data
   const [geoData, setData] = useState({});
 
   // Use an effect hook to get the geojson data
   useEffect(() => {
-    fetch('/api/map')
+    fetch(`/api/map/`)
       .then(response => {
         if (!response.ok) {
           throw new Error(response.statusText);
@@ -29,6 +28,8 @@ function App() {
       })
       .catch(err => console.log(err));
   }, []);
+
+  console.log(userType);
 
   return (
     <div className="App">
@@ -43,6 +44,13 @@ function App() {
         setTimeOut={setTimeOut}
         date={date}
         setDate={setDate}
+      />
+      <Sidebar
+        permitType={permitType}
+        userType={userType}
+        timeIn={timeIn}
+        timeOut={timeOut}
+        date={date}
       />
       <div id="map">
         <ParkingMap

@@ -371,7 +371,7 @@
     {
       "type": "Feature",
       "properties": {
-        "permits": [],
+        "permits": ["sPass", "pPass", "ePass", "tPass", "uPass"],
         "visitors": "true",
         "f/s": "true",
         "name": "College St.",
