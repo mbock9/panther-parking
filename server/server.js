@@ -14,16 +14,16 @@ if (process.env.NODE_ENV === 'production') {
 // TODO: Add any middleware here
 
 const checkIfWeekend = (day, hourIn, hourOut) => {
-  console.log(day);
-  if (day == 0 || day == 6) {
+  // console.log(day);
+  if (day === 0 || day === 6) {
     return true;
   }
-  if (day == 5) {
+  if (day === 5) {
     if (hourIn >= 17) {
       return true;
     }
   }
-  if (day == 1) {
+  if (day === 1) {
     if (hourOut <= 9) {
       return true;
     }
@@ -52,82 +52,84 @@ app.get('/api/map/:key', (request, response) => {
 app.get(
   '/api/map/filter/:permitType/:userType/:timeIn/:timeOut/:date',
   (request, response, next) => {
-    console.log('entering filter endpoint');
+    // console.log('entering filter endpoint');
 
     // Validation arrays
     const potentialPermits = ['sPass', 'ePass', 'pPass', 'tPass', 'uPass'];
 
-    console.log(request.params.timeIn);
-    console.log(request.params.timeOut);
-    console.log(request.params.date);
+    // console.log(request.params.timeIn);
+    // console.log(request.params.timeOut);
+    // console.log(request.params.date);
 
-    let timeInHour = parseInt(request.params.timeIn);
-    let timeOutHour = parseInt(request.params.timeOut);
-    let dateDay = parseInt(request.params.date);
+    const timeInHour = parseInt(request.params.timeIn, 10);
+    const timeOutHour = parseInt(request.params.timeOut, 10);
+    const dateDay = parseInt(request.params.date, 10);
+    // eslint-disable-next-line prefer-destructuring
     let userType = request.params.userType;
-    let permitType = request.params.permitType;
+    // eslint-disable-next-line prefer-destructuring
+    const permitType = request.params.permitType;
 
     // Declare a function to check if it is the weekend or outside of business
     // hours for faculty-staff spots. (9-5 M-F business hours)
-    const isAfterHours = (day, hourIn, hourOut) => {
-      // On weekends return true
-      if (day == 0 || day == 6) {
-        return true;
-      }
-      // During work hours return false
-      if (hourIn > 9 || hourIn < 5) {
-        return false;
-      }
-      if (hourOut > 9 || hourOut < 5) {
-        return false;
-      }
-      // Outside of work hours return true
-      return true;
-    };
+    // const isAfterHours = (day, hourIn, hourOut) => {
+    //   // On weekends return true
+    //   if (day == 0 || day == 6) {
+    //     return true;
+    //   }
+    //   // During work hours return false
+    //   if (hourIn > 9 || hourIn < 5) {
+    //     return false;
+    //   }
+    //   if (hourOut > 9 || hourOut < 5) {
+    //     return false;
+    //   }
+    //   // Outside of work hours return true
+    //   return true;
+    // };
 
-    let query = undefined;
+    let query;
 
     // Automatically set user type to student if permit is selected
-    if (permitType && permitType != 'initial' && userType == 'initial') {
+    if (permitType && permitType !== 'initial' && userType === 'initial') {
       userType = 'Student';
     }
 
     if (checkIfWeekend(dateDay, timeInHour, timeOutHour)) {
-      if (userType == 'Student') {
+      if (userType === 'Student') {
         query = {
           $or: [
             { 'properties.permits': permitType },
             { 'properties.f/s': 'true' }
           ]
         };
-      } else if (userType == 'Faculty') {
+      } else if (userType === 'Faculty') {
         query = {
           $or: [{ 'properties.f/s': 'true' }, { 'properties.f/s_r': 'true' }]
         };
-      } else if (userType == 'Visitor') {
+      } else if (userType === 'Visitor') {
         query = {
           $or: [{ 'properties.f/s': 'true' }, { 'properties.visitor': 'true' }]
         };
       }
     } else {
-      if (userType == 'Student') {
+      if (userType === 'Student') {
         if (potentialPermits.includes(permitType)) {
           query = { 'properties.permits': permitType };
         } else {
           query = { 'properties.permits': { $exists: true, $ne: [] } };
         }
       }
-      if (userType == 'Faculty') {
+      if (userType === 'Faculty') {
         query = {
           $or: [{ 'properties.f/s': 'true' }, { 'properties.f/s_r': 'true' }]
         };
       }
-      if (userType == 'Visitor') {
+      if (userType === 'Visitor') {
         query = { 'properties.visitors': 'true' };
       }
     }
 
-    if (query == undefined) {
+    if (query === undefined) {
       app.locals.db
         .collection('parkingLots')
         .find()
@@ -161,58 +163,60 @@ app.get(
     // Validation arrays
     const potentialPermits = ['sPass', 'ePass', 'pPass', 'tPass', 'uPass'];
 
-    let timeInHour = parseInt(request.params.timeIn);
-    let timeOutHour = parseInt(request.params.timeOut);
-    let dateDay = parseInt(request.params.date);
+    const timeInHour = parseInt(request.params.timeIn, 10);
+    const timeOutHour = parseInt(request.params.timeOut, 10);
+    const dateDay = parseInt(request.params.date, 10);
+    // eslint-disable-next-line prefer-destructuring
     let userType = request.params.userType;
-    let permitType = request.params.permitType;
+    // eslint-disable-next-line prefer-destructuring
+    const permitType = request.params.permitType;
 
     // Declare a function to check if it is the weekend (on the right day or
     // before/after the right time)
 
-    let query = undefined;
+    let query;
 
     // Automatically set user type to student if permit is selected
-    if (permitType && permitType != 'initial' && userType == 'initial') {
+    if (permitType && permitType !== 'initial' && userType === 'initial') {
       userType = 'Student';
     }
 
     if (checkIfWeekend(dateDay, timeInHour, timeOutHour)) {
-      if (userType == 'Student') {
+      if (userType === 'Student') {
         query = {
           $or: [
             { 'properties.permits': permitType },
             { 'properties.f/s': 'true' }
           ]
         };
-      } else if (userType == 'Faculty') {
+      } else if (userType === 'Faculty') {
         query = {
           $or: [{ 'properties.f/s': 'true' }, { 'properties.f/s_r': 'true' }]
         };
-      } else if (userType == 'Visitor') {
+      } else if (userType === 'Visitor') {
         query = {
           $or: [{ 'properties.f/s': 'true' }, { 'properties.visitor': 'true' }]
         };
       }
     } else {
-      if (userType == 'Student') {
+      if (userType === 'Student') {
         if (potentialPermits.includes(permitType)) {
           query = { 'properties.permits': permitType };
         } else {
           query = { 'properties.permits': { $exists: true, $ne: [] } };
         }
       }
-      if (userType == 'Faculty') {
+      if (userType === 'Faculty') {
         query = {
           $or: [{ 'properties.f/s': 'true' }, { 'properties.f/s_r': 'true' }]
         };
       }
-      if (userType == 'Visitor') {
+      if (userType === 'Visitor') {
         query = { 'properties.visitors': 'true' };
       }
     }
 
-    if (query == undefined) {
+    if (query === undefined) {
       app.locals.db
         .collection('parkingLots')
         .find()
