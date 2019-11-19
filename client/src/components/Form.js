@@ -50,7 +50,7 @@ const MenuProps = {
 };
 
 const names = ['sPass', 'ePass', 'pPass', 'tPass', 'uPass'];
-const users = ['Student', 'Admin', 'Visitor'];
+const users = ['Student', 'Admin', 'Visitor', 'Faculty'];
 
 const Form = ({
   permitType,

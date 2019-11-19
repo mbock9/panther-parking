@@ -34,37 +34,104 @@ app.get('/api/map/:key', (request, response) => {
 app.get(
   '/api/map/filter/:permitType/:userType/:timeIn/:timeOut/:date',
   (request, response, next) => {
+    // Validation arrays
+    let potentialPermits = ['sPass', 'ePass', 'pPass', 'tPass', 'uPass'];
+    let potentialUsers = ['Student', 'Visitor', 'Faculty'];
+
     // Save all parameters
     let permitType = request.params.permitType;
     let userType = request.params.permitType;
-    let timeIn = request.params.timeIn;
-    let timeOut = request.params.timeOut;
-    let date = request.params.date;
+    let timeIn = new Date(request.params.timeIn);
+    let timeOut = new Date(request.params.timeOut);
+    let dateArg = new Date(request.params.date);
 
-    // Build the filter argument that will be passed to database query
-    query = {};
-
-    // Filter by permit type
-    if (
-      (permitType = 'sPass') ||
-      (permitType = 'ePass') ||
-      (permitType = 'pPass') ||
-      (permitType = 'tPass') ||
-      (permitType = 'uPass')
-    ) {
-      query.push({ 'properties.permits': permitType });
+    // Set user type to student if they have a permit
+    if (potentialPermits.includes(permitType)) {
       userType = 'Student';
     }
 
-    console.log(request.params.permitType);
-    app.locals.db
-      .collection('parkingLots')
-      .find({ 'properties.permits': request.params.permitType })
-      .toArray()
-      .then(documents => {
-        const geoJsonData = { features: documents, type: 'FeatureCollection' };
-        response.send(geoJsonData);
-      }, next); // Use "next" as rejection handler
+    let query = undefined;
+
+    const checkIfWeekend = (dateOf, timeInOf, timeOutOf) => {
+      if (dateOf.getDay() == 0 || dateOf.getDay() == 6) {
+        return true;
+      }
+      if (dateOf.getDay() == 5) {
+        if (timeInOf.getHours() >= 17) {
+          return true;
+        }
+      }
+      if (dateOf.getDay() == 1) {
+        if (timeOutOf.getHours() <= 9) {
+          return true;
+        }
+      }
+      return false;
+    };
+
+    // If the duration of the park will be on the weekend, build the query
+    // accordingly
+    if (checkIfWeekend(dateArg, timeIn, timeOut)) {
+      if (userType == 'Student') {
+        query = {
+          $or: [
+            { 'properties.permits': permitType },
+            { 'properties.f/s': 'true' }
+          ]
+        };
+      } else if (userType == 'Faculty') {
+        query = {
+          $or: [{ 'properties.f/s': 'true' }, { 'properties.f/s_r': 'true' }]
+        };
+      } else if (userType == 'Visitor') {
+        query = {
+          $or: [{ 'properties.f/s': 'true' }, { 'properties.visitor': 'true' }]
+        };
+      }
+    }
+    // Otherwise, abide by the weekday rules
+    else {
+      if (userType == 'Student') {
+        if (potentialPermits.includes(permitType)) {
+          query = { 'properties.permits': permitType };
+        }
+        query = { 'properties.permits': { $exists: true, $ne: [] } };
+      }
+      if (userType == 'Faculty') {
+        query = {
+          $or: [{ 'properties.f/s': 'true' }, { 'properties.f/s_r': 'true' }]
+        };
+      }
+      if (userType == 'Visitor') {
+        query = { 'properties.visitor': 'true' };
+      }
+    }
+
+    if (query == undefined) {
+      app.locals.db
+        .collection('parkingLots')
+        .find()
+        .toArray()
+        .then(documents => {
+          const geoJsonData = {
+            features: documents,
+            type: 'FeatureCollection'
+          };
+          response.send(geoJsonData);
+        }, next); // Use "next" as rejection handler
+    } else {
+      app.locals.db
+        .collection('parkingLots')
+        .find(query)
+        .toArray()
+        .then(documents => {
+          const geoJsonData = {
+            features: documents,
+            type: 'FeatureCollection'
+          };
+          response.send(geoJsonData);
+        }, next); // Use "next" as rejection handler
+    }
   }
 );
 

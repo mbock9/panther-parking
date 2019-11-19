@@ -42,7 +42,13 @@ const ParkingMap = props => {
         setParkable(data);
       })
       .catch(err => console.log(err));
-  }, [props.permitType]);
+  }, [
+    props.permitType,
+    props.userType,
+    props.timeIn,
+    props.timeOut,
+    props.date
+  ]);
 
   // props.dataSet is loaded only one time in App.js
   // This loads the map with all lots having an overlay initially
