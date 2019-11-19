@@ -184,7 +184,13 @@ function App() {
         setDate={setDate}
         update={setUpdate}
       />
-      <Sidebar />
+      <Sidebar
+        permitType={permitType}
+        userType={userType}
+        timeIn={timeIn}
+        timeOut={timeOut}
+        date={date}
+      />
       <div id="map">
         <ParkingMap
           dataSet={geoData}
