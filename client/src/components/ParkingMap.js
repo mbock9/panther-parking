@@ -29,8 +29,14 @@ const ParkingMap = props => {
   }, []);
 
   useEffect(() => {
+    let timeInHours = props.timeIn.getHours();
+    let timeOutHours = props.timeOut.getHours();
+    let dateDay = props.date.getDay();
+    console.log(timeInHours);
+    console.log(timeOutHours);
+    console.log(dateDay);
     fetch(
-      `/api/map/filter/${props.permitType}/${props.userType}/${props.timeIn}/${props.timeOut}/${props.date}`
+      `/api/map/filter/${props.permitType}/${props.userType}/${timeInHours}/${timeOutHours}/${dateDay}`
     )
       .then(response => {
         if (!response.ok) {
