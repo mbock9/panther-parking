@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useLayoutEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactMapGL, { Source, Layer } from 'react-map-gl';
 import PropTypes from 'prop-types';
 
@@ -29,9 +29,9 @@ const ParkingMap = props => {
   }, []);
 
   useEffect(() => {
-    let timeInHours = props.timeIn.getHours();
-    let timeOutHours = props.timeOut.getHours();
-    let dateDay = props.date.getDay();
+    const timeInHours = props.timeIn.getHours();
+    const timeOutHours = props.timeOut.getHours();
+    const dateDay = props.date.getDay();
 
     fetch(
       `/api/map/filter/${props.permitType}/${props.userType}/${timeInHours}/${timeOutHours}/${dateDay}`

@@ -26,9 +26,9 @@ const Sidebar = props => {
   const [parkable, setParkable] = useState({});
 
   useEffect(() => {
-    let timeInHours = props.timeIn.getHours();
-    let timeOutHours = props.timeOut.getHours();
-    let dateDay = props.date.getDay();
+    const timeInHours = props.timeIn.getHours();
+    const timeOutHours = props.timeOut.getHours();
+    const dateDay = props.date.getDay();
     fetch(
       `/api/lots/basicInfo/${props.permitType}/${props.userType}/${timeInHours}/${timeOutHours}/${dateDay}`
     )
@@ -50,7 +50,6 @@ const Sidebar = props => {
     props.date
   ]);
 
-  let info = '';
   if (parkable.features) {
     const infoList = parkable.features.map(element => (
       <div>
@@ -71,7 +70,7 @@ const Sidebar = props => {
   }
   return (
     <Side>
-      <Item></Item>
+      <Item />
     </Side>
   );
 };
