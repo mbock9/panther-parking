@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import Styled from 'styled-components';
+//import { List, isImmutable } from 'immutable';
 
 // style for components
 const Side = Styled.div`
 height: 100%; 
-width: 18%; 
+width: 22%; 
 position: absolute;
 z-index: 1000;
 background-color: #111;
@@ -20,42 +21,43 @@ const Item = Styled.li`
 `;
 
 const Sidebar = () => {
-  const [summary, setSummary] = useState();
+  //const [summary, setSummary] = useState(List());
 
   // Fetch and use 'name', 'description' and 'permits_allowed'
-  fetch('/api/lots/basicInfo')
-    .then(response => response.text())
-    .then(body => {
-      setSummary(body);
-    })
-    .catch(err => console.log(err));
+  // fetch('/api/lots/basicInfo')
+  //   .then(response => response.text())
+  //   .then(body => {
+  //     setSummary(List(body));
+  //   })
+  //   .catch(err => console.log(err));
 
-  const Info = () => {
-    summary.parkable -
-      lots.forEach(element => {
-        const name = element.name;
-        const desc = element.description;
-        const allowed = element.permits_allowed;
-        const firstLot = data.parkable - lots[0];
-        const secondLot = data.parkable - lots[1];
-
-        return (
-          <div>
-            <text>Other Available Maps</text>
-            <text>{desc}</text>
-            <text>{name}</text>
-            <text>{desc}</text>
-          </div>
-        );
-      });
+  //dummy values until API works.
+  const summary = {
+    parkable_lots: [
+      {
+        name: 'Lot 1',
+        description: 'Next to Narnia',
+        permits_allowed: ['PermitA', 'PermitB', 'PermitC', 'permitD']
+      },
+      {
+        name: 'Lot 2',
+        description: 'Next To Beverly Hills and Manhattan',
+        permits_allowed: ['PermitC', 'PermitD', 'PermitB', 'permitD']
+      }
+    ]
   };
+
+  let info = '';
+  summary.parkable_lots.forEach(element => {
+    //console.log(element.name);
+    info += 'Lot name: ' + element.name + '\n';
+    info += '\nDescription: ' + element.description + '\n';
+    info += '\n' + '\nPermits allowed' + element.permits_allowed + '\n' + '\n';
+  });
 
   return (
     <Side>
-      <Info />
-      <Item>MAP 2</Item>
-      <Item>MAP 3</Item>
-      <Item>MAP 4</Item>
+      <Item>{info}</Item>
     </Side>
   );
 };
