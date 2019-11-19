@@ -31,19 +31,23 @@ const Sidebar = () => {
     .catch(err => console.log(err));
 
   const Info = () => {
-    summary.forEach(element => {
-      const name = element.name;
-      const desc = element.description;
-      const allowed = element.permits_allowed;
+    summary.parkable -
+      lots.forEach(element => {
+        const name = element.name;
+        const desc = element.description;
+        const allowed = element.permits_allowed;
+        const firstLot = data.parkable - lots[0];
+        const secondLot = data.parkable - lots[1];
 
-      return (
-        <div>
-          <text>{name}</text>
-          <text>{desc}</text>
-          <text>{allowed}</text>
-        </div>
-      );
-    });
+        return (
+          <div>
+            <text>Other Available Maps</text>
+            <text>{desc}</text>
+            <text>{name}</text>
+            <text>{desc}</text>
+          </div>
+        );
+      });
   };
 
   return (
