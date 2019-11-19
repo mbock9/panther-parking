@@ -31,17 +31,42 @@ app.get('/api/map/:key', (request, response) => {
 });
 
 // Return a list of parkable/non-parkable lots based on filter criteria
-app.get('/api/map/filter/:permitType', (request, response, next) => {
-  console.log(request.params.permitType);
-  app.locals.db
-    .collection('parkingLots')
-    .find({ 'properties.permits': request.params.permitType })
-    .toArray()
-    .then(documents => {
-      const geoJsonData = { features: documents, type: 'FeatureCollection' };
-      response.send(geoJsonData);
-    }, next); // Use "next" as rejection handler
-});
+app.get(
+  '/api/map/filter/:permitType/:userType/:timeIn/:timeOut/:date',
+  (request, response, next) => {
+    // Save all parameters
+    let permitType = request.params.permitType;
+    let userType = request.params.permitType;
+    let timeIn = request.params.timeIn;
+    let timeOut = request.params.timeOut;
+    let date = request.params.date;
+
+    // Build the filter argument that will be passed to database query
+    query = {};
+
+    // Filter by permit type
+    if (
+      (permitType = 'sPass') ||
+      (permitType = 'ePass') ||
+      (permitType = 'pPass') ||
+      (permitType = 'tPass') ||
+      (permitType = 'uPass')
+    ) {
+      query.push({ 'properties.permits': permitType });
+      userType = 'Student';
+    }
+
+    console.log(request.params.permitType);
+    app.locals.db
+      .collection('parkingLots')
+      .find({ 'properties.permits': request.params.permitType })
+      .toArray()
+      .then(documents => {
+        const geoJsonData = { features: documents, type: 'FeatureCollection' };
+        response.send(geoJsonData);
+      }, next); // Use "next" as rejection handler
+  }
+);
 
 // Express only serves static assets in production
 if (process.env.NODE_ENV === 'production') {
