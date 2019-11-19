@@ -1,65 +1,87 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Styled from 'styled-components';
+import PropTypes from 'prop-types';
 //import { List, isImmutable } from 'immutable';
 
 // style for components
 const Side = Styled.div`
-height: 100%; 
-width: 22%; 
+top: 9%;
+height: 100%;
+width: 22%;
 position: absolute;
 z-index: 1000;
-background-color: #111;
-
+background-color: #5e1a54;
 `;
 
-const Item = Styled.li`
+const Item = Styled.ul`
     padding: 12px 8px 8px 32px;
     font-size: 15px;
     color: #e3e3e3;
     display: block;
     transition: 0.3s;
+    word-wrap: break-word;
 `;
 
-const Sidebar = () => {
-  //const [summary, setSummary] = useState(List());
+const Sidebar = props => {
+  const [parkable, setParkable] = useState({});
 
-  // Fetch and use 'name', 'description' and 'permits_allowed'
-  // fetch('/api/lots/basicInfo')
-  //   .then(response => response.text())
-  //   .then(body => {
-  //     setSummary(List(body));
-  //   })
-  //   .catch(err => console.log(err));
-
-  //dummy values until API works.
-  const summary = {
-    parkable_lots: [
-      {
-        name: 'Lot 1',
-        description: 'Next to Narnia',
-        permits_allowed: ['PermitA', 'PermitB', 'PermitC', 'permitD']
-      },
-      {
-        name: 'Lot 2',
-        description: 'Next To Beverly Hills and Manhattan',
-        permits_allowed: ['PermitC', 'PermitD', 'PermitB', 'permitD']
-      }
-    ]
-  };
+  useEffect(() => {
+    let timeInHours = props.timeIn.getHours();
+    let timeOutHours = props.timeOut.getHours();
+    let dateDay = props.date.getDay();
+    fetch(
+      `/api/lots/basicInfo/${props.permitType}/${props.userType}/${timeInHours}/${timeOutHours}/${dateDay}`
+    )
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(response.statusText);
+        }
+        return response.json();
+      })
+      .then(data => {
+        setParkable(data);
+      })
+      .catch(err => console.log(err));
+  }, [
+    props.permitType,
+    props.userType,
+    props.timeIn,
+    props.timeOut,
+    props.date
+  ]);
 
   let info = '';
-  summary.parkable_lots.forEach(element => {
-    //console.log(element.name);
-    info += 'Lot name: ' + element.name + '\n';
-    info += '\nDescription: ' + element.description + '\n';
-    info += '\n' + '\nPermits allowed' + element.permits_allowed + '\n' + '\n';
-  });
-
+  if (parkable.features) {
+    const infoList = parkable.features.map(element => (
+      <div>
+        <h3> Lot name: </h3>
+        <p>{element.properties.name}</p>
+        <h3> Description: </h3>
+        <p>{element.properties.description}</p>
+        <h3>Permits allowed: </h3>
+        <p>{element.properties.permits.join(' ')}</p>
+        <br />
+      </div>
+    ));
+    return (
+      <Side>
+        <Item>{infoList}</Item>
+      </Side>
+    );
+  }
   return (
     <Side>
-      <Item>{info}</Item>
+      <Item></Item>
     </Side>
   );
+};
+
+Sidebar.propTypes = {
+  permitType: PropTypes.string.isRequired,
+  userType: PropTypes.string.isRequired,
+  timeIn: PropTypes.instanceOf(Date).isRequired,
+  timeOut: PropTypes.instanceOf(Date).isRequired,
+  date: PropTypes.instanceOf(Date).isRequired
 };
 
 export default Sidebar;
