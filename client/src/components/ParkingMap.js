@@ -29,9 +29,8 @@ const ParkingMap = props => {
   }, []);
 
   let permType = 'sPass';
-
   useEffect(() => {
-    fetch(`/api/map/filter/:${props.permitType}`)
+    fetch(`/api/map/filter/${props.permitType}`)
       .then(response => {
         if (!response.ok) {
           throw new Error(response.statusText);
@@ -39,7 +38,6 @@ const ParkingMap = props => {
         return response.json();
       })
       .then(data => {
-        console.log(data);
         setParkable(data);
       })
       .catch(err => console.log(err));

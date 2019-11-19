@@ -6,7 +6,7 @@ import Form from './components/Form';
 /* eslint-disable react/prefer-stateless-function */
 
 function App() {
-  const [permitType, setPermit] = useState('');
+  const [permitType, setPermit] = useState('initial');
   const [userType, setUser] = useState('');
   const [timeIn, setTimeIn] = useState(new Date());
   const [timeOut, setTimeOut] = useState(new Date());
