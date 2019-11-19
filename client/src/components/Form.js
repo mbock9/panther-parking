@@ -62,7 +62,9 @@ const Form = ({
   timeOut,
   setTimeOut,
   date,
-  setDate
+  setDate,
+  landing,
+  update
 }) => {
   // Instantiate style classes
   const classes = useStyles();
@@ -90,6 +92,99 @@ const Form = ({
       setTimeOut(time);
     }
   };
+  if (landing) {
+    return (
+      <div>
+        <div className={classes.root}>
+          <AppBar position="static" color="inherit">
+            <Toolbar variant="dense">
+              <IconButton
+                edge="start"
+                className={classes.menuButton}
+                color="inherit"
+                aria-label="menu"
+              />
+              <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                <Grid container justify="space-around" spacing={1}>
+                  <FormControl className={classes.formControl}>
+                    <InputLabel>Permit</InputLabel>
+                    <Select
+                      value={permitType}
+                      onChange={event => {
+                        setPermit(event.target.value);
+                        update(true);
+                      }}
+                      input={<Input />}
+                      MenuProps={MenuProps}
+                    >
+                      {names.map(name => (
+                        <MenuItem key={name} value={name}>
+                          {name}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+                  <FormControl className={classes.formControl}>
+                    <InputLabel>User type</InputLabel>
+                    <Select
+                      value={userType}
+                      onChange={event => {
+                        setUser(event.target.value);
+                        update(true);
+                      }}
+                      input={<Input />}
+                      MenuProps={MenuProps}
+                    >
+                      {users.map(name => (
+                        <MenuItem key={name} value={name}>
+                          {name}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+                  <KeyboardDatePicker
+                    disableToolbar
+                    variant="inline"
+                    format="MM/dd/yyyy"
+                    margin="normal"
+                    id="date-picker-inline"
+                    label="Date"
+                    value={date}
+                    onChange={handleDateChange}
+                    KeyboardButtonProps={{
+                      'aria-label': 'change date'
+                    }}
+                  />
+                  <KeyboardTimePicker
+                    margin="normal"
+                    id="time-picker"
+                    label="Time In"
+                    mask="__:__ _M"
+                    value={timeIn}
+                    onChange={handleTimeInChange}
+                    KeyboardButtonProps={{
+                      'aria-label': 'change time'
+                    }}
+                  />
+                  <KeyboardTimePicker
+                    margin="normal"
+                    id="time-picker"
+                    label="Time Out"
+                    mask="__:__ _M"
+                    value={timeOut}
+                    onChange={handleTimeOutChange}
+                    KeyboardButtonProps={{
+                      'aria-label': 'change time'
+                    }}
+                  />
+                </Grid>
+              </MuiPickersUtilsProvider>
+            </Toolbar>
+          </AppBar>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div>
