@@ -29,7 +29,9 @@ const ParkingMap = props => {
   }, []);
 
   let permType = 'sPass';
+
   useEffect(() => {
+    console.log('here');
     fetch(`/api/map/filter/${props.permitType}`)
       .then(response => {
         if (!response.ok) {
@@ -42,6 +44,13 @@ const ParkingMap = props => {
       })
       .catch(err => console.log(err));
   }, [props.permitType]);
+
+  // props.dataSet is loaded only one time in App.js
+  // This loads the map with all lots having an overlay initially
+  // Subsequent changes to parameters will set parkable properly
+  useEffect(() => {
+    setParkable(props.dataSet);
+  }, [props.dataSet]);
 
   if (key !== '' && parkable) {
     return (
