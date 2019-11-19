@@ -15,7 +15,7 @@ import carRight from './carRight.png';
 
 function App() {
   const [permitType, setPermit] = useState('initial');
-  const [userType, setUser] = useState('intial');
+  const [userType, setUser] = useState('initial');
   const [timeIn, setTimeIn] = useState(new Date());
   const [timeOut, setTimeOut] = useState(new Date());
   const [date, setDate] = useState(new Date());
