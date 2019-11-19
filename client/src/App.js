@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import ParkingMap from './components/ParkingMap';
 import Form from './components/Form';
+import Sidebar from './components/Sidebar';
 //import { styled } from '@material-ui/styles';
 import styled from 'styled-components';
 import logoLanding from './logo4.png';
-import SideBar from './components/sideBar';
 
 import carTop from './carTop.png';
 import carMiddle from './carMiddle.png';
@@ -141,7 +141,7 @@ function App() {
   if (updated) {
     return (
       <div className="App">
-        <SideBar />
+        <Sidebar />
         <Form
           permitType={permitType}
           setPermit={setPermit}
@@ -171,7 +171,6 @@ function App() {
 
   return (
     <div className="App">
-      <SideBar />
       <Form
         permitType={permitType}
         setPermit={setPermit}
