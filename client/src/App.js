@@ -185,6 +185,7 @@ function App() {
         setDate={setDate}
         update={setUpdate}
       />
+      <Sidebar />
       <div id="map">
         <ParkingMap
           dataSet={geoData}
