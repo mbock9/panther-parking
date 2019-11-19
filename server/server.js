@@ -49,24 +49,22 @@ app.get(
     let userType = request.params.userType;
     let permitType = request.params.permitType;
 
-    // Declare a function to check if it is the weekend (on the right day or
-    // before/after the right time)
-    const checkIfWeekend = (day, hourIn, hourOut) => {
-      console.log(day);
+    // Declare a function to check if it is the weekend or outside of business
+    // hours for faculty-staff spots. (9-5 M-F business hours)
+    const isAfterHours = (day, hourIn, hourOut) => {
+      // On weekends return true
       if (day == 0 || day == 6) {
         return true;
       }
-      if (day == 5) {
-        if (hourIn >= 17) {
-          return true;
-        }
+      // During work hours return false
+      if (hourIn > 9 || hourIn < 5) {
+        return false;
       }
-      if (day == 1) {
-        if (hourOut <= 9) {
-          return true;
-        }
+      if (hourOut > 9 || hourOut < 5) {
+        return false;
       }
-      return false;
+      // Outside of work hours return true
+      return true;
     };
 
     let query = undefined;
