@@ -30,8 +30,8 @@ const ParkingMap = props => {
 
   let permType = 'sPass';
 
-  useLayoutEffect(() => {
-    fetch(`/api/map/filter/${props.permitType}`)
+  useEffect(() => {
+    fetch(`/api/map/filter/:${props.permitType}`)
       .then(response => {
         if (!response.ok) {
           throw new Error(response.statusText);
@@ -39,12 +39,13 @@ const ParkingMap = props => {
         return response.json();
       })
       .then(data => {
+        console.log(data);
         setParkable(data);
       })
       .catch(err => console.log(err));
   }, [props.permitType]);
 
-  if (key !== '' && parkable !== undefined) {
+  if (key !== '' && parkable) {
     return (
       <ReactMapGL
         {...mapState.viewport}
