@@ -35,7 +35,7 @@ app.get('/api/map/filter/:permitType', (request, response, next) => {
   console.log(request.params.permitType);
   app.locals.db
     .collection('parkingLots')
-    .find({ 'properties.permits': 'sPass' })
+    .find({ 'properties.permits': request.params.permitType })
     .toArray()
     .then(documents => {
       const geoJsonData = { features: documents, type: 'FeatureCollection' };
