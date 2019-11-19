@@ -7,7 +7,7 @@ import Form from './components/Form';
 
 function App() {
   const [permitType, setPermit] = useState('initial');
-  const [userType, setUser] = useState('');
+  const [userType, setUser] = useState('intial');
   const [timeIn, setTimeIn] = useState(new Date());
   const [timeOut, setTimeOut] = useState(new Date());
   const [date, setDate] = useState(new Date());
