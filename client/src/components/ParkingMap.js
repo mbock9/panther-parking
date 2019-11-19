@@ -40,7 +40,7 @@ const ParkingMap = props => {
   if (props.dataSet.features !== undefined) {
     if (permType) {
       props.dataSet.features.forEach(feature => {
-        if (feature.properties[permType].toUpperCase() === 'TRUE') {
+        if (feature.properties.permits.includes(permType)) {
           parkable.features.push(feature);
         } else {
           nonParkable.features.push(feature);
