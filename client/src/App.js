@@ -4,13 +4,13 @@ import ParkingMap from './components/ParkingMap';
 import Form from './components/Form';
 //import { styled } from '@material-ui/styles';
 import styled from 'styled-components';
-import logoLanding from './logo4.png';
+import logoLanding from './static/logo4.png';
 import Sidebar from './components/Sidebar';
 
-import carTop from './carTop.png';
-import carMiddle from './carMiddle.png';
-import carLeft from './carLeft.png';
-import carRight from './carRight.png';
+import carTop from './static/carTop.png';
+import carMiddle from './static/carMiddle.png';
+import carLeft from './static/carLeft.png';
+import carRight from './static/carRight.png';
 /* eslint-disable react/prefer-stateless-function */
 
 function App() {

@@ -16,7 +16,7 @@ import {
   KeyboardTimePicker,
   KeyboardDatePicker
 } from '@material-ui/pickers';
-import logo from '../Panther_Parking_logo-removebg-preview.png';
+import logo from '../static/Panther_Parking_logo-removebg-preview.png';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
