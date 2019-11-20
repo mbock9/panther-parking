@@ -14,8 +14,8 @@ import carRight from './carRight.png';
 /* eslint-disable react/prefer-stateless-function */
 
 function App() {
-  const [permitType, setPermit] = useState('');
-  const [userType, setUser] = useState('');
+  const [permitType, setPermit] = useState('initial');
+  const [userType, setUser] = useState('initial');
   const [timeIn, setTimeIn] = useState(new Date());
   const [timeOut, setTimeOut] = useState(new Date());
   const [date, setDate] = useState(new Date());
@@ -90,6 +90,8 @@ function App() {
             setTimeIn={setTimeIn}
             timeOut={timeOut}
             setTimeOut={setTimeOut}
+            date={date}
+            setDate={setDate}
             landing={landingPage}
             update={setUpdate}
           />
@@ -141,7 +143,13 @@ function App() {
   if (updated) {
     return (
       <div className="App">
-        <Sidebar />
+        <Sidebar
+          permitType={permitType}
+          userType={userType}
+          timeIn={timeIn}
+          timeOut={timeOut}
+          date={date}
+        />
         <Form
           permitType={permitType}
           setPermit={setPermit}
@@ -171,7 +179,13 @@ function App() {
 
   return (
     <div className="App">
-      <Sidebar />
+      <Sidebar
+        permitType={permitType}
+        userType={userType}
+        timeIn={timeIn}
+        timeOut={timeOut}
+        date={date}
+      />
       <Form
         permitType={permitType}
         setPermit={setPermit}
