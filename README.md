@@ -23,7 +23,7 @@ npm install --prefix client
 npm install --prefix server
 ```
 
-You can run all three of these steps in sequence form th eroot of the repository with:
+You can run all three of these steps in sequence form the root of the repository with:
 
 ```
 npm run setup:local
