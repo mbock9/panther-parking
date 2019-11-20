@@ -25,7 +25,7 @@ function App() {
   const [updated, setUpdate] = useState(false);
   // Use an effect hook to get the geojson data
   useEffect(() => {
-    fetch('/api/map')
+    fetch('/api/map/')
       .then(response => {
         if (!response.ok) {
           throw new Error(response.statusText);
