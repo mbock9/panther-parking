@@ -9,8 +9,8 @@ const ParkingMap = props => {
     viewport: {
       width: '100vw',
       height: '100vh',
-      latitude: 44.0101,
-      longitude: -73.1795,
+      latitude: 44.0086,
+      longitude: -73.1783,
       zoom: 15
     }
   });
