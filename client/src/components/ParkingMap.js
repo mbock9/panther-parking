@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactMapGL, { Source, Layer } from 'react-map-gl';
 import PropTypes from 'prop-types';
 
@@ -16,44 +16,52 @@ const ParkingMap = props => {
   });
 
   const [key, setKey] = useState(''); // Represent MapBox API Key as state
+  const [parkable, setParkable] = useState({});
 
   // Fetch and set the API key from server (saved in the .env)
-  fetch('/api/map/key')
-    .then(response => response.text())
-    .then(body => {
-      setKey(body);
-    })
-    .catch(err => console.log(err));
+  useEffect(() => {
+    fetch('/api/map/key')
+      .then(response => response.text())
+      .then(body => {
+        setKey(body);
+      })
+      .catch(err => console.log(err));
+  }, []);
 
-  // Grab the permitType from props (and adjust if value not currently valid)
-  let permType = '';
+  useEffect(() => {
+    const timeInHours = props.timeIn.getHours();
+    const timeOutHours = props.timeOut.getHours();
+    const dateDay = props.date.getDay();
 
-  if (props.permitType !== '' && props.permitType !== 'uPass') {
-    permType = props.permitType;
-  }
-
-  // Create geojson skeletons for lots that match/don't match filter criteria
-  let parkable = { features: [], type: 'FeatureCollection' };
-  const nonParkable = { features: [], type: 'FeatureCollection' };
-
-  // Iterate through lot data and update lists accordingly
-  if (props.dataSet.features !== undefined) {
-    if (permType) {
-      props.dataSet.features.forEach(feature => {
-        if (feature.properties[permType].toUpperCase() === 'TRUE') {
-          parkable.features.push(feature);
-        } else {
-          nonParkable.features.push(feature);
+    fetch(
+      `/api/map/filter/${props.permitType}/${props.userType}/${timeInHours}/${timeOutHours}/${dateDay}`
+    )
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(response.statusText);
         }
-      });
-    }
-    // If no filters are defined, render all lots as parkable
-    else {
-      parkable = props.dataSet;
-    }
-  }
+        return response.json();
+      })
+      .then(data => {
+        setParkable(data);
+      })
+      .catch(err => console.log(err));
+  }, [
+    props.permitType,
+    props.userType,
+    props.timeIn,
+    props.timeOut,
+    props.date
+  ]);
 
-  if (key !== '' && props.dataSet !== undefined) {
+  // props.dataSet is loaded only one time in App.js
+  // This loads the map with all lots having an overlay initially
+  // Subsequent changes to parameters will set parkable properly
+  useEffect(() => {
+    setParkable(props.dataSet);
+  }, [props.dataSet]);
+
+  if (key !== '' && parkable) {
     return (
       <ReactMapGL
         {...mapState.viewport}
@@ -68,17 +76,6 @@ const ParkingMap = props => {
             paint={{
               'fill-outline-color': '#105e01',
               'fill-color': '#4800b3',
-              'fill-opacity': 0.75
-            }}
-          />
-        </Source>
-        <Source id="nonparkable-regions" type="geojson" data={nonParkable}>
-          <Layer
-            id="non-parkable"
-            type="fill"
-            paint={{
-              'fill-outline-color': '#960014',
-              'fill-color': '#f51836',
               'fill-opacity': 0.75
             }}
           />
