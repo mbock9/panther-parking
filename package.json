@@ -44,8 +44,5 @@
       "git add"
     ]
   },
-  "dependencies": {
-    "moment": "^2.24.0",
-    "mapbox": "^1.0.0-beta10"
-  }
+  "dependencies": {}
 }
