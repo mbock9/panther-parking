@@ -168,9 +168,6 @@ app.get(
 app.get(
   '/api/lots/basicInfo/:userType/:timeIn/:timeOut/:date',
   (request, response, next) => {
-    // Validation arrays
-    const potentialPermits = ['sPass', 'ePass', 'pPass', 'tPass', 'uPass'];
-
     const timeInHour = parseInt(request.params.timeIn, 10);
     const timeOutHour = parseInt(request.params.timeOut, 10);
     const dateDay = parseInt(request.params.date, 10);
@@ -192,9 +189,6 @@ app.get(
     if (potentialStudentPermits.includes(userType)) {
       studentPermitType = userType.split('-')[1];
     }
-
-    // Declare a function to check if it is the weekend (on the right day or
-    // before/after the right time)
 
     let query;
 
