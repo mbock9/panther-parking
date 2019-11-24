@@ -49,7 +49,6 @@ function App() {
     height: 100vh;
   `;
 
-  console.log(geoData);
   if (landingPage) {
     return (
       <LandingPage>
