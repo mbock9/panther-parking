@@ -53,11 +53,11 @@ const users = [
   'Admin',
   'Visitor',
   'Faculty',
-  'Student-SPASS',
-  'Student-EPASS',
-  'Student-PPASS',
-  'Student-TPASS',
-  'Student-UPASS'
+  'Student-sPass',
+  'Student-ePass',
+  'Student-pPass',
+  'Student-tPass',
+  'Student-uPass'
 ];
 
 const Form = ({
@@ -252,7 +252,6 @@ const Form = ({
 };
 
 Form.propTypes = {
-  setPermit: PropTypes.func.isRequired,
   userType: PropTypes.string.isRequired,
   setUser: PropTypes.func.isRequired,
   timeIn: PropTypes.instanceOf(Date).isRequired,

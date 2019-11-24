@@ -31,8 +31,8 @@ describe('Form tests', () => {
     wrapper = shallow(<Form {...props} />);
   });
 
-  test('Renders form with 2 select fields (for Permit and Users type)', () => {
-    expect(wrapper.find(Select)).toHaveLength(2);
+  test('Renders form with 2 select fields (for user type)', () => {
+    expect(wrapper.find(Select)).toHaveLength(1);
   });
   test('Renders form with 2 KeyboardTimePicker elements (for timeIn and timeOut)', () => {
     expect(wrapper.find(KeyboardTimePicker)).toHaveLength(2);
