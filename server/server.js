@@ -61,7 +61,7 @@ app.get(
     const timeOutHour = parseInt(request.params.timeOut, 10);
     const dateDay = parseInt(request.params.date, 10);
     // eslint-disable-next-line prefer-destructuring
-    let userType = request.params.userType;
+    const userType = request.params.userType;
 
     // If student, userType will be one of the below
     const potentialStudentPermits = [
@@ -167,7 +167,7 @@ app.get(
     const timeOutHour = parseInt(request.params.timeOut, 10);
     const dateDay = parseInt(request.params.date, 10);
     // eslint-disable-next-line prefer-destructuring
-    let userType = request.params.userType;
+    const userType = request.params.userType;
 
     const potentialStudentPermits = [
       'Student-sPass',
