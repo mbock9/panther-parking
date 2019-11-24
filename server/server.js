@@ -75,6 +75,7 @@ app.get(
     // Check permit type of the student
     let studentPermitType;
     if (potentialStudentPermits.includes(userType)) {
+      // eslint-disable-next-line prefer-destructuring
       studentPermitType = userType.split('-')[1];
     }
     // Declare a function to check if it is the weekend or outside of business
@@ -174,8 +175,6 @@ app.get(
     // eslint-disable-next-line prefer-destructuring
     let userType = request.params.userType;
 
-    console.log(userType);
-
     const potentialStudentPermits = [
       'Student-sPass',
       'Student-ePass',
@@ -187,6 +186,7 @@ app.get(
     // Check permit type of user
     let studentPermitType;
     if (potentialStudentPermits.includes(userType)) {
+      // eslint-disable-next-line prefer-destructuring
       studentPermitType = userType.split('-')[1];
     }
 
