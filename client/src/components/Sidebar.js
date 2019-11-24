@@ -30,7 +30,7 @@ const Sidebar = props => {
     const timeOutHours = props.timeOut.getHours();
     const dateDay = props.date.getDay();
     fetch(
-      `/api/lots/basicInfo/${props.permitType}/${props.userType}/${timeInHours}/${timeOutHours}/${dateDay}`
+      `/api/lots/basicInfo/${props.userType}/${timeInHours}/${timeOutHours}/${dateDay}`
     )
       .then(response => {
         if (!response.ok) {

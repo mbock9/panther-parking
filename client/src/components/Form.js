@@ -49,12 +49,18 @@ const MenuProps = {
   }
 };
 
-const names = ['sPass', 'ePass', 'pPass', 'tPass', 'uPass'];
-const users = ['Student', 'Admin', 'Visitor', 'Faculty'];
+const users = [
+  'Admin',
+  'Visitor',
+  'Faculty',
+  'Student-sPass',
+  'Student-ePass',
+  'Student-pPass',
+  'Student-tPass',
+  'Student-uPass'
+];
 
 const Form = ({
-  permitType,
-  setPermit,
   userType,
   setUser,
   timeIn,
@@ -106,24 +112,6 @@ const Form = ({
               />
               <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <Grid container justify="space-around" spacing={1}>
-                  <FormControl className={classes.formControl}>
-                    <InputLabel>Permit</InputLabel>
-                    <Select
-                      value={permitType === 'initial' ? '' : permitType}
-                      onChange={event => {
-                        setPermit(event.target.value);
-                        update(true);
-                      }}
-                      input={<Input />}
-                      MenuProps={MenuProps}
-                    >
-                      {names.map(name => (
-                        <MenuItem key={name} value={name}>
-                          {name}
-                        </MenuItem>
-                      ))}
-                    </Select>
-                  </FormControl>
                   <FormControl className={classes.formControl}>
                     <InputLabel>User type</InputLabel>
                     <Select
@@ -203,23 +191,6 @@ const Form = ({
                   <img src={logo} alt="logo" className={classes.logo} />
                 </Toolbar>
                 <FormControl className={classes.formControl}>
-                  <InputLabel>Permit</InputLabel>
-                  <Select
-                    value={permitType === 'initial' ? '' : permitType}
-                    onChange={event => {
-                      setPermit(event.target.value);
-                    }}
-                    input={<Input />}
-                    MenuProps={MenuProps}
-                  >
-                    {names.map(name => (
-                      <MenuItem key={name} value={name}>
-                        {name}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-                <FormControl className={classes.formControl}>
                   <InputLabel>User type</InputLabel>
                   <Select
                     value={userType === 'initial' ? '' : userType}
@@ -281,8 +252,6 @@ const Form = ({
 };
 
 Form.propTypes = {
-  permitType: PropTypes.string.isRequired,
-  setPermit: PropTypes.func.isRequired,
   userType: PropTypes.string.isRequired,
   setUser: PropTypes.func.isRequired,
   timeIn: PropTypes.instanceOf(Date).isRequired,

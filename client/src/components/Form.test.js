@@ -5,8 +5,7 @@ import { KeyboardTimePicker, KeyboardDatePicker } from '@material-ui/pickers';
 import Form from './Form';
 
 const testCase1 = {
-  permitType: 'sPass',
-  userType: 'Student',
+  userType: 'initial',
   timeIn: new Date(),
   timeOut: new Date(),
   date: new Date()
@@ -17,8 +16,6 @@ describe('Form tests', () => {
 
   beforeEach(() => {
     const props = {
-      permitType: testCase1.permitType,
-      setPermit: jest.fn,
       userType: testCase1.userType,
       setUser: jest.fn,
       timeIn: testCase1.timeIn,
@@ -31,8 +28,11 @@ describe('Form tests', () => {
     wrapper = shallow(<Form {...props} />);
   });
 
-  test('Renders form with 2 select fields (for Permit and Users type)', () => {
-    expect(wrapper.find(Select)).toHaveLength(2);
+  test('Renders form with 1 select field (for user type)', () => {
+    expect(wrapper.find(Select)).toHaveLength(1);
+  });
+  test('Renders userType dropdown with proper initial value', () => {
+    expect(wrapper.find(Select).props().value).toEqual('');
   });
   test('Renders form with 2 KeyboardTimePicker elements (for timeIn and timeOut)', () => {
     expect(wrapper.find(KeyboardTimePicker)).toHaveLength(2);

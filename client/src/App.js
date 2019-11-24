@@ -14,7 +14,6 @@ import carRight from './static/carRight.png';
 /* eslint-disable react/prefer-stateless-function */
 
 function App() {
-  const [permitType, setPermit] = useState('initial');
   const [userType, setUser] = useState('initial');
   const [timeIn, setTimeIn] = useState(new Date());
   const [timeOut, setTimeOut] = useState(new Date());
@@ -50,7 +49,6 @@ function App() {
     height: 100vh;
   `;
 
-  console.log(geoData);
   if (landingPage) {
     return (
       <LandingPage>
@@ -82,8 +80,6 @@ function App() {
 
         <Wrapper>
           <Form
-            permitType={permitType}
-            setPermit={setPermit}
             userType={userType}
             setUser={setUser}
             timeIn={timeIn}
@@ -144,15 +140,12 @@ function App() {
     return (
       <div className="App">
         <Sidebar
-          permitType={permitType}
           userType={userType}
           timeIn={timeIn}
           timeOut={timeOut}
           date={date}
         />
         <Form
-          permitType={permitType}
-          setPermit={setPermit}
           userType={userType}
           setUser={setUser}
           timeIn={timeIn}
@@ -166,7 +159,6 @@ function App() {
         <div id="map">
           <ParkingMap
             dataSet={geoData}
-            permitType={permitType}
             userType={userType}
             timeIn={timeIn}
             timeOut={timeOut}
@@ -180,15 +172,12 @@ function App() {
   return (
     <div className="App">
       <Sidebar
-        permitType={permitType}
         userType={userType}
         timeIn={timeIn}
         timeOut={timeOut}
         date={date}
       />
       <Form
-        permitType={permitType}
-        setPermit={setPermit}
         userType={userType}
         setUser={setUser}
         timeIn={timeIn}
@@ -202,7 +191,6 @@ function App() {
       <div id="map">
         <ParkingMap
           dataSet={geoData}
-          permitType={permitType}
           userType={userType}
           timeIn={timeIn}
           timeOut={timeOut}
