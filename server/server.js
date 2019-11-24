@@ -97,12 +97,6 @@ app.get(
     // };
 
     let query;
-
-    // Automatically set user type to student if permit is selected
-    if (userType === 'initial') {
-      userType = 'Student';
-    }
-
     if (checkIfWeekend(dateDay, timeInHour, timeOutHour)) {
       if (potentialStudentPermits.includes(userType)) {
         query = {
@@ -191,12 +185,6 @@ app.get(
     }
 
     let query;
-
-    // Automatically set user type to student if permit is selected
-    if (userType === 'initial') {
-      userType = 'Student';
-    }
-
     if (checkIfWeekend(dateDay, timeInHour, timeOutHour)) {
       if (potentialStudentPermits.includes(userType)) {
         query = {
