@@ -50,13 +50,9 @@ app.get('/api/map/:key', (request, response) => {
 
 // Return a list of parkable/non-parkable lots based on filter criteria
 app.get(
-  '/api/map/filter/:permitType/:userType/:timeIn/:timeOut/:date',
+  '/api/map/filter/:userType/:timeIn/:timeOut/:date',
   (request, response, next) => {
     // console.log('entering filter endpoint');
-
-    // Validation arrays
-    const potentialPermits = ['sPass', 'ePass', 'pPass', 'tPass', 'uPass'];
-
     // console.log(request.params.timeIn);
     // console.log(request.params.timeOut);
     // console.log(request.params.date);
@@ -66,9 +62,21 @@ app.get(
     const dateDay = parseInt(request.params.date, 10);
     // eslint-disable-next-line prefer-destructuring
     let userType = request.params.userType;
-    // eslint-disable-next-line prefer-destructuring
-    const permitType = request.params.permitType;
 
+    // If student, userType will be one of the below
+    const potentialStudentPermits = [
+      'Student-sPass',
+      'Student-ePass',
+      'Student-pPass',
+      'Student-tPass',
+      'Student-uPass'
+    ];
+
+    // Check permit type of the student
+    let studentPermitType;
+    if (potentialStudentPermits.includes(userType)) {
+      studentPermitType = userType.split('-')[1];
+    }
     // Declare a function to check if it is the weekend or outside of business
     // hours for faculty-staff spots. (9-5 M-F business hours)
     // const isAfterHours = (day, hourIn, hourOut) => {
@@ -90,15 +98,15 @@ app.get(
     let query;
 
     // Automatically set user type to student if permit is selected
-    if (permitType && permitType !== 'initial' && userType === 'initial') {
+    if (userType === 'initial') {
       userType = 'Student';
     }
 
     if (checkIfWeekend(dateDay, timeInHour, timeOutHour)) {
-      if (userType === 'Student') {
+      if (potentialStudentPermits.includes(userType)) {
         query = {
           $or: [
-            { 'properties.permits': permitType },
+            { 'properties.permits': studentPermitType },
             { 'properties.f/s': 'true' }
           ]
         };
@@ -112,9 +120,9 @@ app.get(
         };
       }
     } else {
-      if (userType === 'Student') {
-        if (potentialPermits.includes(permitType)) {
-          query = { 'properties.permits': permitType };
+      if (potentialStudentPermits.includes(userType)) {
+        if (studentPermitType) {
+          query = { 'properties.permits': studentPermitType };
         } else {
           query = { 'properties.permits': { $exists: true, $ne: [] } };
         }
@@ -158,7 +166,7 @@ app.get(
 );
 
 app.get(
-  '/api/lots/basicInfo/:permitType/:userType/:timeIn/:timeOut/:date',
+  '/api/lots/basicInfo/:userType/:timeIn/:timeOut/:date',
   (request, response, next) => {
     // Validation arrays
     const potentialPermits = ['sPass', 'ePass', 'pPass', 'tPass', 'uPass'];
@@ -168,8 +176,22 @@ app.get(
     const dateDay = parseInt(request.params.date, 10);
     // eslint-disable-next-line prefer-destructuring
     let userType = request.params.userType;
-    // eslint-disable-next-line prefer-destructuring
-    const permitType = request.params.permitType;
+
+    console.log(userType);
+
+    const potentialStudentPermits = [
+      'Student-sPass',
+      'Student-ePass',
+      'Student-pPass',
+      'Student-tPass',
+      'Student-uPass'
+    ];
+
+    // Check permit type of user
+    let studentPermitType;
+    if (potentialStudentPermits.includes(userType)) {
+      studentPermitType = userType.split('-')[1];
+    }
 
     // Declare a function to check if it is the weekend (on the right day or
     // before/after the right time)
@@ -177,15 +199,15 @@ app.get(
     let query;
 
     // Automatically set user type to student if permit is selected
-    if (permitType && permitType !== 'initial' && userType === 'initial') {
+    if (userType === 'initial') {
       userType = 'Student';
     }
 
     if (checkIfWeekend(dateDay, timeInHour, timeOutHour)) {
-      if (userType === 'Student') {
+      if (potentialStudentPermits.includes(userType)) {
         query = {
           $or: [
-            { 'properties.permits': permitType },
+            { 'properties.permits': studentPermitType },
             { 'properties.f/s': 'true' }
           ]
         };
@@ -199,9 +221,9 @@ app.get(
         };
       }
     } else {
-      if (userType === 'Student') {
-        if (potentialPermits.includes(permitType)) {
-          query = { 'properties.permits': permitType };
+      if (potentialStudentPermits.includes(userType)) {
+        if (studentPermitType) {
+          query = { 'properties.permits': studentPermitType };
         } else {
           query = { 'properties.permits': { $exists: true, $ne: [] } };
         }
