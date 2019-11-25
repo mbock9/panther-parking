@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Select from '@material-ui/core/Select';
-import { KeyboardTimePicker, KeyboardDatePicker } from '@material-ui/pickers';
+import { KeyboardDateTimePicker } from '@material-ui/pickers';
 import Form from './Form';
 
 const testCase1 = {
@@ -34,10 +34,7 @@ describe('Form tests', () => {
   test('Renders userType dropdown with proper initial value', () => {
     expect(wrapper.find(Select).props().value).toEqual('');
   });
-  test('Renders form with 2 KeyboardTimePicker elements (for timeIn and timeOut)', () => {
-    expect(wrapper.find(KeyboardTimePicker)).toHaveLength(2);
-  });
-  test('Renders form with 1 KeyboardDatePicker element', () => {
-    expect(wrapper.find(KeyboardDatePicker)).toHaveLength(1);
+  test('Renders form with 2 KeyboardDateTimePicker elements (for timeIn and timeOut)', () => {
+    expect(wrapper.find(KeyboardDateTimePicker)).toHaveLength(2);
   });
 });
