@@ -53,22 +53,21 @@ describe('Form tests', () => {
     expect(props.setTimeOut).not.toHaveBeenCalled();
   });
   test('Test that all Date/Time pickers have the has proper initial value', () => {
-    expect(wrapper.find(KeyboardDatePicker).props().value).toEqual(dateProp);
     expect(
       wrapper
-        .find(KeyboardTimePicker)
+        .find(KeyboardDateTimePicker)
         .at(0)
         .props().value
     ).toEqual(dateProp);
     expect(
       wrapper
-        .find(KeyboardTimePicker)
+        .find(KeyboardDateTimePicker)
         .at(1)
         .props().value
     ).toEqual(dateProp);
   });
   test('Test KeyBoardDatePicker updates inputs', () => {
-    const datePicker = wrapper.find(KeyboardDatePicker);
+    const datePicker = wrapper.find(KeyboardDateTimePicker).at(0);
     const newDate = new Date();
     datePicker.value = newDate;
     expect(datePicker.value).toBe(newDate);
@@ -89,29 +88,18 @@ describe('Time Picker Tests', () => {
     mount.cleanUp();
   });
 
-  test('Test that setDate callback is called when date is changed', () => {
+  test('Test that setTimeIn callback is called when timeIn is changed', () => {
     mountedForm
       .find('input')
       .at(1)
       .simulate('change', { target: { value: newDate.toISOString() } });
-    expect(props.setDate).toHaveBeenCalled();
-    expect(props.setTimeIn).not.toHaveBeenCalled();
-    expect(props.setTimeOut).not.toHaveBeenCalled();
-  });
-
-  test('Test that setTimeIn callback is called when timeIn is changed', () => {
-    mountedForm
-      .find('input')
-      .at(2)
-      .simulate('change', { target: { value: newDate.toISOString() } });
     expect(props.setTimeIn).toHaveBeenCalled();
     expect(props.setTimeOut).not.toHaveBeenCalled();
   });
-
   test('Test that setTimeOut callback is called when timeOut is changed', () => {
     mountedForm
       .find('input')
-      .at(3)
+      .at(2)
       .simulate('change', { target: { value: newDate.toISOString() } });
     expect(props.setTimeOut).toHaveBeenCalled();
   });
