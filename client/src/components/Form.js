@@ -123,10 +123,10 @@ const Form = ({
                   </FormControl>
                   <KeyboardDateTimePicker
                     disableToolbar
+                    disablePast
                     variant="inline"
                     format="MM/dd/yyyy hh:mm a"
                     margin="normal"
-                    disablePast={true}
                     label="TimeIn"
                     value={timeIn}
                     onChange={handleTimeInChange}
@@ -136,10 +136,10 @@ const Form = ({
                   />
                   <KeyboardDateTimePicker
                     disableToolbar
+                    disablePast
                     variant="inline"
                     format="MM/dd/yyyy hh:mm a"
                     margin="normal"
-                    disablePast={true}
                     label="Time Out"
                     value={timeOut}
                     onChange={handleTimeOutChange}
@@ -185,10 +185,10 @@ const Form = ({
                 </FormControl>
                 <KeyboardDateTimePicker
                   disableToolbar
+                  disablePast
                   variant="inline"
                   format="MM/dd/yyyy hh:mm a"
                   margin="normal"
-                  disablePast={true}
                   label="Time In"
                   value={timeIn}
                   onChange={handleTimeInChange}
@@ -198,10 +198,10 @@ const Form = ({
                 />
                 <KeyboardDateTimePicker
                   disableToolbar
+                  disablePast
                   variant="inline"
                   format="MM/dd/yyyy hh:mm a"
                   margin="normal"
-                  disablePast={true}
                   label="Time Out"
                   value={timeOut}
                   onChange={handleTimeOutChange}
