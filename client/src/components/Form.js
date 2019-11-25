@@ -13,8 +13,7 @@ import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
 import {
   MuiPickersUtilsProvider,
-  KeyboardTimePicker,
-  KeyboardDatePicker
+  KeyboardDateTimePicker
 } from '@material-ui/pickers';
 import logo from '../static/Panther_Parking_logo-removebg-preview.png';
 import AppBar from '@material-ui/core/AppBar';
@@ -67,8 +66,6 @@ const Form = ({
   setTimeIn,
   timeOut,
   setTimeOut,
-  date,
-  setDate,
   landing,
   update
 }) => {
@@ -81,12 +78,6 @@ const Form = ({
   // console.log("timeout:", timeOut);
 
   // Define handlers for date and timeIn and timeOut changes.
-  const handleDateChange = selectedDate => {
-    if (Object.prototype.toString.call(selectedDate) === '[object Date]') {
-      setDate(selectedDate);
-    }
-  };
-
   const handleTimeInChange = time => {
     if (Object.prototype.toString.call(time) === '[object Date]') {
       setTimeIn(time);
@@ -130,39 +121,30 @@ const Form = ({
                       ))}
                     </Select>
                   </FormControl>
-                  <KeyboardDatePicker
+                  <KeyboardDateTimePicker
                     disableToolbar
+                    disablePast
                     variant="inline"
-                    format="MM/dd/yyyy"
+                    format="MM/dd/yyyy hh:mm a"
                     margin="normal"
-                    id="date-picker-inline"
-                    label="Date"
-                    value={date}
-                    onChange={handleDateChange}
+                    label="TimeIn"
+                    value={timeIn}
+                    onChange={handleTimeInChange}
                     KeyboardButtonProps={{
                       'aria-label': 'change date'
                     }}
                   />
-                  <KeyboardTimePicker
+                  <KeyboardDateTimePicker
+                    disableToolbar
+                    disablePast
+                    variant="inline"
+                    format="MM/dd/yyyy hh:mm a"
                     margin="normal"
-                    id="time-picker"
-                    label="Time In"
-                    mask="__:__ _M"
-                    value={timeIn}
-                    onChange={handleTimeInChange}
-                    KeyboardButtonProps={{
-                      'aria-label': 'change time'
-                    }}
-                  />
-                  <KeyboardTimePicker
-                    margin="normal"
-                    id="time-picker"
                     label="Time Out"
-                    mask="__:__ _M"
                     value={timeOut}
                     onChange={handleTimeOutChange}
                     KeyboardButtonProps={{
-                      'aria-label': 'change time'
+                      'aria-label': 'change date'
                     }}
                   />
                 </Grid>
@@ -179,12 +161,6 @@ const Form = ({
       <div className={classes.root}>
         <AppBar position="static" color="inherit">
           <Toolbar variant="dense">
-            <IconButton
-              edge="start"
-              className={classes.menuButton}
-              color="inherit"
-              aria-label="menu"
-            />
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
               <Grid container justify="space-around" spacing={1}>
                 <Toolbar>
@@ -207,39 +183,30 @@ const Form = ({
                     ))}
                   </Select>
                 </FormControl>
-                <KeyboardDatePicker
+                <KeyboardDateTimePicker
                   disableToolbar
+                  disablePast
                   variant="inline"
-                  format="MM/dd/yyyy"
+                  format="MM/dd/yyyy hh:mm a"
                   margin="normal"
-                  id="date-picker-inline"
-                  label="Date"
-                  value={date}
-                  onChange={handleDateChange}
+                  label="Time In"
+                  value={timeIn}
+                  onChange={handleTimeInChange}
                   KeyboardButtonProps={{
                     'aria-label': 'change date'
                   }}
                 />
-                <KeyboardTimePicker
+                <KeyboardDateTimePicker
+                  disableToolbar
+                  disablePast
+                  variant="inline"
+                  format="MM/dd/yyyy hh:mm a"
                   margin="normal"
-                  id="time-picker"
-                  label="Time In"
-                  mask="__:__ _M"
-                  value={timeIn}
-                  onChange={handleTimeInChange}
-                  KeyboardButtonProps={{
-                    'aria-label': 'change time'
-                  }}
-                />
-                <KeyboardTimePicker
-                  margin="normal"
-                  id="time-picker"
                   label="Time Out"
-                  mask="__:__ _M"
                   value={timeOut}
                   onChange={handleTimeOutChange}
                   KeyboardButtonProps={{
-                    'aria-label': 'change time'
+                    'aria-label': 'change date'
                   }}
                 />
               </Grid>
@@ -257,9 +224,7 @@ Form.propTypes = {
   timeIn: PropTypes.instanceOf(Date).isRequired,
   setTimeIn: PropTypes.func.isRequired,
   timeOut: PropTypes.instanceOf(Date).isRequired,
-  setTimeOut: PropTypes.func.isRequired,
-  date: PropTypes.instanceOf(Date).isRequired,
-  setDate: PropTypes.func.isRequired
+  setTimeOut: PropTypes.func.isRequired
 };
 
 export default Form;

@@ -17,7 +17,6 @@ function App() {
   const [userType, setUser] = useState('initial');
   const [timeIn, setTimeIn] = useState(new Date());
   const [timeOut, setTimeOut] = useState(new Date());
-  const [date, setDate] = useState(new Date());
   const [landingPage, changeLandingPage] = useState(true);
   // Set the data
   const [geoData, setData] = useState({});
@@ -86,8 +85,6 @@ function App() {
             setTimeIn={setTimeIn}
             timeOut={timeOut}
             setTimeOut={setTimeOut}
-            date={date}
-            setDate={setDate}
             landing={landingPage}
             update={setUpdate}
           />
@@ -139,12 +136,7 @@ function App() {
   if (updated) {
     return (
       <div className="App">
-        <Sidebar
-          userType={userType}
-          timeIn={timeIn}
-          timeOut={timeOut}
-          date={date}
-        />
+        <Sidebar userType={userType} timeIn={timeIn} timeOut={timeOut} />
         <Form
           userType={userType}
           setUser={setUser}
@@ -152,8 +144,6 @@ function App() {
           setTimeIn={setTimeIn}
           timeOut={timeOut}
           setTimeOut={setTimeOut}
-          date={date}
-          setDate={setDate}
           update={setUpdate}
         />
         <div id="map">
@@ -162,7 +152,6 @@ function App() {
             userType={userType}
             timeIn={timeIn}
             timeOut={timeOut}
-            date={date}
           />
         </div>
       </div>
@@ -171,12 +160,7 @@ function App() {
 
   return (
     <div className="App">
-      <Sidebar
-        userType={userType}
-        timeIn={timeIn}
-        timeOut={timeOut}
-        date={date}
-      />
+      <Sidebar userType={userType} timeIn={timeIn} timeOut={timeOut} />
       <Form
         userType={userType}
         setUser={setUser}
@@ -184,8 +168,6 @@ function App() {
         setTimeIn={setTimeIn}
         timeOut={timeOut}
         setTimeOut={setTimeOut}
-        date={date}
-        setDate={setDate}
         update={setUpdate}
       />
       <div id="map">
@@ -194,7 +176,6 @@ function App() {
           userType={userType}
           timeIn={timeIn}
           timeOut={timeOut}
-          date={date}
         />
       </div>
     </div>

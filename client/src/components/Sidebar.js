@@ -26,11 +26,13 @@ const Sidebar = props => {
   const [parkable, setParkable] = useState({});
 
   useEffect(() => {
-    const timeInHours = props.timeIn.getHours();
-    const timeOutHours = props.timeOut.getHours();
-    const dateDay = props.date.getDay();
+    const timeInHour = props.timeIn.getHours();
+    const timeInDay = props.timeIn.getDay();
+    const timeOutHour = props.timeOut.getHours();
+    const timeOutDay = props.timeOut.getDay();
+
     fetch(
-      `/api/lots/basicInfo/${props.userType}/${timeInHours}/${timeOutHours}/${dateDay}`
+      `/api/lots/basicInfo/${props.userType}/${timeInDay}/${timeInHour}/${timeOutDay}/${timeOutHour}`
     )
       .then(response => {
         if (!response.ok) {
@@ -42,13 +44,7 @@ const Sidebar = props => {
         setParkable(data);
       })
       .catch(err => console.log(err));
-  }, [
-    props.permitType,
-    props.userType,
-    props.timeIn,
-    props.timeOut,
-    props.date
-  ]);
+  }, [props.permitType, props.userType, props.timeIn, props.timeOut]);
 
   if (parkable.features) {
     const infoList = parkable.features.map(element => (
@@ -79,8 +75,7 @@ Sidebar.propTypes = {
   permitType: PropTypes.string.isRequired,
   userType: PropTypes.string.isRequired,
   timeIn: PropTypes.instanceOf(Date).isRequired,
-  timeOut: PropTypes.instanceOf(Date).isRequired,
-  date: PropTypes.instanceOf(Date).isRequired
+  timeOut: PropTypes.instanceOf(Date).isRequired
 };
 
 export default Sidebar;

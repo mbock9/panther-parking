@@ -13,18 +13,13 @@ if (process.env.NODE_ENV === 'production') {
 
 // TODO: Add any middleware here
 
-const checkIfWeekend = (day, hourIn, hourOut) => {
-  // console.log(day);
+const checkIfWeekend = (day, hourIn) => {
+  // Saturday == 6 && Sunday == 0 && Friday == 5
   if (day === 0 || day === 6) {
     return true;
   }
   if (day === 5) {
     if (hourIn >= 17) {
-      return true;
-    }
-  }
-  if (day === 1) {
-    if (hourOut <= 9) {
       return true;
     }
   }
@@ -50,16 +45,14 @@ app.get('/api/map/:key', (request, response) => {
 
 // Return a list of parkable/non-parkable lots based on filter criteria
 app.get(
-  '/api/map/filter/:userType/:timeIn/:timeOut/:date',
+  '/api/map/filter/:userType/:timeInDay/:timeInHour/:timeOutDay/:timeOutHour',
   (request, response, next) => {
-    // console.log('entering filter endpoint');
-    // console.log(request.params.timeIn);
-    // console.log(request.params.timeOut);
-    // console.log(request.params.date);
+    // Get the time in and time out.
+    const timeInHour = parseInt(request.params.timeInHour, 10);
+    const timeInDay = parseInt(request.params.timeInDay, 10);
+    const timeOutDay = parseInt(request.params.timeOutDay, 10);
+    const timeOutHour = parseInt(request.params.timeOutHour, 10);
 
-    const timeInHour = parseInt(request.params.timeIn, 10);
-    const timeOutHour = parseInt(request.params.timeOut, 10);
-    const dateDay = parseInt(request.params.date, 10);
     // eslint-disable-next-line prefer-destructuring
     const userType = request.params.userType;
 
@@ -97,7 +90,10 @@ app.get(
     // };
 
     let query;
-    if (checkIfWeekend(dateDay, timeInHour, timeOutHour)) {
+    if (
+      checkIfWeekend(timeInDay, timeInHour) &&
+      checkIfWeekend(timeOutDay, timeOutHour)
+    ) {
       if (potentialStudentPermits.includes(userType)) {
         query = {
           $or: [
@@ -161,11 +157,12 @@ app.get(
 );
 
 app.get(
-  '/api/lots/basicInfo/:userType/:timeIn/:timeOut/:date',
+  '/api/lots/basicInfo/:userType/:timeInDay/:timeInHour/:timeOutDay/:timeOutHour',
   (request, response, next) => {
-    const timeInHour = parseInt(request.params.timeIn, 10);
-    const timeOutHour = parseInt(request.params.timeOut, 10);
-    const dateDay = parseInt(request.params.date, 10);
+    const timeInHour = parseInt(request.params.timeInHour, 10);
+    const timeInDay = parseInt(request.params.timeInDay, 10);
+    const timeOutDay = parseInt(request.params.timeOutDay, 10);
+    const timeOutHour = parseInt(request.params.timeOutHour, 10);
     // eslint-disable-next-line prefer-destructuring
     const userType = request.params.userType;
 
@@ -185,7 +182,10 @@ app.get(
     }
 
     let query;
-    if (checkIfWeekend(dateDay, timeInHour, timeOutHour)) {
+    if (
+      checkIfWeekend(timeInDay, timeInHour) &&
+      checkIfWeekend(timeOutDay, timeOutHour)
+    ) {
       if (potentialStudentPermits.includes(userType)) {
         query = {
           $or: [
