@@ -33,6 +33,10 @@ const ParkingMap = props => {
     const timeOutHours = props.timeOut.getHours();
     const dateDay = props.date.getDay();
 
+    console.log(
+      `/api/map/filter/${props.userType}/${timeInHours}/${timeOutHours}/${dateDay}`
+    );
+
     fetch(
       `/api/map/filter/${props.userType}/${timeInHours}/${timeOutHours}/${dateDay}`
     )
