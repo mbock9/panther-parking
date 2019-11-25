@@ -13,6 +13,7 @@ import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
 import {
   MuiPickersUtilsProvider,
+  KeyboardDateTimePicker,
   KeyboardTimePicker,
   KeyboardDatePicker
 } from '@material-ui/pickers';
@@ -130,39 +131,28 @@ const Form = ({
                       ))}
                     </Select>
                   </FormControl>
-                  <KeyboardDatePicker
+                  <KeyboardDateTimePicker
                     disableToolbar
                     variant="inline"
-                    format="MM/dd/yyyy"
+                    format="MM/dd/yyyy - hh:mm a"
                     margin="normal"
-                    id="date-picker-inline"
-                    label="Date"
+                    label="TimeIn"
                     value={date}
-                    onChange={handleDateChange}
+                    onChange={handleTimeInChange}
                     KeyboardButtonProps={{
                       'aria-label': 'change date'
                     }}
                   />
-                  <KeyboardTimePicker
+                  <KeyboardDateTimePicker
+                    disableToolbar
+                    variant="inline"
+                    format="MM/dd/yyyy - hh:mm a"
                     margin="normal"
-                    id="time-picker"
-                    label="Time In"
-                    mask="__:__ _M"
-                    value={timeIn}
-                    onChange={handleTimeInChange}
-                    KeyboardButtonProps={{
-                      'aria-label': 'change time'
-                    }}
-                  />
-                  <KeyboardTimePicker
-                    margin="normal"
-                    id="time-picker"
                     label="Time Out"
-                    mask="__:__ _M"
-                    value={timeOut}
+                    value={date}
                     onChange={handleTimeOutChange}
                     KeyboardButtonProps={{
-                      'aria-label': 'change time'
+                      'aria-label': 'change date'
                     }}
                   />
                 </Grid>
@@ -207,39 +197,28 @@ const Form = ({
                     ))}
                   </Select>
                 </FormControl>
-                <KeyboardDatePicker
+                <KeyboardDateTimePicker
                   disableToolbar
                   variant="inline"
-                  format="MM/dd/yyyy"
+                  format="MM/dd/yyyy - hh:mm a"
                   margin="normal"
-                  id="date-picker-inline"
-                  label="Date"
+                  label="Time In"
                   value={date}
-                  onChange={handleDateChange}
+                  onChange={handleTimeInChange}
                   KeyboardButtonProps={{
                     'aria-label': 'change date'
                   }}
                 />
-                <KeyboardTimePicker
+                <KeyboardDateTimePicker
+                  disableToolbar
+                  variant="inline"
+                  format="MM/dd/yyyy - hh:mm a"
                   margin="normal"
-                  id="time-picker"
-                  label="Time In"
-                  mask="__:__ _M"
-                  value={timeIn}
-                  onChange={handleTimeInChange}
-                  KeyboardButtonProps={{
-                    'aria-label': 'change time'
-                  }}
-                />
-                <KeyboardTimePicker
-                  margin="normal"
-                  id="time-picker"
                   label="Time Out"
-                  mask="__:__ _M"
-                  value={timeOut}
+                  value={date}
                   onChange={handleTimeOutChange}
                   KeyboardButtonProps={{
-                    'aria-label': 'change time'
+                    'aria-label': 'change date'
                   }}
                 />
               </Grid>
