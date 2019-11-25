@@ -13,9 +13,7 @@ import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
 import {
   MuiPickersUtilsProvider,
-  KeyboardDateTimePicker,
-  KeyboardTimePicker,
-  KeyboardDatePicker
+  KeyboardDateTimePicker
 } from '@material-ui/pickers';
 import logo from '../static/Panther_Parking_logo-removebg-preview.png';
 import AppBar from '@material-ui/core/AppBar';
@@ -82,12 +80,6 @@ const Form = ({
   // console.log("timeout:", timeOut);
 
   // Define handlers for date and timeIn and timeOut changes.
-  const handleDateChange = selectedDate => {
-    if (Object.prototype.toString.call(selectedDate) === '[object Date]') {
-      setDate(selectedDate);
-    }
-  };
-
   const handleTimeInChange = time => {
     if (Object.prototype.toString.call(time) === '[object Date]') {
       setTimeIn(time);
@@ -134,10 +126,10 @@ const Form = ({
                   <KeyboardDateTimePicker
                     disableToolbar
                     variant="inline"
-                    format="MM/dd/yyyy - hh:mm a"
+                    format="MM/dd/yyyy hh:mm a"
                     margin="normal"
                     label="TimeIn"
-                    value={date}
+                    value={timeIn}
                     onChange={handleTimeInChange}
                     KeyboardButtonProps={{
                       'aria-label': 'change date'
@@ -146,10 +138,10 @@ const Form = ({
                   <KeyboardDateTimePicker
                     disableToolbar
                     variant="inline"
-                    format="MM/dd/yyyy - hh:mm a"
+                    format="MM/dd/yyyy hh:mm a"
                     margin="normal"
                     label="Time Out"
-                    value={date}
+                    value={timeOut}
                     onChange={handleTimeOutChange}
                     KeyboardButtonProps={{
                       'aria-label': 'change date'
@@ -200,10 +192,10 @@ const Form = ({
                 <KeyboardDateTimePicker
                   disableToolbar
                   variant="inline"
-                  format="MM/dd/yyyy - hh:mm a"
+                  format="MM/dd/yyyy hh:mm a"
                   margin="normal"
                   label="Time In"
-                  value={date}
+                  value={timeIn}
                   onChange={handleTimeInChange}
                   KeyboardButtonProps={{
                     'aria-label': 'change date'
@@ -212,10 +204,10 @@ const Form = ({
                 <KeyboardDateTimePicker
                   disableToolbar
                   variant="inline"
-                  format="MM/dd/yyyy - hh:mm a"
+                  format="MM/dd/yyyy hh:mm a"
                   margin="normal"
                   label="Time Out"
-                  value={date}
+                  value={timeOut}
                   onChange={handleTimeOutChange}
                   KeyboardButtonProps={{
                     'aria-label': 'change date'

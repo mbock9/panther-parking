@@ -28,7 +28,7 @@ const Sidebar = props => {
   useEffect(() => {
     const timeInHours = props.timeIn.getHours();
     const timeOutHours = props.timeOut.getHours();
-    const dateDay = props.date.getDay();
+    const dateDay = props.timeIn.getDay();
     fetch(
       `/api/lots/basicInfo/${props.userType}/${timeInHours}/${timeOutHours}/${dateDay}`
     )
