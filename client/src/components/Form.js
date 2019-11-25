@@ -66,8 +66,6 @@ const Form = ({
   setTimeIn,
   timeOut,
   setTimeOut,
-  date,
-  setDate,
   landing,
   update
 }) => {
@@ -161,12 +159,6 @@ const Form = ({
       <div className={classes.root}>
         <AppBar position="static" color="inherit">
           <Toolbar variant="dense">
-            <IconButton
-              edge="start"
-              className={classes.menuButton}
-              color="inherit"
-              aria-label="menu"
-            />
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
               <Grid container justify="space-around" spacing={1}>
                 <Toolbar>
@@ -228,9 +220,7 @@ Form.propTypes = {
   timeIn: PropTypes.instanceOf(Date).isRequired,
   setTimeIn: PropTypes.func.isRequired,
   timeOut: PropTypes.instanceOf(Date).isRequired,
-  setTimeOut: PropTypes.func.isRequired,
-  date: PropTypes.instanceOf(Date).isRequired,
-  setDate: PropTypes.func.isRequired
+  setTimeOut: PropTypes.func.isRequired
 };
 
 export default Form;

@@ -29,12 +29,13 @@ const ParkingMap = props => {
   }, []);
 
   useEffect(() => {
-    const timeInHours = props.timeIn.getHours();
-    const timeOutHours = props.timeOut.getHours();
-    const dateDay = props.timeIn.getDay();
+    const timeInHour = props.timeIn.getHours();
+    const timeInDay = props.timeIn.getDay();
+    const timeOutHour = props.timeOut.getHours();
+    const timeOutDay = props.timeOut.getDay();
 
     fetch(
-      `/api/map/filter/${props.userType}/${timeInHours}/${timeOutHours}/${dateDay}`
+      `/api/map/filter/${props.userType}/${timeInDay}/${timeInHour}/${timeOutDay}/${timeOutHour}`
     )
       .then(response => {
         if (!response.ok) {
@@ -46,7 +47,7 @@ const ParkingMap = props => {
         setParkable(data);
       })
       .catch(err => console.log(err));
-  }, [props.userType, props.timeIn, props.timeOut, props.date]);
+  }, [props.userType, props.timeIn, props.timeOut]);
 
   // props.dataSet is loaded only one time in App.js
   // This loads the map with all lots having an overlay initially
@@ -85,8 +86,7 @@ ParkingMap.propTypes = {
   userType: PropTypes.string.isRequired,
   dataSet: PropTypes.object.isRequired,
   timeIn: PropTypes.instanceOf(Date).isRequired,
-  timeOut: PropTypes.instanceOf(Date).isRequired,
-  date: PropTypes.instanceOf(Date).isRequired
+  timeOut: PropTypes.instanceOf(Date).isRequired
 };
 
 export default ParkingMap;
