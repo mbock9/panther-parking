@@ -72,7 +72,6 @@ const Sidebar = props => {
 };
 
 Sidebar.propTypes = {
-  permitType: PropTypes.string.isRequired,
   userType: PropTypes.string.isRequired,
   timeIn: PropTypes.instanceOf(Date).isRequired,
   timeOut: PropTypes.instanceOf(Date).isRequired
