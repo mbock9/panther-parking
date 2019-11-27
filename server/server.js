@@ -45,13 +45,16 @@ app.get('/api/map/:key', (request, response) => {
 
 // Return a list of parkable/non-parkable lots based on filter criteria
 app.get(
-  '/api/map/filter/:userType/:timeInDay/:timeInHour/:timeOutDay/:timeOutHour',
+  '/api/map/filter/:userType/:timeIn/:timeOut',
   (request, response, next) => {
+    const timeIn = new Date(request.params.timeIn.replace(/-+/g, ' '));
+    const timeOut = new Date(request.params.timeOut.replace(/-+/g, ' '));
+
     // Get the time in and time out.
-    const timeInHour = parseInt(request.params.timeInHour, 10);
-    const timeInDay = parseInt(request.params.timeInDay, 10);
-    const timeOutDay = parseInt(request.params.timeOutDay, 10);
-    const timeOutHour = parseInt(request.params.timeOutHour, 10);
+    const timeInHour = timeIn.getHours();
+    const timeInDay = timeIn.getDay();
+    const timeOutHour = timeOut.getHours();
+    const timeOutDay = timeOut.getDay();
 
     // eslint-disable-next-line prefer-destructuring
     const userType = request.params.userType;
@@ -71,23 +74,6 @@ app.get(
       // eslint-disable-next-line prefer-destructuring
       studentPermitType = userType.split('-')[1];
     }
-    // Declare a function to check if it is the weekend or outside of business
-    // hours for faculty-staff spots. (9-5 M-F business hours)
-    // const isAfterHours = (day, hourIn, hourOut) => {
-    //   // On weekends return true
-    //   if (day == 0 || day == 6) {
-    //     return true;
-    //   }
-    //   // During work hours return false
-    //   if (hourIn > 9 || hourIn < 5) {
-    //     return false;
-    //   }
-    //   if (hourOut > 9 || hourOut < 5) {
-    //     return false;
-    //   }
-    //   // Outside of work hours return true
-    //   return true;
-    // };
 
     let query;
     if (
@@ -157,12 +143,17 @@ app.get(
 );
 
 app.get(
-  '/api/lots/basicInfo/:userType/:timeInDay/:timeInHour/:timeOutDay/:timeOutHour',
+  '/api/lots/basicInfo/:userType/:timeIn/:timeOut',
   (request, response, next) => {
-    const timeInHour = parseInt(request.params.timeInHour, 10);
-    const timeInDay = parseInt(request.params.timeInDay, 10);
-    const timeOutDay = parseInt(request.params.timeOutDay, 10);
-    const timeOutHour = parseInt(request.params.timeOutHour, 10);
+    const timeIn = new Date(request.params.timeIn.replace(/-+/g, ' '));
+    const timeOut = new Date(request.params.timeOut.replace(/-+/g, ' '));
+
+    // Get the time in and time out.
+    const timeInHour = timeIn.getHours();
+    const timeInDay = timeIn.getDay();
+    const timeOutHour = timeOut.getHours();
+    const timeOutDay = timeOut.getDay();
+
     // eslint-disable-next-line prefer-destructuring
     const userType = request.params.userType;
 
