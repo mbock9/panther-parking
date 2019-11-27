@@ -70,13 +70,12 @@ const Form = ({
 }) => {
   // Instantiate style classes
   const classes = useStyles();
-  // Testing
-  // console.log("permit type:", permitType);
-  // console.log("user type:", userType);
-  // console.log("timein:", timeIn);
-  // console.log("timeout:", timeOut);
 
-  // Define handlers for date and timeIn and timeOut changes.
+  /*
+   *  Define handlers for date and timeIn and timeOut changes.
+   *  Replace spaces in string representation of date so they can be passed
+   *  as params in GET request
+   */
   const handleTimeInChange = time => {
     if (Object.prototype.toString.call(time) === '[object Date]') {
       setTimeIn(time);
@@ -88,6 +87,10 @@ const Form = ({
       setTimeOut(time);
     }
   };
+
+  /*
+   * Build the HTML
+   */
   if (landing) {
     return (
       <div>
