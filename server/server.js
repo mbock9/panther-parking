@@ -75,7 +75,7 @@ app.get(
       studentPermitType = userType.split('-')[1];
     }
 
-    let query;
+    let query = { type: 'Feature' };
     if (
       checkIfWeekend(timeInDay, timeInHour) &&
       checkIfWeekend(timeOutDay, timeOutHour)
@@ -114,31 +114,17 @@ app.get(
       }
     }
 
-    if (query === undefined) {
-      app.locals.db
-        .collection('parkingLots')
-        .find()
-        .toArray()
-        .then(documents => {
-          const geoJsonData = {
-            features: documents,
-            type: 'FeatureCollection'
-          };
-          response.send(geoJsonData);
-        }, next); // Use "next" as rejection handler
-    } else {
-      app.locals.db
-        .collection('parkingLots')
-        .find(query)
-        .toArray()
-        .then(documents => {
-          const geoJsonData = {
-            features: documents,
-            type: 'FeatureCollection'
-          };
-          response.send(geoJsonData);
-        }, next); // Use "next" as rejection handler
-    }
+    app.locals.db
+      .collection('parkingLots')
+      .find(query)
+      .toArray()
+      .then(documents => {
+        const geoJsonData = {
+          features: documents,
+          type: 'FeatureCollection'
+        };
+        response.send(geoJsonData);
+      }, next); // Use "next" as rejection handler
   }
 );
 
@@ -172,7 +158,7 @@ app.get(
       studentPermitType = userType.split('-')[1];
     }
 
-    let query;
+    let query = { type: 'Feature' };
     if (
       checkIfWeekend(timeInDay, timeInHour) &&
       checkIfWeekend(timeOutDay, timeOutHour)
@@ -211,31 +197,17 @@ app.get(
       }
     }
 
-    if (query === undefined) {
-      app.locals.db
-        .collection('parkingLots')
-        .find()
-        .toArray()
-        .then(documents => {
-          const geoJsonData = {
-            features: documents,
-            type: 'FeatureCollection'
-          };
-          response.send(geoJsonData);
-        }, next); // Use "next" as rejection handler
-    } else {
-      app.locals.db
-        .collection('parkingLots')
-        .find(query)
-        .toArray()
-        .then(documents => {
-          const geoJsonData = {
-            features: documents,
-            type: 'FeatureCollection'
-          };
-          response.send(geoJsonData);
-        }, next); // Use "next" as rejection handler
-    }
+    app.locals.db
+      .collection('parkingLots')
+      .find(query)
+      .toArray()
+      .then(documents => {
+        const geoJsonData = {
+          features: documents,
+          type: 'FeatureCollection'
+        };
+        response.send(geoJsonData);
+      }, next); // Use "next" as rejection handler
   }
 );
 
