@@ -29,14 +29,9 @@ const ParkingMap = props => {
   }, []);
 
   useEffect(() => {
-    const timeInHour = props.timeIn.getHours();
-    const timeInDay = props.timeIn.getDay();
-    const timeOutHour = props.timeOut.getHours();
-    const timeOutDay = props.timeOut.getDay();
-
-    fetch(
-      `/api/map/filter/${props.userType}/${timeInDay}/${timeInHour}/${timeOutDay}/${timeOutHour}`
-    )
+    const timeIn = props.timeIn.toString().replace(/\s+/g, '-');
+    const timeOut = props.timeOut.toString().replace(/\s+/g, '-');
+    fetch(`/api/map/filter/${props.userType}/${timeIn}/${timeOut}`)
       .then(response => {
         if (!response.ok) {
           throw new Error(response.statusText);
