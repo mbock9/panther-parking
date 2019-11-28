@@ -1,6 +1,6 @@
 module.exports = {
   // Check if time falls into weekend hours
-  checkIfWeekend: function(day, hourIn) {
+  checkIfWeekend: (day, hourIn) => {
     // Saturday == 6 && Sunday == 0 && Friday == 5
     if (day === 0 || day === 6) {
       return true;
@@ -14,7 +14,7 @@ module.exports = {
   },
 
   // Construct database query
-  constructQuery: function(timeIn, timeOut, userType) {
+  constructQuery: (timeIn, timeOut, userType) => {
     // Get the time in and time out.
     const timeInHour = timeIn.getHours();
     const timeInDay = timeIn.getDay();
