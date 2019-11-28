@@ -42,12 +42,14 @@ module.exports = {
     // stay overlaps with business hours. This accounts for edge case of > week
     if (difference >= weekendInMillis) {
       return true;
-    } else if (
+    }
+    if (
       module.exports.checkIfWeekend(timeIn) &&
       module.exports.checkIfWeekend(timeOut)
     ) {
       return false;
-    } else if (module.exports.checkIfOffHours(timeIn, timeOut)) {
+    }
+    if (module.exports.checkIfOffHours(timeIn, timeOut)) {
       return false;
     }
     return true;
@@ -64,12 +66,12 @@ module.exports = {
     ];
 
     // Building a list of permit types a lot can have that matches the criteria
-    let queryPermits = [];
+    const queryPermits = [];
 
     // If outside of business hours, push 'f/s' for all but freshman
     if (
       !module.exports.checkIfBusinessHours(timeIn, timeOut) &&
-      userType != 'Student-uPass'
+      userType !== 'Student-uPass'
     ) {
       queryPermits.push('f/s');
     }
@@ -86,7 +88,7 @@ module.exports = {
 
     let query;
     if (queryPermits.length > 0) {
-      let queryPermitsFormatted = [];
+      const queryPermitsFormatted = [];
       queryPermits.forEach(permit => {
         queryPermitsFormatted.push({ 'properties.permits': permit });
       });
