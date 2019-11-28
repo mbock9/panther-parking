@@ -53,12 +53,6 @@ module.exports = {
 
   // Construct database query
   constructQuery: (timeIn, timeOut, userType) => {
-    // Get the time in and time out.
-    const timeInHour = timeIn.getHours();
-    const timeInDay = timeIn.getDay();
-    const timeOutHour = timeOut.getHours();
-    const timeOutDay = timeOut.getDay();
-
     const potentialStudentPermits = [
       'Student-sPass',
       'Student-ePass',
@@ -67,51 +61,37 @@ module.exports = {
       'Student-uPass'
     ];
 
-    // Check permit type of user
-    let studentPermitType;
+    // Building a list of permit types a lot can have that matches the criteria
+    let queryPermits = [];
+
+    // If outside of business hours, push 'f/s' for all but freshman
+    if (
+      !module.exports.checkIfBusinessHours(timeIn, timeOut) &&
+      userType != 'Student-uPass'
+    ) {
+      queryPermits.push('f/s');
+    }
     if (potentialStudentPermits.includes(userType)) {
-      // eslint-disable-next-line prefer-destructuring
-      studentPermitType = userType.split('-')[1];
+      queryPermits.push(userType.split('-')[1]);
+    }
+    if (userType === 'Faculty') {
+      queryPermits.push('f/s');
+      queryPermits.push('f/s_r');
+    }
+    if (userType === 'Visitor') {
+      queryPermits.push('visitors');
     }
 
-    let query = { type: 'Feature' };
-    if (
-      module.exports.checkIfWeekend(timeInDay, timeInHour) &&
-      module.exports.checkIfWeekend(timeOutDay, timeOutHour)
-    ) {
-      if (potentialStudentPermits.includes(userType)) {
-        query = {
-          $or: [
-            { 'properties.permits': studentPermitType },
-            { 'properties.f/s': 'true' }
-          ]
-        };
-      } else if (userType === 'Faculty') {
-        query = {
-          $or: [{ 'properties.f/s': 'true' }, { 'properties.f/s_r': 'true' }]
-        };
-      } else if (userType === 'Visitor') {
-        query = {
-          $or: [{ 'properties.f/s': 'true' }, { 'properties.visitor': 'true' }]
-        };
-      }
+    let query;
+    if (queryPermits.length > 0) {
+      query = { $or: [] };
+      queryPermits.forEach(permit => {
+        query.$or.push(permit);
+      });
     } else {
-      if (potentialStudentPermits.includes(userType)) {
-        if (studentPermitType) {
-          query = { 'properties.permits': studentPermitType };
-        } else {
-          query = { 'properties.permits': { $exists: true, $ne: [] } };
-        }
-      }
-      if (userType === 'Faculty') {
-        query = {
-          $or: [{ 'properties.f/s': 'true' }, { 'properties.f/s_r': 'true' }]
-        };
-      }
-      if (userType === 'Visitor') {
-        query = { 'properties.visitors': 'true' };
-      }
+      query = { type: 'Feature' };
     }
+
     return query;
   }
 };
