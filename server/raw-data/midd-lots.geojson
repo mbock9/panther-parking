@@ -6,7 +6,7 @@
         "lot_type": "U",
         "name": "Fitness Center",
         "description": "Non-restricted faculty and staff lot outside of the fitness center and indoor tennis courts.",
-        "permits": "[f/s]"
+        "permits": ["f/s"]
       },
       "geometry": {
         "coordinates": [
@@ -43,7 +43,7 @@
         "lot_type": "R",
         "name": "Ridgeline Lot",
         "description": "Student parking lot for non-freshman located below the Ridgeline buildings and adjacent to Homer Harris House. Access via College Street.",
-        "permits": "[pPass, sPass, ePass]"
+        "permits": ["pPass", "sPass", "ePass"]
       },
       "geometry": {
         "coordinates": [
@@ -96,7 +96,7 @@
         "lot_type": "T",
         "name": "Field House Lot",
         "description": "Multi-purpose lot positioned at the end of the Peterson Family Athletics Complex.",
-        "permits": "[sPass, pPass, uPass, ePass, tPass, visitors, f/s, f/s_r]"
+        "permits": ["sPass", "pPass", "uPass", "ePass", "tPass", "visitors", "f/s", "f/s_r"]
       },
       "geometry": {
         "coordinates": [
@@ -133,7 +133,7 @@
         "lot_type": "T",
         "name": "Kenyon Arena",
         "description": "Small multi-purpose lot next to Kenyon Arena and the squash pavillion.",
-        "permits": "[sPass, pPass, uPass, ePass, tPass, visitors, f/s, f/s_r]"
+        "permits": ["sPass", "pPass", "uPass", "ePass", "tPass", "visitors", "f/s", "f/s_r"]
       },
       "geometry": {
         "coordinates": [
@@ -166,7 +166,7 @@
         "lot_type": "C",
         "name": "Wright Theater \"E Lot\"",
         "description": "Student, faculty, and staff parking in between the Atwater dining hall and 75 Shannon Street.",
-        "permits": "[sPass, f/s, f/s_r]"
+        "permits": ["sPass", "f/s", "f/s_r"]
       },
       "geometry": {
         "coordinates": [
@@ -223,7 +223,7 @@
         "lot_type": "T",
         "name": "Fitness Center",
         "description": "Non-restricted faculty and staff lot outside of the fitness center and indoor tennis courts.",
-        "permits": "[sPass, pPass, uPass, ePass, tPass, visitors, f/s, f/s_r]"
+        "permits": ["sPass", "pPass", "uPass", "ePass", "tPass", "visitors", "f/s", "f/s_r"]
       },
       "geometry": {
         "coordinates": [
@@ -272,7 +272,7 @@
         "lot_type": "none",
         "name": "Ralph Myre Golf Course",
         "description": "Parking lot for the Ralph Myre Golf Course. Spaces are undesignated.",
-        "permits": "[sPass, pPass, uPass, ePass, tPass, visitors, f/s, f/s_r]"
+        "permits": ["sPass", "pPass", "uPass", "ePass", "tPass", "visitors", "f/s", "f/s_r"]
       },
       "geometry": {
         "coordinates": [
@@ -325,7 +325,7 @@
         "lot_type": "none",
         "name": "Dragone Track Lot",
         "description": "Overflow parking for students and visitors. Good parking for soccer and track events.",
-        "permits": "[sPass, pPass, uPass, ePass, tPass, visitors]"
+        "permits": ["sPass", "pPass", "uPass", "ePass", "tPass", "visitors"]
       },
       "geometry": {
         "coordinates": [
@@ -362,7 +362,7 @@
         "lot_type": "A",
         "name": "Fitness Center",
         "description": "Parking lot for the Ralph Myre Golf Course. Spaces are undesignated.",
-        "permits": "[visitors, f/s]"
+        "permits": ["visitors", "f/s"]
       },
       "geometry": {
         "coordinates": [
@@ -398,7 +398,7 @@
       "properties": {
         "lot_type": "N",
         "name": "Proctor Hall",
-        "permits": "[f/s_r]",
+        "permits": ["f/s_r"],
         "description": "Restricted faculty and staff spaces in between Proctor Hall and the Hillcrest Environmental Center."
       },
       "geometry": {
@@ -444,7 +444,7 @@
         "lot_type": "X",
         "name": "48 South Street Lot",
         "description": "Overflow parking for students and visitors. Good parking for soccer and track events.",
-        "permits": "[ePass]"
+        "permits": ["ePass"]
       },
       "geometry": {
         "coordinates": [
@@ -480,7 +480,7 @@
       "properties": {
         "lot_type": "I",
         "name": "Service Building",
-        "permits": "[f/s]",
+        "permits": ["f/s"],
         "description": "Faculty and staff spaces surrounding the service building"
       },
       "geometry": {
@@ -558,7 +558,7 @@
         "lot_type": "O",
         "name": "College St.",
         "description": "true",
-        "permits": "[visitors, f/s]"
+        "permits": ["visitors", "f/s"]
       },
       "geometry": {
         "coordinates": [
@@ -595,7 +595,7 @@
         "lot_type": "G",
         "name": "Twilight Hall",
         "description": "Parking lot located next to Twilight Hall. Commuter parking for students, but no overnight.",
-        "permits": "[ePass, tPass, f/s]"
+        "permits": ["ePass", "tPass", "f/s"]
       },
       "geometry": {
         "coordinates": [
@@ -632,7 +632,7 @@
         "lot_type": "A",
         "name": "Admissions (Emma Willard House)",
         "description": "Secondary parking lot for admissions.",
-        "permits": "[visitors, f/s]"
+        "permits": ["visitors", "f/s"]
       },
       "geometry": {
         "coordinates": [
@@ -669,7 +669,7 @@
         "lot_type": "P",
         "name": "Longwell House",
         "description": "Parking next to Longwell House behind Proctor dining hall for commuting students.",
-        "permits": "[tPass]"
+        "permits": ["tPass"]
       },
       "geometry": {
         "coordinates": [
@@ -706,7 +706,7 @@
         "lot_type": "C",
         "name": "Coffrin Hall & Freeman International Center",
         "description": "false",
-        "permits": "[sPass, f/s, f/s_r]"
+        "permits": ["sPass", "f/s", "f/s_r"]
       },
       "geometry": {
         "coordinates": [
@@ -771,7 +771,7 @@
         "lot_type": "X",
         "name": "Jewett House",
         "description": "Parking lot for the Ralph Myre Golf Course. Spaces are undesignated.",
-        "permits": "[ePass]"
+        "permits": ["ePass"]
       },
       "geometry": {
         "coordinates": [
@@ -815,7 +815,7 @@
       "properties": {
         "lot_type": "L",
         "name": "false",
-        "permits": "[f/s]",
+        "permits": ["f/s"],
         "description": "Street parking outside of Proctor dining hall next to the Proctor Tennis Courts."
       },
       "geometry": {
@@ -853,7 +853,7 @@
         "lot_type": "S",
         "name": "McCardell Bicentennial Hall",
         "description": "true",
-        "permits": "[tPass, visitors, f/s]"
+        "permits": ["tPass", "visitors", "f/s"]
       },
       "geometry": {
         "coordinates": [
@@ -894,7 +894,7 @@
         "lot_type": "F",
         "name": "Davis Family Library",
         "description": "Parking lot located behind Davis Library. Faculty staff spaces and commuter spaces with restricted hours (5pm - 2am).",
-        "permits": "[tPass, f/s]"
+        "permits": ["tPass", "f/s"]
       },
       "geometry": {
         "coordinates": [
@@ -930,7 +930,7 @@
       "properties": {
         "lot_type": "K",
         "name": "Robert A. Jones '59 House",
-        "permits": "[f/s_r]",
+        "permits": ["f/s_r"],
         "description": "Parking lot next to the Rober A. Jones '59 House for only faculty and staff."
       },
       "geometry": {
@@ -968,7 +968,7 @@
         "lot_type": "X",
         "name": "Homestead and Weybridge Houses",
         "description": "Parking off of Weybridge Road next to Homestead and Weybridge Houses. Exclusively E permit.",
-        "permits": "[ePass]"
+        "permits": ["ePass"]
       },
       "geometry": {
         "coordinates": [
@@ -1017,7 +1017,7 @@
         "lot_type": "D",
         "name": "Atwater Lot",
         "description": "false",
-        "permits": "[sPass]"
+        "permits": ["sPass"]
       },
       "geometry": {
         "coordinates": [
@@ -1062,7 +1062,7 @@
         "lot_type": "H",
         "name": "Old Chapel Rd.",
         "description": "true",
-        "permits": "[visitors, f/s]"
+        "permits": ["visitors", "f/s"]
       },
       "geometry": {
         "coordinates": [
@@ -1126,7 +1126,7 @@
       "properties": {
         "lot_type": "J",
         "name": "Stewart Hall",
-        "permits": "[f/s]",
+        "permits": ["f/s"],
         "description": "false"
       },
       "geometry": {
@@ -1163,7 +1163,7 @@
       "properties": {
         "lot_type": "I",
         "name": "Service Building/Parton Center for Health and Wellness",
-        "permits": "[f/s]",
+        "permits": ["f/s"],
         "description": "Faculty and staff spaces next to the Parton Center and the Service Building. Includes a few designated spaces for the Parton Center"
       },
       "geometry": {
@@ -1201,7 +1201,7 @@
         "lot_type": "B",
         "name": "Meeker House",
         "description": "Parking Lot located next to Meeker House.",
-        "permits": "[visitors, f/s]"
+        "permits": ["visitors", "f/s"]
       },
       "geometry": {
         "coordinates": [
