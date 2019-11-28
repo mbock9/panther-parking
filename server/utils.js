@@ -30,22 +30,24 @@ module.exports = {
         return true;
       }
     }
-
     return false;
   },
 
   // Check if time overlaps with business hours
   checkIfBusinessHours: (timeIn, timeOut) => {
-    const difference = timeOut.toTime() - timeIn.toTime();
+    const difference = timeOut.getTime() - timeIn.getTime();
     const weekendInMillis = 198000000; // Amount of time outside business hours over weekend
 
     // If difference between times is longer than a weekend, the
     // stay overlaps with business hours. This accounts for edge case of > week
     if (difference >= weekendInMillis) {
       return true;
-    } else if (module.exports.checkIfWeekend()) {
+    } else if (
+      module.exports.checkIfWeekend(timeIn) &&
+      module.exports.checkIfWeekend(timeOut)
+    ) {
       return false;
-    } else if (module.exports.checkIfOffHours()) {
+    } else if (module.exports.checkIfOffHours(timeIn, timeOut)) {
       return false;
     }
     return true;
@@ -84,10 +86,11 @@ module.exports = {
 
     let query;
     if (queryPermits.length > 0) {
-      query = { $or: [] };
+      let queryPermitsFormatted = [];
       queryPermits.forEach(permit => {
-        query.$or.push(permit);
+        queryPermitsFormatted.push({ 'properties.permits': permit });
       });
+      query = { $or: queryPermitsFormatted };
     } else {
       query = { type: 'Feature' };
     }
