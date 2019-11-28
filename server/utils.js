@@ -1,16 +1,54 @@
 module.exports = {
-  // Check if time falls into weekend hours
-  checkIfWeekend: (day, hourIn) => {
-    // Saturday == 6 && Sunday == 0 && Friday == 5
-    if (day === 0 || day === 6) {
+  // Check if a given time is on the weekend (in terms of business hours)
+  checkIfWeekend: time => {
+    const wkndDays = [0, 6];
+
+    if (
+      wkndDays.includes(time.getDay()) ||
+      (time.getDay() === 5 && time.getHours >= 17)
+    ) {
       return true;
     }
-    if (day === 5) {
-      if (hourIn >= 17) {
+    return false;
+  },
+
+  // Check if a given in/out time happen during off-business hours
+  checkIfOffHours: (timeIn, timeOut) => {
+    // Make sure they are on the same day (including midnight of next day)
+    if (timeIn.getDay() === timeOut.getDay()) {
+      if (timeIn.getHours() >= 17 && timeOut.getHours() >= 17) {
+        return true;
+      }
+    } else if (timeOut.getDay() - timeIn.getDay() === 1) {
+      if (
+        timeIn.getHours() >= 17 &&
+        (timeOut.getHours() === 0 &&
+          timeOut.getMinutes() === 0 &&
+          timeOut.getSeconds() === 0 &&
+          timeOut.getMilliseconds() === 0)
+      ) {
         return true;
       }
     }
+
     return false;
+  },
+
+  // Check if time overlaps with business hours
+  checkIfBusinessHours: (timeIn, timeOut) => {
+    const difference = timeOut.toTime() - timeIn.toTime();
+    const weekendInMillis = 198000000; // Amount of time outside business hours over weekend
+
+    // If difference between times is longer than a weekend, the
+    // stay overlaps with business hours. This accounts for edge case of > week
+    if (difference >= weekendInMillis) {
+      return true;
+    } else if (module.exports.checkIfWeekend()) {
+      return false;
+    } else if (module.exports.checkIfOffHours()) {
+      return false;
+    }
+    return true;
   },
 
   // Construct database query
