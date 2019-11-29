@@ -51,8 +51,6 @@ app.get(
         ? { type: 'Not feature' }
         : { $nor: parkableQuery.$or };
 
-    console.log(nonparkableQuery);
-
     let parkable;
     let nonparkable;
 
@@ -69,12 +67,12 @@ app.get(
           .collection('parkingLots')
           .find(nonparkableQuery)
           .toArray()
-          .then(documents => {
+          .then(docs => {
             nonparkable = {
-              features: documents,
+              features: docs,
               type: 'FeatureCollection'
             };
-            response.send({ parkable: parkable, nonparkable: nonparkable });
+            response.send({ parkable, nonparkable });
           }, next); // Use "next" as rejection handler
       }, next); // Use "next" as rejection handler
   }
