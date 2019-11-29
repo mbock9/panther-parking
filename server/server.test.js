@@ -19,3 +19,12 @@ test('GET /api/map/keys should return the key to the client', () => {
       );
     });
 });
+
+test('GET /api/filter/:userType/:timeIn/:timeOut timeOut must be after timeIn', () => {
+  const firstDate = new Date('2019-11-29T22:39:37+0000');
+  const secondDate = new Date('2019-11-30T22:40:51+0000');
+  const userType = 'Visitor';
+  return request(app)
+    .get(`api/filter/${userType}/${secondDate}/${firstDate}`)
+    .expect(400);
+});
