@@ -39,7 +39,7 @@ const Sidebar = props => {
         setParkable(data);
       })
       .catch(err => console.log(err));
-  }, [props.permitType, props.userType, props.timeIn, props.timeOut]);
+  }, [props.userType, props.timeIn, props.timeOut]);
 
   if (parkable.features) {
     const infoList = parkable.features.map(element => (
