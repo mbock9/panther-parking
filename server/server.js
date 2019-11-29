@@ -67,7 +67,7 @@ app.get(
     const timeIn = new Date(request.params.timeIn.replace(/-+/g, ' '));
     const timeOut = new Date(request.params.timeOut.replace(/-+/g, ' '));
 
-    /// Account for time change from UTC to EST
+    // Account for time change from UTC to EST
     timeIn.setHours(timeIn.getHours() + 5);
     timeOut.setHours(timeOut.getHours() + 5);
 
