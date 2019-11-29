@@ -45,18 +45,35 @@ app.get(
     // eslint-disable-next-line prefer-destructuring
     const userType = request.params.userType;
 
-    const query = utils.constructQuery(timeIn, timeOut, userType);
+    const parkableQuery = utils.constructQuery(timeIn, timeOut, userType);
+    const nonparkableQuery =
+      parkableQuery.$or === undefined ? '' : { $nor: parkableQuery.$or };
+
+    console.log(nonparkableQuery);
+
+    let parkable;
+    let nonparkable;
 
     app.locals.db
       .collection('parkingLots')
-      .find(query)
+      .find(parkableQuery)
       .toArray()
       .then(documents => {
-        const geoJsonData = {
+        parkable = {
           features: documents,
           type: 'FeatureCollection'
         };
-        response.send(geoJsonData);
+        app.locals.db
+          .collection('parkingLots')
+          .find(nonparkableQuery)
+          .toArray()
+          .then(documents => {
+            nonparkable = {
+              features: documents,
+              type: 'FeatureCollection'
+            };
+            response.send({ parkable: parkable, nonparkable: nonparkable });
+          }, next); // Use "next" as rejection handler
       }, next); // Use "next" as rejection handler
   }
 );
