@@ -49,7 +49,6 @@ const MenuProps = {
 };
 
 const users = [
-  'Admin',
   'Visitor',
   'Faculty',
   'Student-sPass',

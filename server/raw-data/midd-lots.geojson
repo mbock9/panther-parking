@@ -3,13 +3,10 @@
     {
       "type": "Feature",
       "properties": {
-        "permits": [],
-        "visitors": "false",
         "lot_type": "U",
-        "f/s": "true",
         "name": "Fitness Center",
-        "description": "Parking lot near the indoor tennis courts and fitness center.",
-        "f/s_r": "false"
+        "description": "Non-restricted faculty and staff lot outside of the fitness center and indoor tennis courts.",
+        "permits": ["f/s"]
       },
       "geometry": {
         "coordinates": [
@@ -43,13 +40,10 @@
     {
       "type": "Feature",
       "properties": {
-        "permits": ["pPass", "sPass", "ePass"],
-        "visitors": "false",
         "lot_type": "R",
-        "f/s": "false",
-        "name": "Ridgeline Rd.",
-        "description": "Student parking lot located below the Ridgeline buildings.",
-        "f/s_r": "false"
+        "name": "Ridgeline Lot",
+        "description": "Student parking lot for non-freshman located below the Ridgeline buildings and adjacent to Homer Harris House. Access via College Street.",
+        "permits": ["pPass", "sPass", "ePass"]
       },
       "geometry": {
         "coordinates": [
@@ -99,13 +93,10 @@
     {
       "type": "Feature",
       "properties": {
-        "description": "Multi-purpose parking lot adjacent to the Peterson Family Athletics Complex.",
-        "visitors": "true",
-        "permits": ["sPass", "pPass", "ePass", "tPass", "uPass"],
-        "f/s": "true",
-        "f/s_r": "true",
-        "name": "Field House",
-        "lot_type": "T"
+        "lot_type": "T",
+        "name": "Field House Lot",
+        "description": "Multi-purpose lot positioned at the end of the Peterson Family Athletics Complex.",
+        "permits": ["sPass", "pPass", "uPass", "ePass", "tPass", "visitors", "f/s", "f/s_r"]
       },
       "geometry": {
         "coordinates": [
@@ -139,13 +130,10 @@
     {
       "type": "Feature",
       "properties": {
-        "description": "Faculty, staff, and student lot adjacent to the Squash pavillion and Kenyon Arena.",
-        "name": "Kenyon Arena",
-        "permits": ["sPass", "pPass", "ePass", "tPass", "uPass"],
-        "f/s": "true",
-        "f/s_r": "true",
         "lot_type": "T",
-        "visitors": "true"
+        "name": "Kenyon Arena",
+        "description": "Small multi-purpose lot next to Kenyon Arena and the squash pavillion.",
+        "permits": ["sPass", "pPass", "uPass", "ePass", "tPass", "visitors", "f/s", "f/s_r"]
       },
       "geometry": {
         "coordinates": [
@@ -175,52 +163,53 @@
     {
       "type": "Feature",
       "properties": {
-        "permits": ["sPass"],
-        "visitors": "false",
         "lot_type": "C",
-        "f/s": "true",
-        "name": "E-Lot",
-        "description": "Faculty/staff and student parking lot positioned in between 75 Shannon Street and Atwater Dining Hall.",
-        "f/s_r": "true"
+        "name": "Wright Theater \"E Lot\"",
+        "description": "Student, faculty, and staff parking in between the Atwater dining hall and 75 Shannon Street.",
+        "permits": ["sPass", "f/s", "f/s_r"]
       },
       "geometry": {
         "coordinates": [
           [
             [
-              -73.176463,
-              44.012262
+              -73.176569,
+              44.012144
             ],
             [
-              -73.176788,
-              44.013285
+              -73.176841,
+              44.012901
             ],
             [
-              -73.1763,
-              44.013344
+              -73.176749,
+              44.012918
             ],
             [
-              -73.175925,
-              44.01233
+              -73.176855,
+              44.01324
             ],
             [
-              -73.175663,
-              44.012364
+              -73.176434,
+              44.013323
             ],
             [
-              -73.175555,
-              44.012019
+              -73.176104,
+              44.012285
             ],
             [
-              -73.175462,
-              44.011788
+              -73.175898,
+              44.01223
             ],
             [
-              -73.176273,
-              44.011651
+              -73.175748,
+              44.011989
             ],
             [
-              -73.176463,
-              44.012262
+              -73.176374,
+              44.01182
+            ],
+            [
+              -73.176569,
+              44.012144
             ]
           ]
         ],
@@ -231,13 +220,10 @@
     {
       "type": "Feature",
       "properties": {
-        "permits": ["sPass", "pPass", "ePass", "tPass", "uPass"],
-        "visitors": "true",
-        "f/s": "true",
-        "f/s_r": "true",
-        "name": "CFA (Kevin P. Mahaney '84 Center for the Arts)",
-        "description": "Large multi-purpose parking lot on the south side of campus.",
-        "lot_type": "T"
+        "lot_type": "T",
+        "name": "Fitness Center",
+        "description": "Non-restricted faculty and staff lot outside of the fitness center and indoor tennis courts.",
+        "permits": ["sPass", "pPass", "uPass", "ePass", "tPass", "visitors", "f/s", "f/s_r"]
       },
       "geometry": {
         "coordinates": [
@@ -283,13 +269,63 @@
     {
       "type": "Feature",
       "properties": {
-        "permits": ["sPass", "pPass", "ePass", "tPass", "uPass"],
-        "visitors": "true",
-        "f/s": "false",
-        "name": "true",
-        "description": "Overflow parking for students.",
-        "f/s_r": "false",
-        "lot_type": "none"
+        "lot_type": "none",
+        "name": "Ralph Myre Golf Course",
+        "description": "Parking lot for the Ralph Myre Golf Course. Spaces are undesignated.",
+        "permits": ["sPass", "pPass", "uPass", "ePass", "tPass", "visitors", "f/s", "f/s_r"]
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -73.181885,
+              44.000792
+            ],
+            [
+              -73.182108,
+              44.000755
+            ],
+            [
+              -73.181785,
+              43.999407
+            ],
+            [
+              -73.181347,
+              43.999459
+            ],
+            [
+              -73.181426,
+              43.999733
+            ],
+            [
+              -73.18167,
+              43.999712
+            ],
+            [
+              -73.181806,
+              44.000177
+            ],
+            [
+              -73.181734,
+              44.000177
+            ],
+            [
+              -73.181885,
+              44.000792
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "id": "29f7ed73ef7bdb5013e655d83f7b7031"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "lot_type": "none",
+        "name": "Dragone Track Lot",
+        "description": "Overflow parking for students and visitors. Good parking for soccer and track events.",
+        "permits": ["sPass", "pPass", "uPass", "ePass", "tPass", "visitors"]
       },
       "geometry": {
         "coordinates": [
@@ -323,44 +359,78 @@
     {
       "type": "Feature",
       "properties": {
-        "permits": [],
-        "visitors": "false",
-        "f/s": "false",
-        "name": "Proctor Hall",
-        "f/s_r": "true",
-        "description": "Faculty and staff spaces in between Proctor Hall and the Hillcrest Environmental Center.",
-        "lot_type": "N"
+        "lot_type": "A",
+        "name": "Fitness Center",
+        "description": "Parking lot for the Ralph Myre Golf Course. Spaces are undesignated.",
+        "permits": ["visitors", "f/s"]
       },
       "geometry": {
         "coordinates": [
           [
             [
-              -73.180702,
-              44.009428
+              -73.174079,
+              44.007059
             ],
             [
-              -73.180708,
-              44.009753
+              -73.174008,
+              44.006918
             ],
             [
-              -73.180258,
-              44.009771
+              -73.173561,
+              44.007008
             ],
             [
-              -73.180232,
-              44.009591
+              -73.173612,
+              44.007133
             ],
             [
-              -73.179618,
-              44.009634
+              -73.174079,
+              44.007059
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "id": "4614dd5e723b41ef26836776c49d0fe3"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "lot_type": "N",
+        "name": "Proctor Hall",
+        "permits": ["f/s_r"],
+        "description": "Restricted faculty and staff spaces in between Proctor Hall and the Hillcrest Environmental Center."
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -73.18069,
+              44.009515
             ],
             [
-              -73.179613,
-              44.009516
+              -73.180677,
+              44.009788
             ],
             [
-              -73.180702,
-              44.009428
+              -73.180227,
+              44.00982
+            ],
+            [
+              -73.180224,
+              44.009626
+            ],
+            [
+              -73.179803,
+              44.009655
+            ],
+            [
+              -73.179791,
+              44.009565
+            ],
+            [
+              -73.18069,
+              44.009515
             ]
           ]
         ],
@@ -371,13 +441,124 @@
     {
       "type": "Feature",
       "properties": {
-        "permits": ["sPass", "pPass", "ePass", "tPass", "uPass"],
-        "visitors": "true",
-        "f/s": "true",
+        "lot_type": "X",
+        "name": "48 South Street Lot",
+        "description": "Overflow parking for students and visitors. Good parking for soccer and track events.",
+        "permits": ["ePass"]
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -73.170943,
+              44.005888
+            ],
+            [
+              -73.170914,
+              44.00561
+            ],
+            [
+              -73.171014,
+              44.00561
+            ],
+            [
+              -73.171043,
+              44.005878
+            ],
+            [
+              -73.170943,
+              44.005888
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "id": "4f26093418cca59b19954af88397800f"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "lot_type": "I",
+        "name": "Service Building",
+        "permits": ["f/s"],
+        "description": "Faculty and staff spaces surrounding the service building"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -73.176684,
+              44.007676
+            ],
+            [
+              -73.17649,
+              44.007677
+            ],
+            [
+              -73.176497,
+              44.007821
+            ],
+            [
+              -73.177095,
+              44.007806
+            ],
+            [
+              -73.177091,
+              44.007904
+            ],
+            [
+              -73.176541,
+              44.007908
+            ],
+            [
+              -73.176331,
+              44.00792
+            ],
+            [
+              -73.176312,
+              44.007515
+            ],
+            [
+              -73.176386,
+              44.007511
+            ],
+            [
+              -73.176478,
+              44.007081
+            ],
+            [
+              -73.176751,
+              44.006732
+            ],
+            [
+              -73.176827,
+              44.006811
+            ],
+            [
+              -73.176575,
+              44.007129
+            ],
+            [
+              -73.176671,
+              44.007147
+            ],
+            [
+              -73.176684,
+              44.007676
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "id": "5d88846c11498ae5f5fc74ac7ddd5fa2"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "lot_type": "O",
         "name": "College St.",
-        "f/s_r": "false",
-        "description": "Parallel spaces along College street.",
-        "lot_type": "O"
+        "description": "true",
+        "permits": ["visitors", "f/s"]
       },
       "geometry": {
         "coordinates": [
@@ -411,13 +592,47 @@
     {
       "type": "Feature",
       "properties": {
-        "permits": [],
-        "visitors": "true",
+        "lot_type": "G",
+        "name": "Twilight Hall",
+        "description": "Parking lot located next to Twilight Hall. Commuter parking for students, but no overnight.",
+        "permits": ["ePass", "tPass", "f/s"]
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -73.172171,
+              44.010727
+            ],
+            [
+              -73.172141,
+              44.010625
+            ],
+            [
+              -73.171684,
+              44.010688
+            ],
+            [
+              -73.17171,
+              44.010792
+            ],
+            [
+              -73.172171,
+              44.010727
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "id": "66f197ac378df188a6cf49f99cac0747"
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "lot_type": "A",
-        "f/s": "true",
         "name": "Admissions (Emma Willard House)",
-        "description": "Parking lot for faculty, staff, and visitors next to the admissions office.",
-        "f/s_r": "false"
+        "description": "Secondary parking lot for admissions.",
+        "permits": ["visitors", "f/s"]
       },
       "geometry": {
         "coordinates": [
@@ -451,13 +666,47 @@
     {
       "type": "Feature",
       "properties": {
-        "permits": ["sPass"],
-        "visitors": "false",
+        "lot_type": "P",
+        "name": "Longwell House",
+        "description": "Parking next to Longwell House behind Proctor dining hall for commuting students.",
+        "permits": ["tPass"]
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -73.180652,
+              44.008844
+            ],
+            [
+              -73.180463,
+              44.008853
+            ],
+            [
+              -73.180467,
+              44.008635
+            ],
+            [
+              -73.180635,
+              44.008629
+            ],
+            [
+              -73.180652,
+              44.008844
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "id": "73e9eeeff2fb405ad9713f339a2fddcc"
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "lot_type": "C",
-        "f/s": "true",
         "name": "Coffrin Hall & Freeman International Center",
-        "description": "Student and faculty lot located below Freeman International Center and Coffrin Hall.",
-        "f/s_r": "true"
+        "description": "false",
+        "permits": ["sPass", "f/s", "f/s_r"]
       },
       "geometry": {
         "coordinates": [
@@ -519,36 +768,119 @@
     {
       "type": "Feature",
       "properties": {
-        "permits": ["tPass"],
-        "visitors": "true",
-        "f/s": "true",
-        "f/s_r": "false",
-        "description": "Parking lot located behind McCardell Bicentennial Hall.",
-        "lot_type": "S",
-        "name": "McCardell Bicentennial Hall"
+        "lot_type": "X",
+        "name": "Jewett House",
+        "description": "Parking lot for the Ralph Myre Golf Course. Spaces are undesignated.",
+        "permits": ["ePass"]
       },
       "geometry": {
         "coordinates": [
           [
             [
-              -73.183109,
-              44.013147
+              -73.171495,
+              44.010131
             ],
             [
-              -73.182931,
-              44.013033
+              -73.17145,
+              44.010171
             ],
             [
-              -73.18199,
-              44.014101
+              -73.171194,
+              44.009994
             ],
             [
-              -73.182178,
-              44.014194
+              -73.171409,
+              44.009735
             ],
             [
-              -73.183109,
-              44.013147
+              -73.17153,
+              44.009789
+            ],
+            [
+              -73.171404,
+              44.009951
+            ],
+            [
+              -73.171495,
+              44.010131
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "id": "90fbba0a41a249f96519f1d802d4874c"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "lot_type": "L",
+        "name": "false",
+        "permits": ["f/s"],
+        "description": "Street parking outside of Proctor dining hall next to the Proctor Tennis Courts."
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -73.18023,
+              44.008915
+            ],
+            [
+              -73.180073,
+              44.008913
+            ],
+            [
+              -73.180049,
+              44.00792
+            ],
+            [
+              -73.180229,
+              44.007919
+            ],
+            [
+              -73.18023,
+              44.008915
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "id": "b4263e333b784495a8d4960e77166e4e"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "lot_type": "S",
+        "name": "McCardell Bicentennial Hall",
+        "description": "true",
+        "permits": ["tPass", "visitors", "f/s"]
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -73.183222,
+              44.013165
+            ],
+            [
+              -73.183033,
+              44.013064
+            ],
+            [
+              -73.182118,
+              44.01413
+            ],
+            [
+              -73.182207,
+              44.014299
+            ],
+            [
+              -73.182428,
+              44.0141
+            ],
+            [
+              -73.183222,
+              44.013165
             ]
           ]
         ],
@@ -559,44 +891,70 @@
     {
       "type": "Feature",
       "properties": {
-        "permits": [],
-        "visitors": "false",
-        "f/s": "false",
-        "name": "Robert A. Jones '59 House",
-        "f/s_r": "true",
-        "description": "Parking lot adjacent to the Robert A. Jones '59 House for faculty and staff.",
-        "lot_type": "K"
+        "lot_type": "F",
+        "name": "Davis Family Library",
+        "description": "Parking lot located behind Davis Library. Faculty staff spaces and commuter spaces with restricted hours (5pm - 2am).",
+        "permits": ["tPass", "f/s"]
       },
       "geometry": {
         "coordinates": [
           [
             [
-              -73.180716,
-              44.007834
+              -73.173616,
+              44.009776
             ],
             [
-              -73.180107,
-              44.007851
+              -73.17295,
+              44.009864
             ],
             [
-              -73.180161,
-              44.007706
+              -73.17287,
+              44.009638
             ],
             [
-              -73.1806,
-              44.007709
+              -73.173557,
+              44.009534
             ],
             [
-              -73.180624,
-              44.007638
+              -73.173616,
+              44.009776
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "id": "ba1208f4f4f485be4c279fed386686d9"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "lot_type": "K",
+        "name": "Robert A. Jones '59 House",
+        "permits": ["f/s_r"],
+        "description": "Parking lot next to the Rober A. Jones '59 House for only faculty and staff."
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -73.180587,
+              44.007915
             ],
             [
-              -73.180801,
-              44.007632
+              -73.180243,
+              44.007921
             ],
             [
-              -73.180716,
-              44.007834
+              -73.180236,
+              44.007744
+            ],
+            [
+              -73.180588,
+              44.007738
+            ],
+            [
+              -73.180587,
+              44.007915
             ]
           ]
         ],
@@ -607,10 +965,59 @@
     {
       "type": "Feature",
       "properties": {
-        "permits": ["sPass"],
-        "visitors": "false",
-        "f/s": "false",
-        "f/s_r": "false"
+        "lot_type": "X",
+        "name": "Homestead and Weybridge Houses",
+        "description": "Parking off of Weybridge Road next to Homestead and Weybridge Houses. Exclusively E permit.",
+        "permits": ["ePass"]
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -73.172275,
+              44.012336
+            ],
+            [
+              -73.172005,
+              44.012475
+            ],
+            [
+              -73.171941,
+              44.012416
+            ],
+            [
+              -73.171516,
+              44.012046
+            ],
+            [
+              -73.171583,
+              44.012006
+            ],
+            [
+              -73.171954,
+              44.012332
+            ],
+            [
+              -73.172162,
+              44.012223
+            ],
+            [
+              -73.172275,
+              44.012336
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "id": "c578e22d4061ef854f3037b6368e4790"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "lot_type": "D",
+        "name": "Atwater Lot",
+        "description": "false",
+        "permits": ["sPass"]
       },
       "geometry": {
         "coordinates": [
@@ -652,13 +1059,10 @@
     {
       "type": "Feature",
       "properties": {
-        "permits": [],
-        "visitors": "true",
         "lot_type": "H",
-        "f/s": "true",
         "name": "Old Chapel Rd.",
-        "description": "Strip of perpendicular spaces along Old Chapel Rd.",
-        "f/s_r": "false"
+        "description": "true",
+        "permits": ["visitors", "f/s"]
       },
       "geometry": {
         "coordinates": [
@@ -720,42 +1124,117 @@
     {
       "type": "Feature",
       "properties": {
-        "permits": [],
-        "visitors": "false",
         "lot_type": "J",
-        "f/s": "true",
         "name": "Stewart Hall",
-        "description": "Parking lot adjacent to Stewart Hall.",
-        "f/s_r": "false"
+        "permits": ["f/s"],
+        "description": "false"
       },
       "geometry": {
         "coordinates": [
           [
             [
-              -73.17917,
-              44.007873
+              -73.179147,
+              44.007843
             ],
             [
-              -73.17882,
-              44.007708
+              -73.178922,
+              44.00774
             ],
             [
-              -73.17895,
-              44.007557
+              -73.178976,
+              44.007682
             ],
             [
-              -73.17929,
-              44.007736
+              -73.179206,
+              44.007782
             ],
             [
-              -73.17917,
-              44.007873
+              -73.179147,
+              44.007843
             ]
           ]
         ],
         "type": "Polygon"
       },
       "id": "ddc1f454427cc5ab221ef2f15bd547ea"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "lot_type": "I",
+        "name": "Service Building/Parton Center for Health and Wellness",
+        "permits": ["f/s"],
+        "description": "Faculty and staff spaces next to the Parton Center and the Service Building. Includes a few designated spaces for the Parton Center"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -73.176297,
+              44.00706
+            ],
+            [
+              -73.176239,
+              44.007356
+            ],
+            [
+              -73.176309,
+              44.007359
+            ],
+            [
+              -73.176369,
+              44.007063
+            ],
+            [
+              -73.176297,
+              44.00706
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "id": "ebc5294daf0720ee2122641ecc78a104"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "lot_type": "B",
+        "name": "Meeker House",
+        "description": "Parking Lot located next to Meeker House.",
+        "permits": ["visitors", "f/s"]
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -73.175403,
+              44.006847
+            ],
+            [
+              -73.175302,
+              44.006928
+            ],
+            [
+              -73.174804,
+              44.006597
+            ],
+            [
+              -73.174924,
+              44.006511
+            ],
+            [
+              -73.17517,
+              44.006715
+            ],
+            [
+              -73.175403,
+              44.006847
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "id": "fcf6f81e66980ffc375be7eb1d497831"
     }
   ],
   "type": "FeatureCollection"

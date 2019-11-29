@@ -25,9 +25,9 @@ const Item = Styled.ul`
 const Sidebar = props => {
   const [parkable, setParkable] = useState({});
 
-  const timeIn = props.timeIn.toString().replace(/\s+/g, '-');
-  const timeOut = props.timeOut.toString().replace(/\s+/g, '-');
   useEffect(() => {
+    const timeIn = props.timeIn.toString().replace(/\s+/g, '-');
+    const timeOut = props.timeOut.toString().replace(/\s+/g, '-');
     fetch(`/api/lots/basicInfo/${props.userType}/${timeIn}/${timeOut}`)
       .then(response => {
         if (!response.ok) {
@@ -39,7 +39,7 @@ const Sidebar = props => {
         setParkable(data);
       })
       .catch(err => console.log(err));
-  }, [props.permitType, props.userType, props.timeIn, props.timeOut]);
+  }, [props.userType, props.timeIn, props.timeOut]);
 
   if (parkable.features) {
     const infoList = parkable.features.map(element => (
@@ -67,7 +67,6 @@ const Sidebar = props => {
 };
 
 Sidebar.propTypes = {
-  permitType: PropTypes.string.isRequired,
   userType: PropTypes.string.isRequired,
   timeIn: PropTypes.instanceOf(Date).isRequired,
   timeOut: PropTypes.instanceOf(Date).isRequired

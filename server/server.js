@@ -37,6 +37,11 @@ app.get(
   (request, response, next) => {
     const timeIn = new Date(request.params.timeIn.replace(/-+/g, ' '));
     const timeOut = new Date(request.params.timeOut.replace(/-+/g, ' '));
+
+    // Account for time change from UTC to EST
+    timeIn.setHours(timeIn.getHours() + 5);
+    timeOut.setHours(timeOut.getHours() + 5);
+
     // eslint-disable-next-line prefer-destructuring
     const userType = request.params.userType;
 
@@ -62,7 +67,14 @@ app.get(
     const timeIn = new Date(request.params.timeIn.replace(/-+/g, ' '));
     const timeOut = new Date(request.params.timeOut.replace(/-+/g, ' '));
 
-    const query = utils.constructQuery(timeIn, timeOut);
+    // Account for time change from UTC to EST
+    timeIn.setHours(timeIn.getHours() + 5);
+    timeOut.setHours(timeOut.getHours() + 5);
+
+    // eslint-disable-next-line prefer-destructuring
+    const userType = request.params.userType;
+
+    const query = utils.constructQuery(timeIn, timeOut, userType);
 
     app.locals.db
       .collection('parkingLots')
