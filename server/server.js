@@ -12,6 +12,18 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static(buildPath));
 }
 
+// Valid values for user field
+const validUsers = [
+  'Student-sPass',
+  'Student-ePass',
+  'Student-pPass',
+  'Student-tPass',
+  'Student-uPass',
+  'Visitor',
+  'Faculty',
+  'initial'
+];
+
 // TODO: Add any middleware here
 
 // Return map with all lots available
@@ -35,15 +47,28 @@ app.get('/api/map/:key', (request, response) => {
 app.get(
   '/api/map/filter/:userType/:timeIn/:timeOut',
   (request, response, next) => {
+    // Reformat date strings
     const timeIn = new Date(request.params.timeIn.replace(/-+/g, ' '));
     const timeOut = new Date(request.params.timeOut.replace(/-+/g, ' '));
+    const userType = request.params.userType;
+
+    // Validations
+    if (!validUsers.includes(userType)) {
+      response.sendStatus(400);
+      return;
+    }
+    if (isNaN(timeIn) || isNaN(timeOut)) {
+      response.sendStatus(400);
+      return;
+    }
+    if (timeOut.getTime() < timeIn.getTime()) {
+      response.sendStatus(400);
+      return;
+    }
 
     // Account for time change from UTC to EST
     timeIn.setHours(timeIn.getHours() + 5);
     timeOut.setHours(timeOut.getHours() + 5);
-
-    // eslint-disable-next-line prefer-destructuring
-    const userType = request.params.userType;
 
     const parkableQuery = utils.constructQuery(timeIn, timeOut, userType);
     const nonparkableQuery =
@@ -81,15 +106,28 @@ app.get(
 app.get(
   '/api/lots/basicInfo/:userType/:timeIn/:timeOut',
   (request, response, next) => {
+    // Reformat date strings
     const timeIn = new Date(request.params.timeIn.replace(/-+/g, ' '));
     const timeOut = new Date(request.params.timeOut.replace(/-+/g, ' '));
+    const userType = request.params.userType;
+
+    // Validations
+    if (!validUsers.includes(userType)) {
+      response.sendStatus(400);
+      return;
+    }
+    if (isNaN(timeIn) || isNaN(timeOut)) {
+      response.sendStatus(400);
+      return;
+    }
+    if (timeOut.getTime() < timeIn.getTime()) {
+      response.sendStatus(400);
+      return;
+    }
 
     // Account for time change from UTC to EST
     timeIn.setHours(timeIn.getHours() + 5);
     timeOut.setHours(timeOut.getHours() + 5);
-
-    // eslint-disable-next-line prefer-destructuring
-    const userType = request.params.userType;
 
     const query = utils.constructQuery(timeIn, timeOut, userType);
 
