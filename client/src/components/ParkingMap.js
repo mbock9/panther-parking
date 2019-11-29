@@ -39,7 +39,7 @@ const ParkingMap = props => {
         return response.json();
       })
       .then(data => {
-        setParkable(data);
+        setParkable(data.parkable);
       })
       .catch(err => console.log(err));
   }, [props.userType, props.timeIn, props.timeOut]);
