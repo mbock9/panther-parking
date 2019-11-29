@@ -25,9 +25,9 @@ const Item = Styled.ul`
 const Sidebar = props => {
   const [parkable, setParkable] = useState({});
 
-  const timeIn = props.timeIn.toString().replace(/\s+/g, '-');
-  const timeOut = props.timeOut.toString().replace(/\s+/g, '-');
   useEffect(() => {
+    const timeIn = props.timeIn.toString().replace(/\s+/g, '-');
+    const timeOut = props.timeOut.toString().replace(/\s+/g, '-');
     fetch(`/api/lots/basicInfo/${props.userType}/${timeIn}/${timeOut}`)
       .then(response => {
         if (!response.ok) {
