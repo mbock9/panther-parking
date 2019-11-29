@@ -17,6 +17,7 @@ const ParkingMap = props => {
 
   const [key, setKey] = useState(''); // Represent MapBox API Key as state
   const [parkable, setParkable] = useState({});
+  const [nonparkable, setNonparkable] = useState({});
 
   // Fetch and set the API key from server (saved in the .env)
   useEffect(() => {
@@ -40,6 +41,7 @@ const ParkingMap = props => {
       })
       .then(data => {
         setParkable(data.parkable);
+        setNonparkable(data.nonparkable);
       })
       .catch(err => console.log(err));
   }, [props.userType, props.timeIn, props.timeOut]);
@@ -66,6 +68,17 @@ const ParkingMap = props => {
             paint={{
               'fill-outline-color': '#105e01',
               'fill-color': '#4800b3',
+              'fill-opacity': 0.75
+            }}
+          />
+        </Source>
+        <Source id="nonparkable-regions" type="geojson" data={nonparkable}>
+          <Layer
+            id="nonparkable"
+            type="fill"
+            paint={{
+              'fill-outline-color': '#a10003',
+              'fill-color': '#ff3d41',
               'fill-opacity': 0.75
             }}
           />

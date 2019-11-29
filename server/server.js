@@ -47,7 +47,9 @@ app.get(
 
     const parkableQuery = utils.constructQuery(timeIn, timeOut, userType);
     const nonparkableQuery =
-      parkableQuery.$or === undefined ? '' : { $nor: parkableQuery.$or };
+      parkableQuery.$or === undefined
+        ? { type: 'Not feature' }
+        : { $nor: parkableQuery.$or };
 
     console.log(nonparkableQuery);
 
