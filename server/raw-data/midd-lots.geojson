@@ -40,7 +40,7 @@
     {
       "type": "Feature",
       "properties": {
-        "description": "Parralel parking spaces along Storrs Ave. below the Davis Family Library. Parking for faculty, staff, and visitors.",
+        "description": "Parallel parking spaces along Storrs Ave. below the Davis Family Library. Parking for faculty, staff, and visitors.",
         "lot_type": "B",
         "name": "Storrs Ave.",
         "permits": ["visitors", "f/s"]
@@ -272,7 +272,7 @@
       "properties": {
         "lot_type": "T",
         "name": "Field House Lot",
-        "description": "Multi-purpose lot positioned at the end of the Peterson Family Athletics Complex.",
+        "description": "Multi-purpose lot positioned at the end of the Peterson Family Athletics Complex. Pay attention to signage.",
         "permits": ["sPass", "pPass", "uPass", "ePass", "tPass", "visitors", "f/s", "f/s_r"]
       },
       "geometry": {
@@ -309,7 +309,7 @@
       "properties": {
         "lot_type": "T",
         "name": "Kenyon Arena",
-        "description": "Small multi-purpose lot next to Kenyon Arena and the squash pavillion.",
+        "description": "Small multi-purpose lot next to Kenyon Arena and the squash pavillion. Pay attention to signage.",
         "permits": ["sPass", "pPass", "uPass", "ePass", "tPass", "visitors", "f/s", "f/s_r"]
       },
       "geometry": {
@@ -342,7 +342,7 @@
       "properties": {
         "lot_type": "C",
         "name": "Wright Theater \"E Lot\"",
-        "description": "Student, faculty, and staff parking in between the Atwater dining hall and 75 Shannon Street.",
+        "description": "Upperclassmen, faculty, and staff parking in between the Atwater dining hall and 75 Shannon Street. Be cautious of restricted faculty/staff spaces.",
         "permits": ["sPass", "f/s", "f/s_r"]
       },
       "geometry": {
@@ -448,7 +448,7 @@
       "properties": {
         "lot_type": "none",
         "name": "Ralph Myre Golf Course",
-        "description": "Parking lot for the Ralph Myre Golf Course. Spaces are undesignated.",
+        "description": "Parking lot for the Ralph Myre Golf Course. Spaces are undesignated. Access via VT30 and Golf Course Rd.",
         "permits": ["sPass", "pPass", "uPass", "ePass", "tPass", "visitors", "f/s", "f/s_r"]
       },
       "geometry": {
@@ -501,7 +501,7 @@
       "properties": {
         "lot_type": "none",
         "name": "Dragone Track Lot",
-        "description": "Overflow parking for students and visitors. Good parking for soccer and track events.",
+        "description": "Overflow parking for students and visitors at the intersection of Porter Field Rd. and South St. Good parking for soccer and track events. During events you can also typically park along Porter Field Rd.",
         "permits": ["sPass", "pPass", "uPass", "ePass", "tPass", "visitors"]
       },
       "geometry": {
@@ -538,7 +538,7 @@
       "properties": {
         "lot_type": "A",
         "name": "Admissions (Emma Willard House)",
-        "description": "Secondary parking lot for admissions. Faculty, staff, and student spaces.",
+        "description": "Auxiliary parking lot for admissions. Faculty, staff, and student spaces.",
         "permits": ["visitors", "f/s"]
       },
       "geometry": {
@@ -620,7 +620,7 @@
       "properties": {
         "lot_type": "X",
         "name": "48 South Street Lot",
-        "description": "Overflow parking for students and visitors. Good parking for soccer and track events.",
+        "description": "Parking for residents of 48 South Street (KDR).",
         "permits": ["ePass"]
       },
       "geometry": {
@@ -658,7 +658,7 @@
         "lot_type": "I",
         "name": "Service Building",
         "permits": ["f/s"],
-        "description": "Faculty and staff spaces surrounding the service building"
+        "description": "Faculty and staff spaces surrounding the service building. Note signage."
       },
       "geometry": {
         "coordinates": [
@@ -771,7 +771,7 @@
       "properties": {
         "lot_type": "G",
         "name": "Twilight Hall",
-        "description": "Parking lot located next to Twilight Hall. Commuter parking for students, but no overnight.",
+        "description": "Faculty and staff lot located next to Twilight Hall. Commuter parking for students, but no overnight.",
         "permits": ["ePass", "tPass", "f/s"]
       },
       "geometry": {
@@ -993,7 +993,7 @@
         "lot_type": "L",
         "name": "Hillcrest Rd.",
         "permits": ["f/s"],
-        "description": "Street parking outside of Proctor dining hall next to the Proctor Tennis Courts."
+        "description": "Street parking outside of Proctor dining hall next to the Proctor Tennis Courts. Park at your own risk."
       },
       "geometry": {
         "coordinates": [
@@ -1108,7 +1108,7 @@
         "lot_type": "K",
         "name": "Robert A. Jones '59 House",
         "permits": ["f/s_r"],
-        "description": "Parking lot next to the Rober A. Jones '59 House for only faculty and staff."
+        "description": "Parking lot next to the Robert A. Jones '59 House for only faculty and staff."
       },
       "geometry": {
         "coordinates": [
@@ -1144,7 +1144,7 @@
       "properties": {
         "lot_type": "X",
         "name": "Homestead and Weybridge Houses",
-        "description": "Parking off of Weybridge Road next to Homestead and Weybridge Houses. Exclusively E permit.",
+        "description": "Parking off of Weybridge Rd. next to Homestead and Weybridge Houses. Exclusively for the residents of those houses.",
         "permits": ["ePass"]
       },
       "geometry": {
@@ -1238,7 +1238,7 @@
       "properties": {
         "lot_type": "H",
         "name": "Old Chapel Rd.",
-        "description": "Perpendicular parking spaces along Old Chapel Rd. Parking for faculty, staff, and visitors.",
+        "description": "Perpendicular parking spaces along Old Chapel Rd. Parking for faculty, staff, visitors, and President Patton.",
         "permits": ["visitors", "f/s"]
       },
       "geometry": {
@@ -1304,7 +1304,7 @@
         "lot_type": "J",
         "name": "Stewart Hall",
         "permits": ["f/s"],
-        "description": "Handful of faculty and staff spaces between Stewart Hall and the cemetery."
+        "description": "Handful of faculty and staff spaces between Stewart Hall and the cemetery. Access via Hillcrest Rd."
       },
       "geometry": {
         "coordinates": [
@@ -1339,9 +1339,9 @@
       "type": "Feature",
       "properties": {
         "lot_type": "I",
-        "name": "Service Building/Parton Center for Health and Wellness",
+        "name": "Service Building & Parton Center for Health and Wellness",
         "permits": ["f/s"],
-        "description": "Faculty and staff spaces next to the Parton Center and the Service Building. Includes a few designated spaces for the Parton Center"
+        "description": "Faculty and staff spaces next to the Parton Center and the Service Building. Includes a few designated spaces for the Parton Center."
       },
       "geometry": {
         "coordinates": [
@@ -1377,7 +1377,7 @@
       "properties": {
         "lot_type": "B",
         "name": "Meeker House",
-        "description": "Parking Lot located next to Meeker House.",
+        "description": "Parking lot for faculty, staff, and visitors. Located next to Meeker House with access via Porter Field Rd.",
         "permits": ["visitors", "f/s"]
       },
       "geometry": {
