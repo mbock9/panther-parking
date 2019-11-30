@@ -50,14 +50,14 @@ app.get(
     // Reformat date strings
     const timeIn = new Date(request.params.timeIn.replace(/-+/g, ' '));
     const timeOut = new Date(request.params.timeOut.replace(/-+/g, ' '));
-    const userType = request.params.userType;
+    const { userType } = request.params;
 
     // Validations
     if (!validUsers.includes(userType)) {
       response.sendStatus(400);
       return;
     }
-    if (isNaN(timeIn) || isNaN(timeOut)) {
+    if (Date.isNaN(timeIn) || Date.isNaN(timeIn)) {
       response.sendStatus(400);
       return;
     }
@@ -109,14 +109,14 @@ app.get(
     // Reformat date strings
     const timeIn = new Date(request.params.timeIn.replace(/-+/g, ' '));
     const timeOut = new Date(request.params.timeOut.replace(/-+/g, ' '));
-    const userType = request.params.userType;
+    const { userType } = request.params;
 
     // Validations
     if (!validUsers.includes(userType)) {
       response.sendStatus(400);
       return;
     }
-    if (isNaN(timeIn) || isNaN(timeOut)) {
+    if (Date.isNaN(timeIn) || Date.isNaN(timeIn)) {
       response.sendStatus(400);
       return;
     }
