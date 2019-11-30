@@ -91,7 +91,7 @@ beforeAll(() => {
       app.locals.db = db; // Set db in app.js
     })
     .then(() => {
-      db.collection('parkingLots').createIndex({ type: 1 }, { unique: true });
+      db.collection('parkingLots').createIndex({ properties: 1 });
     });
 });
 
@@ -119,6 +119,15 @@ test('GET /api/map/keys should return the key to the client', () => {
 });
 
 describe('Filtering endpoint', () => {
+  beforeEach(() => {
+    // By default insert adds the _id to the object, i.e. modifies article
+    return db.collection('parkingLots').insertMany(parkingLots);
+  });
+
+  afterEach(() => {
+    return db.collection('parkingLots').deleteMany({});
+  });
+
   test('GET /api/map/filter/:userType/:timeIn/:timeOut timeOut must be after timeIn', () => {
     const userType = 'Visitor';
     return request(app)
@@ -132,4 +141,12 @@ describe('Filtering endpoint', () => {
       .expect(200)
       .expect('Content-Type', /json/);
   });
+  // test('GET /api/map/filter should return all lots', () => {
+  //   const userType = 'initial';
+  //   return request(app)
+  //     .get(`/api/map/filter/${userType}/${firstDate}/${secondDate}`)
+  //     .expect(200)
+  //     .expect('Content-Type', /json/)
+  //     .expect(parkingLots);
+  // });
 });
