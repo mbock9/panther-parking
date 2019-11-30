@@ -20,6 +20,8 @@ function App() {
   const [updated, setUpdate] = useState(false);
   // State to enable sidebar reactivity
   const [mobileOpen, setMobileOpen] = useState(false);
+  // Keep track of if/which specific lot is selected
+  const [lotSelected, setLotSelected] = useState('false');
 
   const Wrapper = styled.div`
     margin-top: -1%;
@@ -74,6 +76,8 @@ function App() {
             update={setUpdate}
             mobileOpen={mobileOpen}
             setMobileOpen={setMobileOpen}
+            lotSelected={lotSelected}
+            setLotSelected={setLotSelected}
           />
           <button
             style={{
@@ -133,6 +137,8 @@ function App() {
           update={setUpdate}
           mobileOpen={mobileOpen}
           setMobileOpen={setMobileOpen}
+          lotSelected={lotSelected}
+          setLotSelected={setLotSelected}
         />
         <div id="map">
           <ParkingMap
@@ -161,6 +167,8 @@ function App() {
         update={setUpdate}
         mobileOpen={mobileOpen}
         setMobileOpen={setMobileOpen}
+        lotSelected={lotSelected}
+        setLotSelected={setLotSelected}
       />
       <div id="map">
         <ParkingMap

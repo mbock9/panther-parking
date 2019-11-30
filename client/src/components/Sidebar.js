@@ -49,7 +49,15 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Sidebar = ({ userType, timeIn, timeOut, mobileOpen, setMobileOpen }) => {
+const Sidebar = ({
+  userType,
+  timeIn,
+  timeOut,
+  mobileOpen,
+  setMobileOpen,
+  lotSelected,
+  setLotSelected
+}) => {
   const classes = useStyles();
   const theme = useTheme();
   const [parkable, setParkable] = useState({});
@@ -87,7 +95,9 @@ const Sidebar = ({ userType, timeIn, timeOut, mobileOpen, setMobileOpen }) => {
               button
               key={element.properties._id}
               onClick={() => {
-                console.log(element.properties.name);
+                setLotSelected(
+                  lotSelected === element._id ? 'false' : element._id
+                );
               }}
             >
               <ListItemIcon>
@@ -154,7 +164,9 @@ Sidebar.propTypes = {
   timeIn: PropTypes.instanceOf(Date).isRequired,
   timeOut: PropTypes.instanceOf(Date).isRequired,
   mobileOpen: PropTypes.bool.isRequired,
-  setMobileOpen: PropTypes.func.isRequired
+  setMobileOpen: PropTypes.func.isRequired,
+  lotSelected: PropTypes.string.isRequired,
+  setLotSelected: PropTypes.func.isRequired
 };
 
 export default Sidebar;
