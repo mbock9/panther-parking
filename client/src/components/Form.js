@@ -222,7 +222,7 @@ const Form = ({
             </MuiPickersUtilsProvider>
           </Toolbar>
         </AppBar>
-        <Sidebar />
+        <Sidebar userType={userType} timeIn={timeIn} timeOut={timeOut} />
       </div>
     </div>
   );
