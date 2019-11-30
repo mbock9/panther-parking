@@ -263,7 +263,9 @@ Form.propTypes = {
   timeIn: PropTypes.instanceOf(Date).isRequired,
   setTimeIn: PropTypes.func.isRequired,
   timeOut: PropTypes.instanceOf(Date).isRequired,
-  setTimeOut: PropTypes.func.isRequired
+  setTimeOut: PropTypes.func.isRequired,
+  mobileOpen: PropTypes.bool.isRequired,
+  setMobileOpen: PropTypes.func.isRequired
 };
 
 export default Form;
