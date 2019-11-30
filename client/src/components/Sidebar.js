@@ -158,11 +158,11 @@ const Sidebar = ({ userType, timeIn, timeOut, mobileOpen, setMobileOpen }) => {
             </Drawer>
           </Hidden>
         </nav>
-        <div className={classes.content}></div>
+        <div className={classes.content} />
       </div>
     );
   } else {
-    return <div></div>;
+    return <div />;
   }
 };
 
