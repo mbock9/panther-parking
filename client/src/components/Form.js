@@ -80,7 +80,9 @@ const Form = ({
   landing,
   update,
   mobileOpen,
-  setMobileOpen
+  setMobileOpen,
+  lotSelected,
+  setLotSelected
 }) => {
   // Instantiate style classes
   const classes = useStyles();
@@ -251,6 +253,8 @@ const Form = ({
           timeOut={timeOut}
           mobileOpen={mobileOpen}
           setMobileOpen={setMobileOpen}
+          lotSelected={lotSelected}
+          setLotSelected={setLotSelected}
         />
       </div>
     </div>
@@ -265,7 +269,9 @@ Form.propTypes = {
   timeOut: PropTypes.instanceOf(Date).isRequired,
   setTimeOut: PropTypes.func.isRequired,
   mobileOpen: PropTypes.bool.isRequired,
-  setMobileOpen: PropTypes.func.isRequired
+  setMobileOpen: PropTypes.func.isRequired,
+  lotSelected: PropTypes.string.isRequired,
+  setLotSelected: PropTypes.func.isRequired
 };
 
 export default Form;
