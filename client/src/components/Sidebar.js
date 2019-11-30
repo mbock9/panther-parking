@@ -57,31 +57,6 @@ export default function Sidebar(props) {
       })
       .catch(err => console.log(err));
   }, [props.userType, props.timeIn, props.timeOut]);
-
-  // if (parkable.features) {
-  //   const infoList = parkable.features.map(element => (
-  //     <div>
-  //       <h3> Lot name: </h3>
-  //       <p>{element.properties.name}</p>
-  //       <h3> Description: </h3>
-  //       <p>{element.properties.description}</p>
-  //       <h3>Permits allowed: </h3>
-  //       <p>{element.properties.permits.join(' ')}</p>
-  //       <br />
-  //     </div>
-  //   ));
-  //   return (
-  //     <Side>
-  //       <Item>{infoList}</Item>
-  //     </Side>
-  //   );
-  // }
-  // return (
-  //   <Side>
-  //     <Item />
-  //   </Side>
-  // );
-
   if (parkable.features) {
     return (
       <div className={classes.root}>
@@ -98,11 +73,7 @@ export default function Sidebar(props) {
             {parkable.features.map(element => (
               <ListItem button key={element.properties.description}>
                 <ListItemIcon>
-                  {element.properties.index % 2 === 0 ? (
-                    <InboxIcon />
-                  ) : (
-                    <LocalParkingIcon />
-                  )}
+                  <LocalParkingIcon />
                 </ListItemIcon>
                 <ListItemText
                   primary={element.properties.name}
