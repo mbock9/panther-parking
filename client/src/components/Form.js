@@ -19,6 +19,9 @@ import logo from '../static/Panther_Parking_logo-removebg-preview.png';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import MenuIcon from '@material-ui/icons/Menu';
+import Sidebar from './Sidebar';
 
 // Define styles for material-ui components
 const useStyles = makeStyles(theme => ({
@@ -27,12 +30,21 @@ const useStyles = makeStyles(theme => ({
     minWidth: 120,
     maxWidth: 300
   },
-  root: {
-    flexGrow: 1
-  },
   logo: {
     maxWidth: 50,
     transform: 'rotate(-30deg)'
+  },
+  root: {
+    display: 'flex'
+  },
+  appBar: {
+    zIndex: theme.zIndex.drawer + 1
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+    [theme.breakpoints.up('sm')]: {
+      display: 'none'
+    }
   }
 }));
 
@@ -66,10 +78,18 @@ const Form = ({
   timeOut,
   setTimeOut,
   landing,
-  update
+  update,
+  mobileOpen,
+  setMobileOpen
 }) => {
   // Instantiate style classes
   const classes = useStyles();
+  // const [mobileOpen, setMobileOpen] = React.useState(false);
+
+  // For mobile, hide sidebar on smalle screens
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+  };
 
   /*
    *  Define handlers for date and timeIn and timeOut changes.
@@ -161,13 +181,23 @@ const Form = ({
   return (
     <div>
       <div className={classes.root}>
-        <AppBar position="static" color="inherit">
+        <CssBaseline />
+        <AppBar position="fixed" color="inherit" className={classes.appBar}>
           <Toolbar variant="dense">
+            <IconButton
+              color="inherit"
+              aria-label="Open drawer"
+              edge="start"
+              onClick={handleDrawerToggle}
+              className={classes.menuButton}
+            >
+              <MenuIcon />
+            </IconButton>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
+              <Toolbar>
+                <img src={logo} alt="logo" className={classes.logo} />
+              </Toolbar>
               <Grid container justify="space-around" spacing={1}>
-                <Toolbar>
-                  <img src={logo} alt="logo" className={classes.logo} />
-                </Toolbar>
                 <FormControl className={classes.formControl}>
                   <InputLabel>User type</InputLabel>
                   <Select
@@ -215,6 +245,13 @@ const Form = ({
             </MuiPickersUtilsProvider>
           </Toolbar>
         </AppBar>
+        <Sidebar
+          userType={userType}
+          timeIn={timeIn}
+          timeOut={timeOut}
+          mobileOpen={mobileOpen}
+          setMobileOpen={setMobileOpen}
+        />
       </div>
     </div>
   );
@@ -226,7 +263,9 @@ Form.propTypes = {
   timeIn: PropTypes.instanceOf(Date).isRequired,
   setTimeIn: PropTypes.func.isRequired,
   timeOut: PropTypes.instanceOf(Date).isRequired,
-  setTimeOut: PropTypes.func.isRequired
+  setTimeOut: PropTypes.func.isRequired,
+  mobileOpen: PropTypes.bool.isRequired,
+  setMobileOpen: PropTypes.func.isRequired
 };
 
 export default Form;

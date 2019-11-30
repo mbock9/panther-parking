@@ -10,7 +10,7 @@ const testCase1 = {
   userType: 'initial',
   timeIn: dateProp,
   timeOut: dateProp,
-  date: dateProp
+  mobileOpen: false
 };
 
 const props = {
@@ -20,8 +20,8 @@ const props = {
   setTimeIn: jest.fn(),
   timeOut: testCase1.timeOut,
   setTimeOut: jest.fn(),
-  date: testCase1.date,
-  setDate: jest.fn()
+  mobileOpen: testCase1.mobileOpen,
+  setMobileOpen: jest.fn()
 };
 
 describe('Form tests', () => {
@@ -48,7 +48,6 @@ describe('Form tests', () => {
       .at(0)
       .simulate('change', { target: { value: 'Student-sPass' } });
     expect(props.setUser).toHaveBeenCalled();
-    expect(props.setDate).not.toHaveBeenCalled();
     expect(props.setTimeIn).not.toHaveBeenCalled();
     expect(props.setTimeOut).not.toHaveBeenCalled();
   });

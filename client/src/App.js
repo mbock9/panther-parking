@@ -2,11 +2,8 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import ParkingMap from './components/ParkingMap';
 import Form from './components/Form';
-//import { styled } from '@material-ui/styles';
 import styled from 'styled-components';
 import logoLanding from './static/logo4.png';
-import Sidebar from './components/Sidebar';
-
 import carTop from './static/carTop.png';
 import carMiddle from './static/carMiddle.png';
 import carLeft from './static/carLeft.png';
@@ -21,6 +18,8 @@ function App() {
   const [parkable, setParkable] = useState({});
   const [nonparkable, setNonparkable] = useState({});
   const [updated, setUpdate] = useState(false);
+  // State to enable sidebar reactivity
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   const Wrapper = styled.div`
     margin-top: -1%;
@@ -73,6 +72,8 @@ function App() {
             setTimeOut={setTimeOut}
             landing={landingPage}
             update={setUpdate}
+            mobileOpen={mobileOpen}
+            setMobileOpen={setMobileOpen}
           />
           <button
             style={{
@@ -122,7 +123,6 @@ function App() {
   if (updated) {
     return (
       <div className="App">
-        <Sidebar userType={userType} timeIn={timeIn} timeOut={timeOut} />
         <Form
           userType={userType}
           setUser={setUser}
@@ -131,6 +131,8 @@ function App() {
           timeOut={timeOut}
           setTimeOut={setTimeOut}
           update={setUpdate}
+          mobileOpen={mobileOpen}
+          setMobileOpen={setMobileOpen}
         />
         <div id="map">
           <ParkingMap
@@ -149,7 +151,6 @@ function App() {
 
   return (
     <div className="App">
-      <Sidebar userType={userType} timeIn={timeIn} timeOut={timeOut} />
       <Form
         userType={userType}
         setUser={setUser}
@@ -158,6 +159,8 @@ function App() {
         timeOut={timeOut}
         setTimeOut={setTimeOut}
         update={setUpdate}
+        mobileOpen={mobileOpen}
+        setMobileOpen={setMobileOpen}
       />
       <div id="map">
         <ParkingMap
