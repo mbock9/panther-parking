@@ -16,8 +16,6 @@ const ParkingMap = props => {
   });
 
   const [key, setKey] = useState(''); // Represent MapBox API Key as state
-  const [parkable, setParkable] = useState({});
-  const [nonparkable, setNonparkable] = useState({});
 
   // Fetch and set the API key from server (saved in the .env)
   useEffect(() => {
@@ -40,8 +38,8 @@ const ParkingMap = props => {
         return response.json();
       })
       .then(data => {
-        setParkable(data.parkable);
-        setNonparkable(data.nonparkable);
+        props.setParkable(data.parkable);
+        props.setNonparkable(data.nonparkable);
       })
       .catch(err => console.log(err));
   }, [props.userType, props.timeIn, props.timeOut]);
@@ -49,11 +47,11 @@ const ParkingMap = props => {
   // props.dataSet is loaded only one time in App.js
   // This loads the map with all lots having an overlay initially
   // Subsequent changes to parameters will set parkable properly
-  useEffect(() => {
-    setParkable(props.dataSet);
-  }, [props.dataSet]);
+  // useEffect(() => {
+  //   setParkable(props.dataSet);
+  // }, [props.dataSet]);
 
-  if (key !== '' && parkable) {
+  if (key !== '' && props.parkable) {
     return (
       <ReactMapGL
         {...mapState.viewport}
@@ -61,7 +59,7 @@ const ParkingMap = props => {
         onViewportChange={viewport => setMapState({ viewport })}
         mapStyle="mapbox://styles/mapbox/outdoors-v11"
       >
-        <Source id="parkable-regions" type="geojson" data={parkable}>
+        <Source id="parkable-regions" type="geojson" data={props.parkable}>
           <Layer
             id="parkable"
             type="fill"
@@ -72,7 +70,11 @@ const ParkingMap = props => {
             }}
           />
         </Source>
-        <Source id="nonparkable-regions" type="geojson" data={nonparkable}>
+        <Source
+          id="nonparkable-regions"
+          type="geojson"
+          data={props.nonparkable}
+        >
           <Layer
             id="nonparkable"
             type="fill"
@@ -92,9 +94,12 @@ const ParkingMap = props => {
 
 ParkingMap.propTypes = {
   userType: PropTypes.string.isRequired,
-  dataSet: PropTypes.object.isRequired,
   timeIn: PropTypes.instanceOf(Date).isRequired,
-  timeOut: PropTypes.instanceOf(Date).isRequired
+  timeOut: PropTypes.instanceOf(Date).isRequired,
+  parkable: PropTypes.object.isRequired,
+  nonparkable: PropTypes.object.isRequired,
+  setParkable: PropTypes.func.isRequired,
+  setNonParkable: PropTypes.func.isRequired
 };
 
 export default ParkingMap;

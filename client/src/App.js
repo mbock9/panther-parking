@@ -18,8 +18,8 @@ function App() {
   const [timeIn, setTimeIn] = useState(new Date());
   const [timeOut, setTimeOut] = useState(new Date());
   const [landingPage, changeLandingPage] = useState(true);
-  // Set the data
-  const [geoData, setData] = useState({});
+  const [parkable, setParkable] = useState({});
+  const [nonparkable, setNonparkable] = useState({});
   const [updated, setUpdate] = useState(false);
   // Use an effect hook to get the geojson data
   useEffect(() => {
@@ -31,7 +31,8 @@ function App() {
         return response.json();
       })
       .then(data => {
-        setData(data);
+        setParkable(data.parkable);
+        setNonparkable(data.nonparkable);
       })
       .catch(err => console.log(err));
   }, []);
@@ -148,7 +149,10 @@ function App() {
         />
         <div id="map">
           <ParkingMap
-            dataSet={geoData}
+            parkable={parkable}
+            setParkable={setParkable}
+            nonparkable={nonparkable}
+            setNonparkable={setNonparkable}
             userType={userType}
             timeIn={timeIn}
             timeOut={timeOut}
@@ -172,7 +176,10 @@ function App() {
       />
       <div id="map">
         <ParkingMap
-          dataSet={geoData}
+          parkable={parkable}
+          setParkable={setParkable}
+          nonparkable={nonparkable}
+          setNonparkable={setNonparkable}
           userType={userType}
           timeIn={timeIn}
           timeOut={timeOut}
