@@ -221,8 +221,8 @@
       "type": "Feature",
       "properties": {
         "lot_type": "T",
-        "name": "Fitness Center",
-        "description": "Non-restricted faculty and staff lot outside of the fitness center and indoor tennis courts.",
+        "name": "Mahaney Center for the Arts (CFA)",
+        "description": "Large multi-purpose lot next to the CFA (MAC). Parking for all permit types - pay attention to signage.",
         "permits": ["sPass", "pPass", "uPass", "ePass", "tPass", "visitors", "f/s", "f/s_r"]
       },
       "geometry": {
@@ -360,8 +360,8 @@
       "type": "Feature",
       "properties": {
         "lot_type": "A",
-        "name": "Fitness Center",
-        "description": "Parking lot for the Ralph Myre Golf Course. Spaces are undesignated.",
+        "name": "Admissions (Emma Willard House)",
+        "description": "Secondary parking lot for admissions. Faculty, staff, and student spaces.",
         "permits": ["visitors", "f/s"]
       },
       "geometry": {
@@ -631,7 +631,7 @@
       "properties": {
         "lot_type": "A",
         "name": "Admissions (Emma Willard House)",
-        "description": "Secondary parking lot for admissions.",
+        "description": "Primary parking lot for admissions. Faculty, staff, and visitor spaces.",
         "permits": ["visitors", "f/s"]
       },
       "geometry": {
@@ -770,7 +770,7 @@
       "properties": {
         "lot_type": "X",
         "name": "Jewett House",
-        "description": "Parking lot for the Ralph Myre Golf Course. Spaces are undesignated.",
+        "description": "Wellness House resident parking. Situated off of Main Street near town.",
         "permits": ["ePass"]
       },
       "geometry": {
