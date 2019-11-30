@@ -8,7 +8,8 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Hidden from '@material-ui/core/Hidden';
-import LocalParkingIcon from '@material-ui/icons/LocalParking';
+// import LocalParkingIcon from '@material-ui/icons/LocalParking';
+import DriveEtaIcon from '@material-ui/icons/DriveEta';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import PropTypes from 'prop-types';
@@ -113,7 +114,7 @@ const Sidebar = ({ userType, timeIn, timeOut, mobileOpen, setMobileOpen }) => {
               }}
             >
               <ListItemIcon>
-                <LocalParkingIcon />
+                <DriveEtaIcon />
               </ListItemIcon>
               <ListItemText
                 primary={element.properties.name}
