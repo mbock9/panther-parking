@@ -92,7 +92,7 @@ ParkingMap.propTypes = {
   parkable: PropTypes.object.isRequired,
   nonparkable: PropTypes.object.isRequired,
   setParkable: PropTypes.func.isRequired,
-  setNonParkable: PropTypes.func.isRequired
+  setNonparkable: PropTypes.func.isRequired
 };
 
 export default ParkingMap;
