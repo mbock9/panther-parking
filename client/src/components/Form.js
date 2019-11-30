@@ -23,7 +23,6 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import MenuIcon from '@material-ui/icons/Menu';
 import Sidebar from './Sidebar';
 
-const drawerWidth = 240;
 // Define styles for material-ui components
 const useStyles = makeStyles(theme => ({
   formControl: {
