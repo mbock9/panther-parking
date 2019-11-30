@@ -21,21 +21,6 @@ function App() {
   const [parkable, setParkable] = useState({});
   const [nonparkable, setNonparkable] = useState({});
   const [updated, setUpdate] = useState(false);
-  // Use an effect hook to get the geojson data
-  useEffect(() => {
-    fetch('/api/map/')
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(response.statusText);
-        }
-        return response.json();
-      })
-      .then(data => {
-        setParkable(data.parkable);
-        setNonparkable(data.nonparkable);
-      })
-      .catch(err => console.log(err));
-  }, []);
 
   const Wrapper = styled.div`
     margin-top: -1%;
