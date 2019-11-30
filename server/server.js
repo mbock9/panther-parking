@@ -26,18 +26,6 @@ const validUsers = [
 
 // TODO: Add any middleware here
 
-// Return map with all lots available
-app.get('/api/map', (request, response, next) => {
-  app.locals.db
-    .collection('parkingLots')
-    .find()
-    .toArray()
-    .then(documents => {
-      const geoJsonData = { features: documents, type: 'FeatureCollection' };
-      response.send(geoJsonData);
-    }, next); // use "next" as rejection handler
-});
-
 // Get the mapbox API key from environment
 app.get('/api/map/:key', (request, response) => {
   response.send(process.env.MAPBOX_KEY);
