@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import ReactMapGL, { Source, Layer } from 'react-map-gl';
+import ReactMapGL, { Source, Layer, Popup } from 'react-map-gl';
 import PropTypes from 'prop-types';
 
 const ParkingMap = props => {
@@ -9,8 +9,8 @@ const ParkingMap = props => {
     viewport: {
       width: '100vw',
       height: '100vh',
-      latitude: 44.0086,
       longitude: -73.1783,
+      latitude: 44.0086,
       zoom: 15
     }
   });
@@ -44,7 +44,48 @@ const ParkingMap = props => {
       .catch(err => console.log(err));
   }, [props.userType, props.timeIn, props.timeOut]);
 
-  if (key !== '' && props.parkable) {
+  // Input is a list of 4 lists, each with a longitude and a latitude as elements
+  const findCenter = coordinates => {
+    let x1 = 180; // Placeholder for lowest longitude
+    let x2 = -180; // Placeholder for highest longitude
+    let y1 = 90; // Placeholder for lowest latitude
+    let y2 = -90; // Placeholder for highest latitude
+
+    coordinates.forEach(coordinate => {
+      if (coordinate[0] < x1) {
+        x1 = coordinate[0];
+      }
+      if (coordinate[0] > x2) {
+        x2 = coordinate[0];
+      }
+      if (coordinate[1] < y1) {
+        y1 = coordinate[1];
+      }
+      if (coordinate[1] > y2) {
+        y2 = coordinate[1];
+      }
+    });
+    const centerX = x1 + (x2 - x1) / 2;
+    const centerY = y1 + (y2 - y1) / 2;
+    return [centerX, centerY];
+  };
+
+  const drawPopup = feature => {
+    const center = findCenter(feature.geometry.coordinates[0]);
+    return (
+      <Popup
+        tipSize={3}
+        anchor="top"
+        longitude={center[0]}
+        latitude={center[1]}
+        closeOnClick={false}
+      >
+        {feature.properties.name}
+      </Popup>
+    );
+  };
+
+  if (key !== '' && props.parkable.features) {
     return (
       <ReactMapGL
         {...mapState.viewport}
@@ -78,6 +119,8 @@ const ParkingMap = props => {
             }}
           />
         </Source>
+
+        {props.parkable.features.map(drawPopup)}
       </ReactMapGL>
     );
   } else {
