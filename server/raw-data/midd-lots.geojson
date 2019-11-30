@@ -814,7 +814,7 @@
       "type": "Feature",
       "properties": {
         "lot_type": "L",
-        "name": "false",
+        "name": "Hillcrest Rd.",
         "permits": ["f/s"],
         "description": "Street parking outside of Proctor dining hall next to the Proctor Tennis Courts."
       },
@@ -1016,7 +1016,7 @@
       "properties": {
         "lot_type": "D",
         "name": "Atwater Lot",
-        "description": "false",
+        "description": "Parking for upperclassmen below both Atwater residence halls.",
         "permits": ["sPass"]
       },
       "geometry": {
@@ -1061,7 +1061,7 @@
       "properties": {
         "lot_type": "H",
         "name": "Old Chapel Rd.",
-        "description": "true",
+        "description": "Perpendicular parking spaces along Old Chapel Rd. Parking for faculty, staff, and visitors.",
         "permits": ["visitors", "f/s"]
       },
       "geometry": {
@@ -1127,7 +1127,7 @@
         "lot_type": "J",
         "name": "Stewart Hall",
         "permits": ["f/s"],
-        "description": "false"
+        "description": "Handful of faculty and staff spaces between Stewart Hall and the cemetery."
       },
       "geometry": {
         "coordinates": [
