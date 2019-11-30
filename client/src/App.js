@@ -19,7 +19,7 @@ function App() {
   const [geoData, setData] = useState({});
   const [updated, setUpdate] = useState(false);
   // State to enable sidebar reactivity
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   // Use an effect hook to get the geojson data
   useEffect(() => {
