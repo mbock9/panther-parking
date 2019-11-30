@@ -557,7 +557,7 @@
       "properties": {
         "lot_type": "O",
         "name": "College St.",
-        "description": "true",
+        "description": "Parallel parking spaces along both sides of College St. from Storrs Ave. to Blinn Ln. Parking for faculty, staff, and visitors.",
         "permits": ["visitors", "f/s"]
       },
       "geometry": {
@@ -705,7 +705,7 @@
       "properties": {
         "lot_type": "C",
         "name": "Coffrin Hall & Freeman International Center",
-        "description": "false",
+        "description": "Parking lot located below Coffrin Hall and the Freeman International Center. Spaces for faculty, staff, and upperclassmen. Be cautious of restricted F/S during off-hours.",
         "permits": ["sPass", "f/s", "f/s_r"]
       },
       "geometry": {
@@ -852,7 +852,7 @@
       "properties": {
         "lot_type": "S",
         "name": "McCardell Bicentennial Hall",
-        "description": "true",
+        "description": "Parking lot located behind McCardell Bicentennial Hall. Parking for commuters, faculty, and staff.",
         "permits": ["tPass", "visitors", "f/s"]
       },
       "geometry": {
