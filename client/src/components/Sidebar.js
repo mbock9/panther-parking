@@ -1,32 +1,61 @@
 import React, { useEffect, useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+import Hidden from '@material-ui/core/Hidden';
 import LocalParkingIcon from '@material-ui/icons/LocalParking';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
+import PropTypes from 'prop-types';
 
 const drawerWidth = 300;
+
+// const useStyles = makeStyles(theme => ({
+//   root: {
+//     display: 'flex'
+//   },
+//   appBar: {
+//     zIndex: theme.zIndex.drawer + 1
+//   },
+//   drawer: {
+//     width: drawerWidth,
+//     flexShrink: 0
+//   },
+//   drawerPaper: {
+//     width: drawerWidth
+//   },
+//   content: {
+//     flexGrow: 1,
+//     padding: theme.spacing(3)
+//   },
+//   toolbar: theme.mixins.toolbar
+// }));
 
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex'
   },
+  drawer: {
+    [theme.breakpoints.up('sm')]: {
+      width: drawerWidth,
+      flexShrink: 0
+    }
+  },
   appBar: {
     zIndex: theme.zIndex.drawer + 1
   },
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0
+  menuButton: {
+    marginRight: theme.spacing(2),
+    [theme.breakpoints.up('sm')]: {
+      display: 'none'
+    }
   },
+  toolbar: theme.mixins.toolbar,
   drawerPaper: {
     width: drawerWidth
   },
@@ -34,18 +63,28 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
     padding: theme.spacing(3)
   },
-  toolbar: theme.mixins.toolbar
+  closeMenuButton: {
+    marginRight: 'auto',
+    marginLeft: 0
+  }
 }));
 
-export default function Sidebar(props) {
+const Sidebar = ({ userType, timeIn, timeOut, mobileOpen, setMobileOpen }) => {
   const classes = useStyles();
-
+  const theme = useTheme();
+  // const [mobileOpen, setMobileOpen] = React.useState(false);
   const [parkable, setParkable] = useState({});
 
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+  };
+
   useEffect(() => {
-    const timeIn = props.timeIn.toString().replace(/\s+/g, '-');
-    const timeOut = props.timeOut.toString().replace(/\s+/g, '-');
-    fetch(`/api/lots/basicInfo/${props.userType}/${timeIn}/${timeOut}`)
+    const timeInConverted = timeIn.toString().replace(/\s+/g, '-');
+    const timeOutConverted = timeOut.toString().replace(/\s+/g, '-');
+    fetch(
+      `/api/lots/basicInfo/${userType}/${timeInConverted}/${timeOutConverted}`
+    )
       .then(response => {
         if (!response.ok) {
           throw new Error(response.statusText);
@@ -56,47 +95,83 @@ export default function Sidebar(props) {
         setParkable(data);
       })
       .catch(err => console.log(err));
-  }, [props.userType, props.timeIn, props.timeOut]);
-  if (parkable.features) {
+  }, [userType, timeIn, timeOut]);
+
+  // useEffect(() => {
+  if (parkable.features && mobileOpen !== undefined) {
+    const drawer = (
+      <div>
+        <div className={classes.toolbar} />
+        <Divider />
+        <List>
+          {parkable.features.map(element => (
+            <ListItem button key={element.properties.id}>
+              <ListItemIcon>
+                <LocalParkingIcon />
+              </ListItemIcon>
+              <ListItemText
+                primary={element.properties.name}
+                secondary={element.properties.description}
+              />
+            </ListItem>
+          ))}
+        </List>
+      </div>
+    );
+
     return (
       <div className={classes.root}>
         <CssBaseline />
-        <Drawer
-          className={classes.drawer}
-          variant="permanent"
-          classes={{
-            paper: classes.drawerPaper
-          }}
-        >
-          <div className={classes.toolbar} />
-          <List>
-            {parkable.features.map(element => (
-              <ListItem button key={element.properties.description}>
-                <ListItemIcon>
-                  <LocalParkingIcon />
-                </ListItemIcon>
-                <ListItemText
-                  primary={element.properties.name}
-                  secondary={element.properties.description}
-                />
-              </ListItem>
-            ))}
-          </List>
-          <Divider />
-          <List>
-            {['All mail', 'Trash', 'Spam'].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
-          </List>
-        </Drawer>
+        <nav className={classes.drawer}>
+          {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
+          <Hidden smUp implementation="css">
+            <Drawer
+              variant="temporary"
+              anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+              open={mobileOpen}
+              onClose={handleDrawerToggle}
+              classes={{
+                paper: classes.drawerPaper
+              }}
+              ModalProps={{
+                keepMounted: true // Better open performance on mobile.
+              }}
+            >
+              <IconButton
+                onClick={handleDrawerToggle}
+                className={classes.closeMenuButton}
+              >
+                <CloseIcon />
+              </IconButton>
+              {drawer}
+            </Drawer>
+          </Hidden>
+          <Hidden xsDown implementation="css">
+            <Drawer
+              className={classes.drawer}
+              variant="permanent"
+              classes={{
+                paper: classes.drawerPaper
+              }}
+            >
+              {drawer}
+            </Drawer>
+          </Hidden>
+        </nav>
+        <div className={classes.content}></div>
       </div>
     );
   } else {
     return <div></div>;
   }
-}
+};
+
+Sidebar.propTypes = {
+  userType: PropTypes.string.isRequired,
+  timeIn: PropTypes.instanceOf(Date).isRequired,
+  timeOut: PropTypes.instanceOf(Date).isRequired,
+  mobileOpen: PropTypes.bool.isRequired,
+  setMobileOpen: PropTypes.func.isRequired
+};
+
+export default Sidebar;

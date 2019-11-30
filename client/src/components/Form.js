@@ -20,6 +20,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import MenuIcon from '@material-ui/icons/Menu';
 import Sidebar from './Sidebar';
 
 const drawerWidth = 240;
@@ -39,6 +40,12 @@ const useStyles = makeStyles(theme => ({
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+    [theme.breakpoints.up('sm')]: {
+      display: 'none'
+    }
   }
 }));
 
@@ -72,10 +79,18 @@ const Form = ({
   timeOut,
   setTimeOut,
   landing,
-  update
+  update,
+  mobileOpen,
+  setMobileOpen
 }) => {
   // Instantiate style classes
   const classes = useStyles();
+  // const [mobileOpen, setMobileOpen] = React.useState(false);
+
+  // For mobile, hide sidebar on smalle screens
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+  };
 
   /*
    *  Define handlers for date and timeIn and timeOut changes.
@@ -170,6 +185,15 @@ const Form = ({
         <CssBaseline />
         <AppBar position="fixed" color="inherit" className={classes.appBar}>
           <Toolbar variant="dense">
+            <IconButton
+              color="inherit"
+              aria-label="Open drawer"
+              edge="start"
+              onClick={handleDrawerToggle}
+              className={classes.menuButton}
+            >
+              <MenuIcon />
+            </IconButton>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
               <Toolbar>
                 <img src={logo} alt="logo" className={classes.logo} />
@@ -222,7 +246,13 @@ const Form = ({
             </MuiPickersUtilsProvider>
           </Toolbar>
         </AppBar>
-        <Sidebar userType={userType} timeIn={timeIn} timeOut={timeOut} />
+        <Sidebar
+          userType={userType}
+          timeIn={timeIn}
+          timeOut={timeOut}
+          mobileOpen={mobileOpen}
+          setMobileOpen={setMobileOpen}
+        />
       </div>
     </div>
   );
