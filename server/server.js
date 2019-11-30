@@ -58,7 +58,7 @@ app.get(
       response.sendStatus(400);
       return;
     }
-    if (Date.isNaN(timeIn) || Date.isNaN(timeIn)) {
+    if (Number.isNaN(timeIn) || Number.isNaN(timeIn)) {
       response.sendStatus(400);
       return;
     }
@@ -117,7 +117,7 @@ app.get(
       response.sendStatus(400);
       return;
     }
-    if (Date.isNaN(timeIn) || Date.isNaN(timeIn)) {
+    if (Number.isNaN(timeIn) || Number.isNaN(timeIn)) {
       response.sendStatus(400);
       return;
     }
