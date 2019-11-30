@@ -16,27 +16,6 @@ import PropTypes from 'prop-types';
 
 const drawerWidth = 300;
 
-// const useStyles = makeStyles(theme => ({
-//   root: {
-//     display: 'flex'
-//   },
-//   appBar: {
-//     zIndex: theme.zIndex.drawer + 1
-//   },
-//   drawer: {
-//     width: drawerWidth,
-//     flexShrink: 0
-//   },
-//   drawerPaper: {
-//     width: drawerWidth
-//   },
-//   content: {
-//     flexGrow: 1,
-//     padding: theme.spacing(3)
-//   },
-//   toolbar: theme.mixins.toolbar
-// }));
-
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex'
@@ -73,7 +52,6 @@ const useStyles = makeStyles(theme => ({
 const Sidebar = ({ userType, timeIn, timeOut, mobileOpen, setMobileOpen }) => {
   const classes = useStyles();
   const theme = useTheme();
-  // const [mobileOpen, setMobileOpen] = React.useState(false);
   const [parkable, setParkable] = useState({});
 
   const handleDrawerToggle = () => {
@@ -98,7 +76,6 @@ const Sidebar = ({ userType, timeIn, timeOut, mobileOpen, setMobileOpen }) => {
       .catch(err => console.log(err));
   }, [userType, timeIn, timeOut]);
 
-  // useEffect(() => {
   if (parkable.features && mobileOpen !== undefined) {
     const drawer = (
       <div>
@@ -130,7 +107,6 @@ const Sidebar = ({ userType, timeIn, timeOut, mobileOpen, setMobileOpen }) => {
       <div className={classes.root}>
         <CssBaseline />
         <nav className={classes.drawer}>
-          {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
           <Hidden smUp implementation="css">
             <Drawer
               variant="temporary"
