@@ -57,6 +57,11 @@ module.exports = {
 
   // Construct database query
   constructQuery: (timeIn, timeOut, userType) => {
+    // If user type has not been set, return all lots as parkable
+    if (userType === 'initial') {
+      return { type: 'Feature' };
+    }
+
     const potentialStudentPermits = [
       'Student-sPass',
       'Student-ePass',
