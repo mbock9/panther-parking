@@ -64,7 +64,14 @@ const parkingLots = [
   }
 ];
 
+// Convert ObjectID type to string (as would occur in toJSON method)
+// const lotToJSON = localParkingLot =>
+//   Object.assign({}, localParkingLot, { id: localParkingLot._id.toHexString() });
+let firstDate;
+let secondDate;
 beforeAll(() => {
+  firstDate = 'Fri-Nov-29-2019-21:57:51-GMT-0500-(Eastern-Standard-Time)';
+  secondDate = 'Fri-Nov-29-2019-22:57:51-GMT-0500-(Eastern-Standard-Time)';
   mongoServer = new MongodbMemoryServer();
   // By return a Promise, Jest won't proceed with tests until the Promise
   // resolves
@@ -112,24 +119,17 @@ test('GET /api/map/keys should return the key to the client', () => {
 });
 
 describe('Filtering endpoint', () => {
-  test('GET /api/filter/:userType/:timeIn/:timeOut timeOut must be after timeIn', () => {
-    const firstDate =
-      'Fri-Nov-29-2019-21:57:51-GMT-0500-(Eastern-Standard-Time)';
-    const secondDate =
-      'Fri-Nov-29-2019-22:57:51-GMT-0500-(Eastern-Standard-Time)';
+  test('GET /api/map/filter/:userType/:timeIn/:timeOut timeOut must be after timeIn', () => {
     const userType = 'Visitor';
     return request(app)
       .get(`/api/map/filter/${userType}/${secondDate}/${firstDate}`)
       .expect(400);
   });
-  test('GET /api/filter/:userType/:timeIn/:timeOut should return json object.', () => {
-    const firstDate =
-      'Fri-Nov-29-2019-21:57:51-GMT-0500-(Eastern-Standard-Time)';
-    const secondDate =
-      'Fri-Nov-29-2019-22:57:51-GMT-0500-(Eastern-Standard-Time)';
+  test('GET /api/map/filter/:userType/:timeIn/:timeOut should return json object.', () => {
     const userType = 'Student-sPass';
     return request(app)
       .get(`/api/map/filter/${userType}/${firstDate}/${secondDate}`)
-      .expect(200);
+      .expect(200)
+      .expect('Content-Type', /json/);
   });
 });
