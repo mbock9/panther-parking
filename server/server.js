@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path'); // eslint-disable-line global-require
 const utils = require('./utils');
+const { MongoError } = require('mongodb');
 
 // Resolve client build directory as absolute path to avoid errors in express
 const buildPath = path.resolve(__dirname, '../client/build');
@@ -50,14 +51,14 @@ app.get(
     // Reformat date strings
     const timeIn = new Date(request.params.timeIn.replace(/-+/g, ' '));
     const timeOut = new Date(request.params.timeOut.replace(/-+/g, ' '));
-    const userType = request.params.userType;
+    const { userType } = request.params;
 
     // Validations
     if (!validUsers.includes(userType)) {
       response.sendStatus(400);
       return;
     }
-    if (isNaN(timeIn) || isNaN(timeOut)) {
+    if (Date.isNaN(timeIn) || Date.isNaN(timeIn)) {
       response.sendStatus(400);
       return;
     }
@@ -109,14 +110,14 @@ app.get(
     // Reformat date strings
     const timeIn = new Date(request.params.timeIn.replace(/-+/g, ' '));
     const timeOut = new Date(request.params.timeOut.replace(/-+/g, ' '));
-    const userType = request.params.userType;
+    const { userType } = request.params;
 
     // Validations
     if (!validUsers.includes(userType)) {
       response.sendStatus(400);
       return;
     }
-    if (isNaN(timeIn) || isNaN(timeOut)) {
+    if (Date.isNaN(timeIn) || Date.isNaN(timeIn)) {
       response.sendStatus(400);
       return;
     }
