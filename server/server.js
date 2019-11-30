@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path'); // eslint-disable-line global-require
 const utils = require('./utils');
-
+const { MongoError } = require('mongodb');
 // Resolve client build directory as absolute path to avoid errors in express
 const buildPath = path.resolve(__dirname, '../client/build');
 const app = express();
