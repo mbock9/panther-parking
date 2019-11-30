@@ -145,6 +145,22 @@ app.get(
   }
 );
 
+// A very simple error handler. In a production setting you would
+// not want to send information about the inner workings of your
+// application or database to the client.
+app.use((error, request, response, next) => {
+  if (response.headersSent) {
+    next(error);
+  }
+  // uncomment next line to see error messages during testing
+  // console.log('Error: ', error);
+  if (error instanceof MongoError) {
+    response.status(400).send(error.errmsg || {});
+  } else {
+    response.sendStatus(error.statusCode || error.status || 500);
+  }
+});
+
 // Express only serves static assets in production
 if (process.env.NODE_ENV === 'production') {
   // All remaining requests return the React app, so it can handle routing.
