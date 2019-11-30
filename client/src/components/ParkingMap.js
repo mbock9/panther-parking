@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import ReactMapGL, { Source, Layer, Popup } from 'react-map-gl';
+import ReactMapGL, { Source, Layer, Popup, Marker } from 'react-map-gl';
 import PropTypes from 'prop-types';
 
 const ParkingMap = props => {
@@ -71,17 +71,31 @@ const ParkingMap = props => {
   };
 
   const drawPopup = feature => {
+    if (feature._id === props.lotSelected) {
+      const center = findCenter(feature.geometry.coordinates[0]);
+      return (
+        <Popup
+          tipSize={5}
+          anchor="top"
+          longitude={center[0]}
+          latitude={center[1]}
+          closeOnClick={false}
+        >
+          {feature.properties.name}
+        </Popup>
+      );
+    }
+  };
+
+  const drawMarker = feature => {
     const center = findCenter(feature.geometry.coordinates[0]);
     return (
-      <Popup
-        tipSize={3}
-        anchor="top"
+      <Marker
+        key={`marker-${feature.properties.name}`}
         longitude={center[0]}
         latitude={center[1]}
-        closeOnClick={false}
-      >
-        {feature.properties.name}
-      </Popup>
+        onClick={() => props.setLotSelected(feature._id)}
+      ></Marker>
     );
   };
 
@@ -119,7 +133,7 @@ const ParkingMap = props => {
             }}
           />
         </Source>
-
+        {props.parkable.features.map(drawMarker)}
         {props.parkable.features.map(drawPopup)}
       </ReactMapGL>
     );
@@ -135,7 +149,9 @@ ParkingMap.propTypes = {
   parkable: PropTypes.object.isRequired,
   nonparkable: PropTypes.object.isRequired,
   setParkable: PropTypes.func.isRequired,
-  setNonparkable: PropTypes.func.isRequired
+  setNonparkable: PropTypes.func.isRequired,
+  lotSelected: PropTypes.string.isRequired,
+  setLotSelected: PropTypes.func.isRequired
 };
 
 export default ParkingMap;

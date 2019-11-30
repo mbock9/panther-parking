@@ -179,6 +179,8 @@ function App() {
           userType={userType}
           timeIn={timeIn}
           timeOut={timeOut}
+          lotSelected={lotSelected}
+          setLotSelected={setLotSelected}
         />
       </div>
     </div>
