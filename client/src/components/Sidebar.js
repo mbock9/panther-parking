@@ -105,7 +105,13 @@ const Sidebar = ({ userType, timeIn, timeOut, mobileOpen, setMobileOpen }) => {
         <Divider />
         <List>
           {parkable.features.map(element => (
-            <ListItem button key={element.properties.id}>
+            <ListItem
+              button
+              key={element.properties._id}
+              onClick={() => {
+                console.log(element.properties.name);
+              }}
+            >
               <ListItemIcon>
                 <LocalParkingIcon />
               </ListItemIcon>
