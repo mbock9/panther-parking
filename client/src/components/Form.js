@@ -19,7 +19,10 @@ import logo from '../static/Panther_Parking_logo-removebg-preview.png';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Sidebar from './Sidebar';
 
+const drawerWidth = 240;
 // Define styles for material-ui components
 const useStyles = makeStyles(theme => ({
   formControl: {
@@ -27,12 +30,15 @@ const useStyles = makeStyles(theme => ({
     minWidth: 120,
     maxWidth: 300
   },
-  root: {
-    flexGrow: 1
-  },
   logo: {
     maxWidth: 50,
     transform: 'rotate(-30deg)'
+  },
+  root: {
+    display: 'flex'
+  },
+  appBar: {
+    zIndex: theme.zIndex.drawer + 1
   }
 }));
 
@@ -161,13 +167,14 @@ const Form = ({
   return (
     <div>
       <div className={classes.root}>
-        <AppBar position="static" color="inherit">
+        <CssBaseline />
+        <AppBar position="fixed" color="inherit" className={classes.appBar}>
           <Toolbar variant="dense">
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
+              <Toolbar>
+                <img src={logo} alt="logo" className={classes.logo} />
+              </Toolbar>
               <Grid container justify="space-around" spacing={1}>
-                <Toolbar>
-                  <img src={logo} alt="logo" className={classes.logo} />
-                </Toolbar>
                 <FormControl className={classes.formControl}>
                   <InputLabel>User type</InputLabel>
                   <Select
@@ -215,6 +222,7 @@ const Form = ({
             </MuiPickersUtilsProvider>
           </Toolbar>
         </AppBar>
+        <Sidebar />
       </div>
     </div>
   );
