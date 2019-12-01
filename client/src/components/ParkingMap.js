@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import ReactMapGL, { Source, Layer, Popup, Marker } from 'react-map-gl';
 import PropTypes from 'prop-types';
 import DriveEtaIcon from '@material-ui/icons/DriveEta';
-
 const ParkingMap = props => {
   // Represent the viewport for the map as a state. Pass the setting function
   // to Mapbox as the callback for changes to viewport

@@ -69,9 +69,7 @@ const Sidebar = ({
   useEffect(() => {
     const timeInConverted = timeIn.toString().replace(/\s+/g, '-');
     const timeOutConverted = timeOut.toString().replace(/\s+/g, '-');
-    fetch(
-      `/api/lots/basicInfo/${userType}/${timeInConverted}/${timeOutConverted}`
-    )
+    fetch(`/api/map/filter/${userType}/${timeInConverted}/${timeOutConverted}`)
       .then(response => {
         if (!response.ok) {
           throw new Error(response.statusText);
@@ -79,7 +77,7 @@ const Sidebar = ({
         return response.json();
       })
       .then(data => {
-        setParkable(data);
+        setParkable(data.parkable);
       })
       .catch(err => console.log(err));
   }, [userType, timeIn, timeOut]);

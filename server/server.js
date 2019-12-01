@@ -91,48 +91,6 @@ app.get(
   }
 );
 
-app.get(
-  '/api/lots/basicInfo/:userType/:timeIn/:timeOut',
-  (request, response, next) => {
-    // Reformat date strings
-    const timeIn = new Date(request.params.timeIn.replace(/-+/g, ' '));
-    const timeOut = new Date(request.params.timeOut.replace(/-+/g, ' '));
-    const { userType } = request.params;
-
-    // Validations
-    if (!validUsers.includes(userType)) {
-      response.sendStatus(400);
-      return;
-    }
-    if (Number.isNaN(timeIn) || Number.isNaN(timeIn)) {
-      response.sendStatus(400);
-      return;
-    }
-    if (timeOut.getTime() < timeIn.getTime()) {
-      response.sendStatus(400);
-      return;
-    }
-
-    // Account for time change from UTC to EST
-    timeIn.setHours(timeIn.getHours() + 5);
-    timeOut.setHours(timeOut.getHours() + 5);
-
-    const query = utils.constructQuery(timeIn, timeOut, userType);
-
-    app.locals.db
-      .collection('parkingLots')
-      .find(query)
-      .toArray()
-      .then(documents => {
-        const geoJsonData = {
-          features: documents,
-          type: 'FeatureCollection'
-        };
-        response.send(geoJsonData);
-      }, next); // Use "next" as rejection handler
-  }
-);
-
 // A very simple error handler. In a production setting you would
 // not want to send information about the inner workings of your
 // application or database to the client.
