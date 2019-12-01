@@ -81,6 +81,7 @@ const ParkingMap = props => {
           longitude={center[0]}
           latitude={center[1]}
           closeOnClick={false}
+          onClose={() => props.setLotSelected('false')}
         >
           {feature.properties.name}
         </Popup>

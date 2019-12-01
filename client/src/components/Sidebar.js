@@ -85,12 +85,20 @@ const Sidebar = ({
   }, [userType, timeIn, timeOut]);
 
   if (parkable.features && mobileOpen !== undefined) {
+    const selectedLots = [];
+    parkable.features.forEach(lot => {
+      if (lotSelected === 'false') {
+        selectedLots.push(lot);
+      } else if (lotSelected === lot._id) {
+        selectedLots.push(lot);
+      }
+    });
     const drawer = (
       <div>
         <div className={classes.toolbar} />
         <Divider />
         <List>
-          {parkable.features.map(element => (
+          {selectedLots.map(element => (
             <ListItem
               button
               key={element.properties._id}

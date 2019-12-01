@@ -85,7 +85,6 @@ app.get(
               features: docs,
               type: 'FeatureCollection'
             };
-            console.log(parkable);
             response.send({ parkable, nonparkable });
           }, next); // Use "next" as rejection handler
       }, next); // Use "next" as rejection handler
