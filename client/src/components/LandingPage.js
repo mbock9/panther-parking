@@ -59,7 +59,7 @@ const LandingPage = props => {
           timeOut={props.timeOut}
           setTimeOut={props.setTimeOut}
           landing={props.landing}
-          update={props.setUpdate}
+          update={props.update}
           mobileOpen={props.mobileOpen}
           setMobileOpen={props.setMobileOpen}
         />
