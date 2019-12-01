@@ -40,6 +40,215 @@
     {
       "type": "Feature",
       "properties": {
+        "description": "Parralel parking spaces along Storrs Ave. below the Davis Family Library. Parking for faculty, staff, and visitors.",
+        "lot_type": "B",
+        "name": "Storrs Ave.",
+        "permits": ["visitors", "f/s"]
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -73.174579,
+              44.010525
+            ],
+            [
+              -73.174409,
+              44.010538
+            ],
+            [
+              -73.174388,
+              44.010384
+            ],
+            [
+              -73.174421,
+              44.010351
+            ],
+            [
+              -73.17439,
+              44.010241
+            ],
+            [
+              -73.174374,
+              44.010134
+            ],
+            [
+              -73.174353,
+              44.010105
+            ],
+            [
+              -73.174324,
+              44.010077
+            ],
+            [
+              -73.174296,
+              44.010061
+            ],
+            [
+              -73.17425,
+              44.010075
+            ],
+            [
+              -73.173964,
+              44.009985
+            ],
+            [
+              -73.173956,
+              44.009959
+            ],
+            [
+              -73.173756,
+              44.009887
+            ],
+            [
+              -73.173713,
+              44.009862
+            ],
+            [
+              -73.173667,
+              44.009821
+            ],
+            [
+              -73.17365,
+              44.009785
+            ],
+            [
+              -73.173605,
+              44.009537
+            ],
+            [
+              -73.173537,
+              44.009499
+            ],
+            [
+              -73.173504,
+              44.00926
+            ],
+            [
+              -73.173485,
+              44.009206
+            ],
+            [
+              -73.173466,
+              44.009162
+            ],
+            [
+              -73.173431,
+              44.009103
+            ],
+            [
+              -73.173381,
+              44.009056
+            ],
+            [
+              -73.173269,
+              44.008965
+            ],
+            [
+              -73.173377,
+              44.008873
+            ],
+            [
+              -73.173497,
+              44.008962
+            ],
+            [
+              -73.173582,
+              44.009059
+            ],
+            [
+              -73.17364,
+              44.009184
+            ],
+            [
+              -73.173675,
+              44.009306
+            ],
+            [
+              -73.173688,
+              44.009388
+            ],
+            [
+              -73.173705,
+              44.00947
+            ],
+            [
+              -73.173717,
+              44.009634
+            ],
+            [
+              -73.173725,
+              44.009684
+            ],
+            [
+              -73.173744,
+              44.009743
+            ],
+            [
+              -73.17376,
+              44.009784
+            ],
+            [
+              -73.173806,
+              44.009818
+            ],
+            [
+              -73.173879,
+              44.009851
+            ],
+            [
+              -73.173934,
+              44.009873
+            ],
+            [
+              -73.173968,
+              44.009851
+            ],
+            [
+              -73.174335,
+              44.009962
+            ],
+            [
+              -73.174343,
+              44.009998
+            ],
+            [
+              -73.174416,
+              44.010052
+            ],
+            [
+              -73.174471,
+              44.010112
+            ],
+            [
+              -73.174486,
+              44.010162
+            ],
+            [
+              -73.174495,
+              44.010223
+            ],
+            [
+              -73.174502,
+              44.010301
+            ],
+            [
+              -73.174548,
+              44.01034
+            ],
+            [
+              -73.174579,
+              44.010525
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "id": "6205329c3a2cb07420960988b2caa304"
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "lot_type": "R",
         "name": "Ridgeline Lot",
         "description": "Student parking lot for non-freshman located below the Ridgeline buildings and adjacent to Homer Harris House. Access via College Street.",
@@ -95,7 +304,7 @@
       "properties": {
         "lot_type": "T",
         "name": "Field House Lot",
-        "description": "Multi-purpose lot positioned at the end of the Peterson Family Athletics Complex.",
+        "description": "Multi-purpose lot positioned at the end of the Peterson Family Athletics Complex. Pay attention to signage.",
         "permits": ["sPass", "pPass", "uPass", "ePass", "tPass", "visitors", "f/s", "f/s_r"]
       },
       "geometry": {
@@ -132,7 +341,7 @@
       "properties": {
         "lot_type": "T",
         "name": "Kenyon Arena",
-        "description": "Small multi-purpose lot next to Kenyon Arena and the squash pavillion.",
+        "description": "Small multi-purpose lot next to Kenyon Arena and the squash pavillion. Pay attention to signage.",
         "permits": ["sPass", "pPass", "uPass", "ePass", "tPass", "visitors", "f/s", "f/s_r"]
       },
       "geometry": {
@@ -165,7 +374,7 @@
       "properties": {
         "lot_type": "C",
         "name": "Wright Theater \"E Lot\"",
-        "description": "Student, faculty, and staff parking in between the Atwater dining hall and 75 Shannon Street.",
+        "description": "Upperclassmen, faculty, and staff parking in between the Atwater dining hall and 75 Shannon Street. Be cautious of restricted faculty/staff spaces.",
         "permits": ["sPass", "f/s", "f/s_r"]
       },
       "geometry": {
@@ -221,8 +430,8 @@
       "type": "Feature",
       "properties": {
         "lot_type": "T",
-        "name": "Fitness Center",
-        "description": "Non-restricted faculty and staff lot outside of the fitness center and indoor tennis courts.",
+        "name": "Mahaney Center for the Arts (CFA)",
+        "description": "Large multi-purpose lot next to the CFA (MAC). Parking for all permit types - pay attention to signage.",
         "permits": ["sPass", "pPass", "uPass", "ePass", "tPass", "visitors", "f/s", "f/s_r"]
       },
       "geometry": {
@@ -271,7 +480,7 @@
       "properties": {
         "lot_type": "none",
         "name": "Ralph Myre Golf Course",
-        "description": "Parking lot for the Ralph Myre Golf Course. Spaces are undesignated.",
+        "description": "Parking lot for the Ralph Myre Golf Course. Spaces are undesignated. Access via VT30 and Golf Course Rd.",
         "permits": ["sPass", "pPass", "uPass", "ePass", "tPass", "visitors", "f/s", "f/s_r"]
       },
       "geometry": {
@@ -324,7 +533,7 @@
       "properties": {
         "lot_type": "none",
         "name": "Dragone Track Lot",
-        "description": "Overflow parking for students and visitors. Good parking for soccer and track events.",
+        "description": "Overflow parking for students and visitors at the intersection of Porter Field Rd. and South St. Good parking for soccer and track events. During events you can also typically park along Porter Field Rd.",
         "permits": ["sPass", "pPass", "uPass", "ePass", "tPass", "visitors"]
       },
       "geometry": {
@@ -360,8 +569,8 @@
       "type": "Feature",
       "properties": {
         "lot_type": "A",
-        "name": "Fitness Center",
-        "description": "Parking lot for the Ralph Myre Golf Course. Spaces are undesignated.",
+        "name": "Admissions (Emma Willard House)",
+        "description": "Auxiliary parking lot for admissions. Faculty, staff, and student spaces.",
         "permits": ["visitors", "f/s"]
       },
       "geometry": {
@@ -443,7 +652,7 @@
       "properties": {
         "lot_type": "X",
         "name": "48 South Street Lot",
-        "description": "Overflow parking for students and visitors. Good parking for soccer and track events.",
+        "description": "Parking for residents of 48 South Street (KDR).",
         "permits": ["ePass"]
       },
       "geometry": {
@@ -481,7 +690,7 @@
         "lot_type": "I",
         "name": "Service Building",
         "permits": ["f/s"],
-        "description": "Faculty and staff spaces surrounding the service building"
+        "description": "Faculty and staff spaces surrounding the service building. Note signage."
       },
       "geometry": {
         "coordinates": [
@@ -557,7 +766,7 @@
       "properties": {
         "lot_type": "O",
         "name": "College St.",
-        "description": "true",
+        "description": "Parallel parking spaces along both sides of College St. from Storrs Ave. to Blinn Ln. Parking for faculty, staff, and visitors.",
         "permits": ["visitors", "f/s"]
       },
       "geometry": {
@@ -594,7 +803,7 @@
       "properties": {
         "lot_type": "G",
         "name": "Twilight Hall",
-        "description": "Parking lot located next to Twilight Hall. Commuter parking for students, but no overnight.",
+        "description": "Faculty and staff lot located next to Twilight Hall. Commuter parking for students, but no overnight.",
         "permits": ["ePass", "tPass", "f/s"]
       },
       "geometry": {
@@ -631,7 +840,7 @@
       "properties": {
         "lot_type": "A",
         "name": "Admissions (Emma Willard House)",
-        "description": "Secondary parking lot for admissions.",
+        "description": "Primary parking lot for admissions. Faculty, staff, and visitor spaces.",
         "permits": ["visitors", "f/s"]
       },
       "geometry": {
@@ -705,7 +914,7 @@
       "properties": {
         "lot_type": "C",
         "name": "Coffrin Hall & Freeman International Center",
-        "description": "false",
+        "description": "Parking lot located below Coffrin Hall and the Freeman International Center. Spaces for faculty, staff, and upperclassmen. Be cautious of restricted F/S during off-hours.",
         "permits": ["sPass", "f/s", "f/s_r"]
       },
       "geometry": {
@@ -770,7 +979,7 @@
       "properties": {
         "lot_type": "X",
         "name": "Jewett House",
-        "description": "Parking lot for the Ralph Myre Golf Course. Spaces are undesignated.",
+        "description": "Wellness House resident parking. Situated off of Main Street near town.",
         "permits": ["ePass"]
       },
       "geometry": {
@@ -814,9 +1023,9 @@
       "type": "Feature",
       "properties": {
         "lot_type": "L",
-        "name": "false",
+        "name": "Hillcrest Rd.",
         "permits": ["f/s"],
-        "description": "Street parking outside of Proctor dining hall next to the Proctor Tennis Courts."
+        "description": "Street parking outside of Proctor dining hall next to the Proctor Tennis Courts. Park at your own risk."
       },
       "geometry": {
         "coordinates": [
@@ -852,7 +1061,7 @@
       "properties": {
         "lot_type": "S",
         "name": "McCardell Bicentennial Hall",
-        "description": "true",
+        "description": "Parking lot located behind McCardell Bicentennial Hall. Parking for commuters, faculty, and staff.",
         "permits": ["tPass", "visitors", "f/s"]
       },
       "geometry": {
@@ -931,7 +1140,7 @@
         "lot_type": "K",
         "name": "Robert A. Jones '59 House",
         "permits": ["f/s_r"],
-        "description": "Parking lot next to the Rober A. Jones '59 House for only faculty and staff."
+        "description": "Parking lot next to the Robert A. Jones '59 House for only faculty and staff."
       },
       "geometry": {
         "coordinates": [
@@ -967,7 +1176,7 @@
       "properties": {
         "lot_type": "X",
         "name": "Homestead and Weybridge Houses",
-        "description": "Parking off of Weybridge Road next to Homestead and Weybridge Houses. Exclusively E permit.",
+        "description": "Parking off of Weybridge Rd. next to Homestead and Weybridge Houses. Exclusively for the residents of those houses.",
         "permits": ["ePass"]
       },
       "geometry": {
@@ -1016,7 +1225,7 @@
       "properties": {
         "lot_type": "D",
         "name": "Atwater Lot",
-        "description": "false",
+        "description": "Parking for upperclassmen below both Atwater residence halls.",
         "permits": ["sPass"]
       },
       "geometry": {
@@ -1061,7 +1270,7 @@
       "properties": {
         "lot_type": "H",
         "name": "Old Chapel Rd.",
-        "description": "true",
+        "description": "Perpendicular parking spaces along Old Chapel Rd. Parking for faculty, staff, visitors, and President Patton.",
         "permits": ["visitors", "f/s"]
       },
       "geometry": {
@@ -1127,7 +1336,7 @@
         "lot_type": "J",
         "name": "Stewart Hall",
         "permits": ["f/s"],
-        "description": "false"
+        "description": "Handful of faculty and staff spaces between Stewart Hall and the cemetery. Access via Hillcrest Rd."
       },
       "geometry": {
         "coordinates": [
@@ -1162,9 +1371,9 @@
       "type": "Feature",
       "properties": {
         "lot_type": "I",
-        "name": "Service Building/Parton Center for Health and Wellness",
+        "name": "Service Building & Parton Center for Health and Wellness",
         "permits": ["f/s"],
-        "description": "Faculty and staff spaces next to the Parton Center and the Service Building. Includes a few designated spaces for the Parton Center"
+        "description": "Faculty and staff spaces next to the Parton Center and the Service Building. Includes a few designated spaces for the Parton Center."
       },
       "geometry": {
         "coordinates": [
@@ -1200,7 +1409,7 @@
       "properties": {
         "lot_type": "B",
         "name": "Meeker House",
-        "description": "Parking Lot located next to Meeker House.",
+        "description": "Parking lot for faculty, staff, and visitors. Located next to Meeker House with access via Porter Field Rd.",
         "permits": ["visitors", "f/s"]
       },
       "geometry": {
