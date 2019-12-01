@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ReactMapGL, { Source, Layer, Popup, Marker } from 'react-map-gl';
 import PropTypes from 'prop-types';
-import DriveEtaIcon from '@material-ui/icons/DriveEta';
+import LocalParkingIcon from '@material-ui/icons/LocalParking';
 const ParkingMap = props => {
   // Represent the viewport for the map as a state. Pass the setting function
   // to Mapbox as the callback for changes to viewport
@@ -96,7 +96,7 @@ const ParkingMap = props => {
         longitude={center[0]}
         latitude={center[1]}
       >
-        <DriveEtaIcon
+        <LocalParkingIcon
           onClick={() => {
             props.setLotSelected(
               props.lotSelected === feature._id ? 'false' : feature._id
