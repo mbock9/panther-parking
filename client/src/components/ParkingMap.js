@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ReactMapGL, { Source, Layer, Popup, Marker } from 'react-map-gl';
 import PropTypes from 'prop-types';
+import DriveEtaIcon from '@material-ui/icons/DriveEta';
 
 const ParkingMap = props => {
   // Represent the viewport for the map as a state. Pass the setting function
@@ -94,8 +95,15 @@ const ParkingMap = props => {
         key={`marker-${feature.properties.name}`}
         longitude={center[0]}
         latitude={center[1]}
-        onClick={() => props.setLotSelected(feature._id)}
-      ></Marker>
+      >
+        <DriveEtaIcon
+          onClick={() => {
+            props.setLotSelected(
+              props.lotSelected === feature._id ? 'false' : feature._id
+            );
+          }}
+        />
+      </Marker>
     );
   };
 
