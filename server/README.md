@@ -42,6 +42,7 @@ npm run --prefix server mongo:init
 ```
 
 In order to render a Mapbox map on the client, make sure the proper API key is specified in in `server/.env` as follows:
+
 ```
 MAPBOX_KEY=insert-key-value-here
 ```
@@ -50,7 +51,31 @@ Finally, run `npm start` to start the app.
 
 If you're interested in the npm scripts used to automate mongo configuration, checkout [`server/package.json`](package.json)
 
-### Querying the Database Directly
+### Reseed the Production Database (Heroku)
+
+**Note**: We have to re-seed the production database whenever [`server/raw-data/midd-lots.geojson`](raw-data/midd-lots.geojson) is updated.
+
+In order to reseed the production database, first delete the the records associated with the `parkingLots` collection on mLab (the heroku add-on we are using for our MongoDB deployment). The collection can be deleted by accessing the mLab console by signing into heroku and navigating to the `panther-parking` project add-ons. We want to delete the collection before re-seeding so that we don't insert duplicate documents when running `mongoimport`.
+
+After deleting the collection, generate the json file that will get ingested into the database with this command. (Note: this command assumes you've installed [jq](https://stedolan.github.io/jq/download/) and should be run from the root of the repo):
+
+```
+npm run --prefix server data:clean
+```
+
+Next, to seed the production database, run the following from the root of the repo:
+
+```
+mongoimport -h ds157516.mlab.com:57516 -d heroku_dv2v04ww -c parkingLots -u <username> -p <password> --file server/raw-data/midd-lots-raw.geojson --jsonArray
+```
+
+Replace `<username>` and `<password>` with the team mLab credentials. If you need these credentials, reach out to a panther-parking core contributor.
+
+After running the command, it should tell you how many documents have successfully been imported -- make sure this number matches your expectation.
+
+Reload the app at [panther-parking.herokuapp.com](-parking.herokuapp.com) and observe that your changes to the database have persisted.
+
+### Querying the Local Database Directly
 
 In a separate terminal window, start the database with:
 
