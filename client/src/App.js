@@ -3,8 +3,6 @@ import './App.css';
 import ParkingMap from './components/ParkingMap';
 import Form from './components/Form';
 import LandingPage from './components/LandingPage';
-import styled from 'styled-components';
-/* eslint-disable react/prefer-stateless-function */
 
 function App() {
   const [userType, setUser] = useState('initial');
@@ -27,6 +25,9 @@ function App() {
         setTimeOut={setTimeOut}
         landing={landingPage}
         changeLandingPage={changeLandingPage}
+        update={setUpdate}
+        mobileOpen={mobileOpen}
+        setMobileOpen={setMobileOpen}
       />
     );
   }

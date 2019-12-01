@@ -12,16 +12,18 @@ const LandingPage = props => {
     margin-top: -1%;
   `;
 
-  const LandingPage = styled.section`
+  const Landingpage = styled.section`
     padding: 0;
     background: #5e1a54;
     overflow-x: hidden;
     width: 100vw;
     height: 100vh;
   `;
-
+  const ImageBottom = styled.div`
+    display: flex;
+  `;
   return (
-    <LandingPage>
+    <Landingpage>
       <img
         src={carTop}
         alt="car"
@@ -78,32 +80,34 @@ const LandingPage = props => {
           Search
         </button>
       </Wrapper>
-      <img
-        src={carLeft}
-        alt="car"
-        style={{ position: 'fixed', bottom: '0px', width: '13%' }}
-      />
-      <img
-        src={carRight}
-        alt="car"
-        style={{
-          position: 'fixed',
-          bottom: '0px',
-          right: '0px',
-          width: '20%'
-        }}
-      />
-      <img
-        src={carMiddle}
-        alt="car"
-        style={{
-          position: 'fixed',
-          bottom: '0px',
-          left: '45%',
-          width: '15%'
-        }}
-      />
-    </LandingPage>
+      <ImageBottom>
+        <img
+          src={carLeft}
+          alt="car"
+          style={{ position: 'fixed', bottom: '0px', width: '13%' }}
+        />
+        <img
+          src={carRight}
+          alt="car"
+          style={{
+            position: 'fixed',
+            bottom: '0px',
+            right: '0px',
+            width: '20%'
+          }}
+        />
+        <img
+          src={carMiddle}
+          alt="car"
+          style={{
+            position: 'fixed',
+            bottom: '0px',
+            left: '45%',
+            width: '15%'
+          }}
+        />
+      </ImageBottom>
+    </Landingpage>
   );
 };
 
