@@ -53,15 +53,15 @@ If you're interested in the npm scripts used to automate mongo configuration, ch
 
 ### Reseed the Production Database (Heroku)
 
-In order to reseed the production database, first delete the the records associated with the `parkingLots` collection on mLab (the heroku add-on we are using for our MongoDB deployment). The collection can be deleted by accessing the mLab console by signing into heroku and navigating to the `panther-parking` project add-ons.
+In order to reseed the production database, first delete the the records associated with the `parkingLots` collection on mLab (the heroku add-on we are using for our MongoDB deployment). The collection can be deleted by accessing the mLab console by signing into heroku and navigating to the `panther-parking` project add-ons. We want to delete the collection before re-seeding so that we don't insert duplicate documents when running `mongoimport`.
 
-After deleting the collections, generate the json file that will get injested into the database with this command. (Note: this command assumes you've installed [jq](https://stedolan.github.io/jq/download/) and should be run from the root of the repo):
+After deleting the collection, generate the json file that will get ingested into the database with this command. (Note: this command assumes you've installed [jq](https://stedolan.github.io/jq/download/) and should be run from the root of the repo):
 
 ```
 npm run --prefix server data:clean
 ```
 
-Next, to seed the production database, run:
+Next, to seed the production database, run the following from the root of the repo:
 
 ```
 mongoimport -h ds157516.mlab.com:57516 -d heroku_dv2v04ww -c parkingLots -u <username> -p <password> --file server/raw-data/midd-lots-raw.geojson --jsonArray
