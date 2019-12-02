@@ -32,7 +32,8 @@ const useStyles = makeStyles(theme => ({
   },
   logo: {
     maxWidth: 50,
-    transform: 'rotate(-30deg)'
+    transform: 'rotate(-30deg)',
+    cursor: 'pointer'
   },
   root: {
     display: 'flex'
