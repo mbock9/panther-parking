@@ -32,7 +32,8 @@ const useStyles = makeStyles(theme => ({
   },
   logo: {
     maxWidth: 50,
-    transform: 'rotate(-30deg)'
+    transform: 'rotate(-30deg)',
+    cursor: 'pointer'
   },
   root: {
     display: 'flex'
@@ -127,7 +128,7 @@ const Form = ({
                   <FormControl className={classes.formControl}>
                     <InputLabel>User type</InputLabel>
                     <Select
-                      value={userType === 'initial' ? '' : userType}
+                      value={userType === 'default' ? '' : userType}
                       onChange={event => {
                         setUser(event.target.value);
                         update(true);
@@ -194,13 +195,20 @@ const Form = ({
             </IconButton>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
               <Toolbar>
-                <img src={logo} alt="logo" className={classes.logo} />
+                <img
+                  src={logo}
+                  alt="logo"
+                  onClick={() => {
+                    setUser('default');
+                  }}
+                  className={classes.logo}
+                />
               </Toolbar>
               <Grid container justify="space-around" spacing={1}>
                 <FormControl className={classes.formControl}>
                   <InputLabel>User type</InputLabel>
                   <Select
-                    value={userType === 'initial' ? '' : userType}
+                    value={userType === 'default' ? '' : userType}
                     onChange={event => {
                       setUser(event.target.value);
                     }}
