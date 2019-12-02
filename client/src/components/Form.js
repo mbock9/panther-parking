@@ -267,7 +267,9 @@ Form.propTypes = {
   timeOut: PropTypes.instanceOf(Date).isRequired,
   setTimeOut: PropTypes.func.isRequired,
   mobileOpen: PropTypes.bool.isRequired,
-  setMobileOpen: PropTypes.func.isRequired
+  setMobileOpen: PropTypes.func.isRequired,
+  landing: PropTypes.bool.isRequired,
+  changeLandingPage: PropTypes.func.isRequired
 };
 
 export default Form;

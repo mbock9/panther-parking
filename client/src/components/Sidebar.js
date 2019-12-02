@@ -173,7 +173,9 @@ Sidebar.propTypes = {
   timeIn: PropTypes.instanceOf(Date).isRequired,
   timeOut: PropTypes.instanceOf(Date).isRequired,
   mobileOpen: PropTypes.bool.isRequired,
-  setMobileOpen: PropTypes.func.isRequired
+  setMobileOpen: PropTypes.func.isRequired,
+  landing: PropTypes.bool.isRequired,
+  changeLandingPage: PropTypes.func.isRequired
 };
 
 export default Sidebar;
