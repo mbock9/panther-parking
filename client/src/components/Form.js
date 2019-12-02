@@ -21,6 +21,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import MenuIcon from '@material-ui/icons/Menu';
+import InfoIcon from '@material-ui/icons/Info';
+import Button from '@material-ui/core/Button';
 import Sidebar from './Sidebar';
 
 // Define styles for material-ui components
@@ -31,9 +33,12 @@ const useStyles = makeStyles(theme => ({
     maxWidth: 300
   },
   logo: {
-    maxWidth: 50,
+    maxWidth: 40,
     transform: 'rotate(-30deg)',
-    cursor: 'pointer'
+    cursor: 'pointer',
+    [theme.breakpoints.down('sm')]: {
+      display: 'none'
+    }
   },
   root: {
     display: 'flex'
@@ -46,6 +51,9 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.up('sm')]: {
       display: 'none'
     }
+  },
+  button: {
+    margin: theme.spacing(1)
   }
 }));
 
@@ -78,16 +86,18 @@ const Form = ({
   setTimeIn,
   timeOut,
   setTimeOut,
-  landing,
   update,
   mobileOpen,
-  setMobileOpen
+  setMobileOpen,
+  landing,
+  changeLandingPage
 }) => {
   // Instantiate style classes
   const classes = useStyles();
   // const [mobileOpen, setMobileOpen] = React.useState(false);
 
   // For mobile, hide sidebar on smalle screens
+  // This is used to conditionally hide the sidebar behind the hamburger menu
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -177,7 +187,6 @@ const Form = ({
       </div>
     );
   }
-
   return (
     <div>
       <div className={classes.root}>
@@ -249,6 +258,17 @@ const Form = ({
                   }}
                 />
               </Grid>
+              <Button
+                color="inherit"
+                className={classes.button}
+                startIcon={<InfoIcon />}
+                size="large"
+                onClick={() => {
+                  changeLandingPage(!landing);
+                }}
+              >
+                Info
+              </Button>
             </MuiPickersUtilsProvider>
           </Toolbar>
         </AppBar>
@@ -258,6 +278,9 @@ const Form = ({
           timeOut={timeOut}
           mobileOpen={mobileOpen}
           setMobileOpen={setMobileOpen}
+          landing={landing}
+          changeLandingPage={changeLandingPage}
+          setUser={setUser}
         />
       </div>
     </div>
@@ -272,7 +295,9 @@ Form.propTypes = {
   timeOut: PropTypes.instanceOf(Date).isRequired,
   setTimeOut: PropTypes.func.isRequired,
   mobileOpen: PropTypes.bool.isRequired,
-  setMobileOpen: PropTypes.func.isRequired
+  setMobileOpen: PropTypes.func.isRequired,
+  landing: PropTypes.bool.isRequired,
+  changeLandingPage: PropTypes.func.isRequired
 };
 
 export default Form;
