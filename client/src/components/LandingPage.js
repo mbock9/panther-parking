@@ -62,6 +62,8 @@ const LandingPage = props => {
           update={props.update}
           mobileOpen={props.mobileOpen}
           setMobileOpen={props.setMobileOpen}
+          landing={props.landing}
+          changeLandingPage={props.changeLandingPage}
         />
         <button
           style={{
