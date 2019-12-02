@@ -12,9 +12,11 @@ import InfoIcon from '@material-ui/icons/Info';
 import DriveEtaIcon from '@material-ui/icons/DriveEta';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
+import LayersClearIcon from '@material-ui/icons/LayersClear';
 import PropTypes from 'prop-types';
 
 const drawerWidth = 300;
+const MOBILE_WINDOW_WIDTH = 736;
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -56,7 +58,10 @@ const Sidebar = ({
   mobileOpen,
   setMobileOpen,
   landing,
-  changeLandingPage
+  changeLandingPage,
+  windowWidth,
+  setWindowWidth,
+  setUser
 }) => {
   const classes = useStyles();
   const theme = useTheme();
@@ -84,12 +89,31 @@ const Sidebar = ({
       .catch(err => console.log(err));
   }, [userType, timeIn, timeOut]);
 
-  if (parkable.features && mobileOpen !== undefined) {
+  if (
+    parkable.features &&
+    mobileOpen !== undefined &&
+    windowWidth !== undefined
+  ) {
     const drawer = (
       <div>
         <div className={classes.toolbar} />
         <Divider />
         <List>
+          {windowWidth <= MOBILE_WINDOW_WIDTH ? (
+            <ListItem
+              button
+              onClick={() => {
+                setUser('default');
+              }}
+            >
+              <ListItemIcon>
+                <LayersClearIcon />
+              </ListItemIcon>
+              <ListItemText primary={'Clear filters'} />
+            </ListItem>
+          ) : (
+            <div></div>
+          )}
           {parkable.features.map(element => (
             <ListItem
               button
