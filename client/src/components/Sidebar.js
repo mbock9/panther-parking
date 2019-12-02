@@ -111,6 +111,7 @@ const Sidebar = ({
             button
             onClick={() => {
               changeLandingPage(!landing);
+              setMobileOpen(!mobileOpen);
             }}
           >
             <ListItemIcon>
