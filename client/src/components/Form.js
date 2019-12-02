@@ -258,7 +258,7 @@ const Form = ({
               <Button
                 color="inherit"
                 className={classes.button}
-                endIcon={<InfoIcon />}
+                startIcon={<InfoIcon />}
                 size="large"
                 onClick={() => {
                   changeLandingPage(!landing);
