@@ -11,8 +11,7 @@ const testCase1 = {
   timeIn: dateProp,
   timeOut: dateProp,
   mobileOpen: false,
-  landing: false,
-  windowWidth: 736
+  landing: false
 };
 
 const props = {
@@ -25,8 +24,7 @@ const props = {
   mobileOpen: testCase1.mobileOpen,
   setMobileOpen: jest.fn(),
   landing: testCase1.landing,
-  changeLandingPage: jest.fn(),
-  windowWidth: testCase1.windowWidth
+  changeLandingPage: jest.fn()
 };
 
 describe('Form tests', () => {

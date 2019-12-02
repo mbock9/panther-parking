@@ -9,8 +9,7 @@ const testCase1 = {
   timeIn: dateProp,
   timeOut: dateProp,
   mobileOpen: false,
-  landing: false,
-  windowWidth: 736
+  landing: false
 };
 
 const props = {
@@ -21,7 +20,6 @@ const props = {
   setMobileOpen: jest.fn(),
   landing: testCase1.landing,
   changeLandingPage: jest.fn(),
-  windowWidth: testCase1.windowWidth,
   setUser: jest.fn()
 };
 
