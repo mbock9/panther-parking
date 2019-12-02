@@ -113,6 +113,7 @@ const Sidebar = ({
           ) : (
             <div />
           )}
+          <Divider />
           {parkable.features.map(element => (
             <ListItem
               button
@@ -130,6 +131,7 @@ const Sidebar = ({
               />
             </ListItem>
           ))}
+          <Divider />
           <ListItem
             button
             onClick={() => {
