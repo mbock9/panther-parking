@@ -21,6 +21,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import MenuIcon from '@material-ui/icons/Menu';
+import InfoIcon from '@material-ui/icons/Info';
+import Button from '@material-ui/core/Button';
 import Sidebar from './Sidebar';
 
 // Define styles for material-ui components
@@ -46,6 +48,9 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.up('sm')]: {
       display: 'none'
     }
+  },
+  button: {
+    margin: theme.spacing(1)
   }
 }));
 
@@ -250,6 +255,16 @@ const Form = ({
                   }}
                 />
               </Grid>
+              <Button
+                color="inherit"
+                className={classes.button}
+                startIcon={<InfoIcon />}
+                onClick={() => {
+                  changeLandingPage(!landing);
+                }}
+              >
+                Info
+              </Button>
             </MuiPickersUtilsProvider>
           </Toolbar>
         </AppBar>
