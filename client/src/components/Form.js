@@ -33,7 +33,7 @@ const useStyles = makeStyles(theme => ({
     maxWidth: 300
   },
   logo: {
-    maxWidth: 50,
+    maxWidth: 40,
     transform: 'rotate(-30deg)',
     cursor: 'pointer'
   },
@@ -258,7 +258,7 @@ const Form = ({
               <Button
                 color="inherit"
                 className={classes.button}
-                startIcon={<InfoIcon />}
+                endIcon={<InfoIcon />}
                 size="large"
                 onClick={() => {
                   changeLandingPage(!landing);
