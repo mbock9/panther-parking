@@ -127,7 +127,7 @@ const Form = ({
                   <FormControl className={classes.formControl}>
                     <InputLabel>User type</InputLabel>
                     <Select
-                      value={userType === 'initial' ? '' : userType}
+                      value={userType === 'default' ? '' : userType}
                       onChange={event => {
                         setUser(event.target.value);
                         update(true);
@@ -200,7 +200,7 @@ const Form = ({
                 <FormControl className={classes.formControl}>
                   <InputLabel>User type</InputLabel>
                   <Select
-                    value={userType === 'initial' ? '' : userType}
+                    value={userType === 'default' ? '' : userType}
                     onChange={event => {
                       setUser(event.target.value);
                     }}

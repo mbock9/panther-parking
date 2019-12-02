@@ -5,7 +5,7 @@ import Form from './components/Form';
 import LandingPage from './components/LandingPage';
 
 function App() {
-  const [userType, setUser] = useState('initial');
+  const [userType, setUser] = useState('default');
   const [timeIn, setTimeIn] = useState(new Date());
   const [timeOut, setTimeOut] = useState(new Date());
   const [landingPage, changeLandingPage] = useState(true);
