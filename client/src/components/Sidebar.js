@@ -16,7 +16,6 @@ import LayersClearIcon from '@material-ui/icons/LayersClear';
 import PropTypes from 'prop-types';
 
 const drawerWidth = 300;
-const MOBILE_WINDOW_WIDTH = 736;
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -26,6 +25,11 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.up('sm')]: {
       width: drawerWidth,
       flexShrink: 0
+    }
+  },
+  clearFilter: {
+    [theme.breakpoints.up('sm')]: {
+      display: 'none'
     }
   },
   appBar: {
@@ -59,7 +63,6 @@ const Sidebar = ({
   setMobileOpen,
   landing,
   changeLandingPage,
-  windowWidth,
   setUser
 }) => {
   const classes = useStyles();
@@ -88,32 +91,25 @@ const Sidebar = ({
       .catch(err => console.log(err));
   }, [userType, timeIn, timeOut]);
 
-  if (
-    parkable.features &&
-    mobileOpen !== undefined &&
-    windowWidth !== undefined
-  ) {
+  if (parkable.features && mobileOpen !== undefined) {
     const drawer = (
       <div>
         <div className={classes.toolbar} />
         <Divider />
         <List>
-          {windowWidth <= MOBILE_WINDOW_WIDTH ? (
-            <ListItem
-              button
-              onClick={() => {
-                setUser('default');
-              }}
-            >
-              <ListItemIcon>
-                <LayersClearIcon />
-              </ListItemIcon>
-              <ListItemText primary={'Clear filters'} />
-            </ListItem>
-          ) : (
-            <div />
-          )}
-          <Divider />
+          <ListItem
+            button
+            onClick={() => {
+              setUser('default');
+            }}
+            className={classes.clearFilter}
+          >
+            <ListItemIcon>
+              <LayersClearIcon />
+            </ListItemIcon>
+            <ListItemText primary={'Clear filters'} />
+          </ListItem>
+          <Divider className={classes.clearFilter} />
           {parkable.features.map(element => (
             <ListItem
               button
@@ -203,7 +199,8 @@ Sidebar.propTypes = {
   mobileOpen: PropTypes.bool.isRequired,
   setMobileOpen: PropTypes.func.isRequired,
   landing: PropTypes.bool.isRequired,
-  changeLandingPage: PropTypes.func.isRequired
+  changeLandingPage: PropTypes.func.isRequired,
+  setUser: PropTypes.func.isRequired
 };
 
 export default Sidebar;

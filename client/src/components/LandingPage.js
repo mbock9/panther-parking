@@ -63,7 +63,6 @@ const LandingPage = props => {
           setMobileOpen={props.setMobileOpen}
           landing={props.landing}
           changeLandingPage={props.changeLandingPage}
-          windowWidth={props.windowWidth}
         />
         <button
           style={{

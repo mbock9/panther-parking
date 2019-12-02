@@ -25,8 +25,6 @@ import InfoIcon from '@material-ui/icons/Info';
 import Button from '@material-ui/core/Button';
 import Sidebar from './Sidebar';
 
-const MOBILE_WINDOW_WIDTH = 736;
-
 // Define styles for material-ui components
 const useStyles = makeStyles(theme => ({
   formControl: {
@@ -37,7 +35,10 @@ const useStyles = makeStyles(theme => ({
   logo: {
     maxWidth: 40,
     transform: 'rotate(-30deg)',
-    cursor: 'pointer'
+    cursor: 'pointer',
+    [theme.breakpoints.down('sm')]: {
+      display: 'none'
+    }
   },
   root: {
     display: 'flex'
@@ -89,14 +90,14 @@ const Form = ({
   mobileOpen,
   setMobileOpen,
   landing,
-  changeLandingPage,
-  windowWidth
+  changeLandingPage
 }) => {
   // Instantiate style classes
   const classes = useStyles();
   // const [mobileOpen, setMobileOpen] = React.useState(false);
 
   // For mobile, hide sidebar on smalle screens
+  // This is used to conditionally hide the sidebar behind the hamburger menu
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -186,113 +187,104 @@ const Form = ({
       </div>
     );
   }
-  if (!landing && windowWidth !== undefined) {
-    return (
-      <div>
-        <div className={classes.root}>
-          <CssBaseline />
-          <AppBar position="fixed" color="inherit" className={classes.appBar}>
-            <Toolbar variant="dense">
-              <IconButton
-                color="inherit"
-                aria-label="Open drawer"
-                edge="start"
-                onClick={handleDrawerToggle}
-                className={classes.menuButton}
-              >
-                <MenuIcon />
-              </IconButton>
-              <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                {windowWidth <= MOBILE_WINDOW_WIDTH ? (
-                  <div />
-                ) : (
-                  <Toolbar>
-                    <img
-                      src={logo}
-                      alt="logo"
-                      onClick={() => {
-                        setUser('default');
-                      }}
-                      className={classes.logo}
-                    />
-                  </Toolbar>
-                )}
-                <Grid container justify="space-around" spacing={1}>
-                  <FormControl className={classes.formControl}>
-                    <InputLabel>User type</InputLabel>
-                    <Select
-                      value={userType === 'default' ? '' : userType}
-                      onChange={event => {
-                        setUser(event.target.value);
-                      }}
-                      input={<Input />}
-                      MenuProps={MenuProps}
-                    >
-                      {users.map(name => (
-                        <MenuItem key={name} value={name}>
-                          {name}
-                        </MenuItem>
-                      ))}
-                    </Select>
-                  </FormControl>
-                  <KeyboardDateTimePicker
-                    disableToolbar
-                    disablePast
-                    variant="inline"
-                    format="MM/dd/yyyy hh:mm a"
-                    margin="normal"
-                    label="Time In"
-                    value={timeIn}
-                    onChange={handleTimeInChange}
-                    KeyboardButtonProps={{
-                      'aria-label': 'change date'
-                    }}
-                  />
-                  <KeyboardDateTimePicker
-                    disableToolbar
-                    disablePast
-                    variant="inline"
-                    format="MM/dd/yyyy hh:mm a"
-                    margin="normal"
-                    label="Time Out"
-                    value={timeOut}
-                    onChange={handleTimeOutChange}
-                    KeyboardButtonProps={{
-                      'aria-label': 'change date'
-                    }}
-                  />
-                </Grid>
-                <Button
-                  color="inherit"
-                  className={classes.button}
-                  startIcon={<InfoIcon />}
-                  size="large"
+  return (
+    <div>
+      <div className={classes.root}>
+        <CssBaseline />
+        <AppBar position="fixed" color="inherit" className={classes.appBar}>
+          <Toolbar variant="dense">
+            <IconButton
+              color="inherit"
+              aria-label="Open drawer"
+              edge="start"
+              onClick={handleDrawerToggle}
+              className={classes.menuButton}
+            >
+              <MenuIcon />
+            </IconButton>
+            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+              <Toolbar>
+                <img
+                  src={logo}
+                  alt="logo"
                   onClick={() => {
-                    changeLandingPage(!landing);
+                    setUser('default');
                   }}
-                >
-                  Info
-                </Button>
-              </MuiPickersUtilsProvider>
-            </Toolbar>
-          </AppBar>
-          <Sidebar
-            userType={userType}
-            timeIn={timeIn}
-            timeOut={timeOut}
-            mobileOpen={mobileOpen}
-            setMobileOpen={setMobileOpen}
-            landing={landing}
-            changeLandingPage={changeLandingPage}
-            windowWidth={windowWidth}
-            setUser={setUser}
-          />
-        </div>
+                  className={classes.logo}
+                />
+              </Toolbar>
+              <Grid container justify="space-around" spacing={1}>
+                <FormControl className={classes.formControl}>
+                  <InputLabel>User type</InputLabel>
+                  <Select
+                    value={userType === 'default' ? '' : userType}
+                    onChange={event => {
+                      setUser(event.target.value);
+                    }}
+                    input={<Input />}
+                    MenuProps={MenuProps}
+                  >
+                    {users.map(name => (
+                      <MenuItem key={name} value={name}>
+                        {name}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+                <KeyboardDateTimePicker
+                  disableToolbar
+                  disablePast
+                  variant="inline"
+                  format="MM/dd/yyyy hh:mm a"
+                  margin="normal"
+                  label="Time In"
+                  value={timeIn}
+                  onChange={handleTimeInChange}
+                  KeyboardButtonProps={{
+                    'aria-label': 'change date'
+                  }}
+                />
+                <KeyboardDateTimePicker
+                  disableToolbar
+                  disablePast
+                  variant="inline"
+                  format="MM/dd/yyyy hh:mm a"
+                  margin="normal"
+                  label="Time Out"
+                  value={timeOut}
+                  onChange={handleTimeOutChange}
+                  KeyboardButtonProps={{
+                    'aria-label': 'change date'
+                  }}
+                />
+              </Grid>
+              <Button
+                color="inherit"
+                className={classes.button}
+                startIcon={<InfoIcon />}
+                size="large"
+                onClick={() => {
+                  changeLandingPage(!landing);
+                }}
+              >
+                Info
+              </Button>
+            </MuiPickersUtilsProvider>
+          </Toolbar>
+        </AppBar>
+        <Sidebar
+          userType={userType}
+          timeIn={timeIn}
+          timeOut={timeOut}
+          mobileOpen={mobileOpen}
+          setMobileOpen={setMobileOpen}
+          landing={landing}
+          changeLandingPage={changeLandingPage}
+          setUser={setUser}
+        />
       </div>
-    );
-  } else {
-    return <div />;
-  }
+    </div>
+  );
 };
 
 Form.propTypes = {

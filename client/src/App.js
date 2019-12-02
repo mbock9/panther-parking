@@ -12,9 +12,9 @@ function App() {
   const [parkable, setParkable] = useState({});
   const [nonparkable, setNonparkable] = useState({});
   const [updated, setUpdate] = useState(false);
-  const [windowWidth, setWindowWidth] = useState(window.screen.width);
 
-  // State to enable sidebar reactivity
+  // State to enable sidebar reactivity on mobile.
+  // Handles interacting with sidebar on mobile devices.
   const [mobileOpen, setMobileOpen] = useState(false);
   if (landingPage) {
     return (
@@ -30,7 +30,6 @@ function App() {
         update={setUpdate}
         mobileOpen={mobileOpen}
         setMobileOpen={setMobileOpen}
-        windowWidth={windowWidth}
       />
     );
   }
@@ -49,8 +48,6 @@ function App() {
           setMobileOpen={setMobileOpen}
           landing={landingPage}
           changeLandingPage={changeLandingPage}
-          windowWidth={windowWidth}
-          setWindowWidth={setWindowWidth}
         />
         <div id="map">
           <ParkingMap
@@ -81,7 +78,6 @@ function App() {
         setMobileOpen={setMobileOpen}
         landing={landingPage}
         changeLandingPage={changeLandingPage}
-        windowWidth={windowWidth}
       />
       <div id="map">
         <ParkingMap
