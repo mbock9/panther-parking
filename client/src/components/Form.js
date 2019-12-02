@@ -194,7 +194,14 @@ const Form = ({
             </IconButton>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
               <Toolbar>
-                <img src={logo} alt="logo" className={classes.logo} />
+                <img
+                  src={logo}
+                  alt="logo"
+                  onClick={() => {
+                    setUser('default');
+                  }}
+                  className={classes.logo}
+                />
               </Toolbar>
               <Grid container justify="space-around" spacing={1}>
                 <FormControl className={classes.formControl}>
