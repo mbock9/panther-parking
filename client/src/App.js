@@ -44,6 +44,8 @@ function App() {
           update={setUpdate}
           mobileOpen={mobileOpen}
           setMobileOpen={setMobileOpen}
+          landing={landingPage}
+          changeLandingPage={changeLandingPage}
         />
         <div id="map">
           <ParkingMap
@@ -72,6 +74,8 @@ function App() {
         update={setUpdate}
         mobileOpen={mobileOpen}
         setMobileOpen={setMobileOpen}
+        landing={landingPage}
+        changeLandingPage={changeLandingPage}
       />
       <div id="map">
         <ParkingMap

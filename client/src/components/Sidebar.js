@@ -8,7 +8,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Hidden from '@material-ui/core/Hidden';
-// import LocalParkingIcon from '@material-ui/icons/LocalParking';
+import InfoIcon from '@material-ui/icons/Info';
 import DriveEtaIcon from '@material-ui/icons/DriveEta';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
@@ -49,7 +49,15 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Sidebar = ({ userType, timeIn, timeOut, mobileOpen, setMobileOpen }) => {
+const Sidebar = ({
+  userType,
+  timeIn,
+  timeOut,
+  mobileOpen,
+  setMobileOpen,
+  landing,
+  changeLandingPage
+}) => {
   const classes = useStyles();
   const theme = useTheme();
   const [parkable, setParkable] = useState({});
@@ -82,6 +90,17 @@ const Sidebar = ({ userType, timeIn, timeOut, mobileOpen, setMobileOpen }) => {
         <div className={classes.toolbar} />
         <Divider />
         <List>
+          <ListItem
+            button
+            onClick={() => {
+              changeLandingPage(!landing);
+            }}
+          >
+            <ListItemIcon>
+              <InfoIcon />
+            </ListItemIcon>
+            <ListItemText primary={'More information'} />
+          </ListItem>
           {parkable.features.map(element => (
             <ListItem
               button

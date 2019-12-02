@@ -77,10 +77,11 @@ const Form = ({
   setTimeIn,
   timeOut,
   setTimeOut,
-  landing,
   update,
   mobileOpen,
-  setMobileOpen
+  setMobileOpen,
+  landing,
+  changeLandingPage
 }) => {
   // Instantiate style classes
   const classes = useStyles();
@@ -250,6 +251,8 @@ const Form = ({
           timeOut={timeOut}
           mobileOpen={mobileOpen}
           setMobileOpen={setMobileOpen}
+          landing={landing}
+          changeLandingPage={changeLandingPage}
         />
       </div>
     </div>
