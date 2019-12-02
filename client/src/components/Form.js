@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import 'date-fns';
 import PropTypes from 'prop-types';
 
@@ -90,8 +90,7 @@ const Form = ({
   setMobileOpen,
   landing,
   changeLandingPage,
-  windowWidth,
-  setWindowWidth
+  windowWidth
 }) => {
   // Instantiate style classes
   const classes = useStyles();
@@ -118,7 +117,6 @@ const Form = ({
       setTimeOut(time);
     }
   };
-  console.log(windowWidth);
   /*
    * Build the HTML
    */
@@ -206,7 +204,7 @@ const Form = ({
               </IconButton>
               <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 {windowWidth <= MOBILE_WINDOW_WIDTH ? (
-                  <div></div>
+                  <div />
                 ) : (
                   <Toolbar>
                     <img
@@ -287,14 +285,13 @@ const Form = ({
             landing={landing}
             changeLandingPage={changeLandingPage}
             windowWidth={windowWidth}
-            setWindowWidth={setWindowWidth}
             setUser={setUser}
           />
         </div>
       </div>
     );
   } else {
-    return <div></div>;
+    return <div />;
   }
 };
 

@@ -31,7 +31,6 @@ function App() {
         mobileOpen={mobileOpen}
         setMobileOpen={setMobileOpen}
         windowWidth={windowWidth}
-        setWindowWidth={setWindowWidth}
       />
     );
   }
@@ -83,7 +82,6 @@ function App() {
         landing={landingPage}
         changeLandingPage={changeLandingPage}
         windowWidth={windowWidth}
-        setWindowWidth={setWindowWidth}
       />
       <div id="map">
         <ParkingMap

@@ -64,7 +64,6 @@ const LandingPage = props => {
           landing={props.landing}
           changeLandingPage={props.changeLandingPage}
           windowWidth={props.windowWidth}
-          setWindowWidth={props.setWindowWidth}
         />
         <button
           style={{

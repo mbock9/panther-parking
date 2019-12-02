@@ -60,7 +60,6 @@ const Sidebar = ({
   landing,
   changeLandingPage,
   windowWidth,
-  setWindowWidth,
   setUser
 }) => {
   const classes = useStyles();
@@ -112,7 +111,7 @@ const Sidebar = ({
               <ListItemText primary={'Clear filters'} />
             </ListItem>
           ) : (
-            <div></div>
+            <div />
           )}
           {parkable.features.map(element => (
             <ListItem
