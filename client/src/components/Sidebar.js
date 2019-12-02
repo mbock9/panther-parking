@@ -90,17 +90,6 @@ const Sidebar = ({
         <div className={classes.toolbar} />
         <Divider />
         <List>
-          <ListItem
-            button
-            onClick={() => {
-              changeLandingPage(!landing);
-            }}
-          >
-            <ListItemIcon>
-              <InfoIcon />
-            </ListItemIcon>
-            <ListItemText primary={'More information'} />
-          </ListItem>
           {parkable.features.map(element => (
             <ListItem
               button
@@ -118,6 +107,17 @@ const Sidebar = ({
               />
             </ListItem>
           ))}
+          <ListItem
+            button
+            onClick={() => {
+              changeLandingPage(!landing);
+            }}
+          >
+            <ListItemIcon>
+              <InfoIcon />
+            </ListItemIcon>
+            <ListItemText primary={'More information'} />
+          </ListItem>
         </List>
       </div>
     );
