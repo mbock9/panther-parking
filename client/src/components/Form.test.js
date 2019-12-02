@@ -7,7 +7,7 @@ import { createMount, createShallow } from '@material-ui/core/test-utils';
 const dateProp = new Date();
 
 const testCase1 = {
-  userType: 'initial',
+  userType: 'default',
   timeIn: dateProp,
   timeOut: dateProp,
   mobileOpen: false
@@ -36,7 +36,7 @@ describe('Form tests', () => {
   test('Renders form with 1 select field (for user type)', () => {
     expect(wrapper.find(Select)).toHaveLength(1);
   });
-  test('Renders userType dropdown with proper initial value', () => {
+  test('Renders userType dropdown with proper default value', () => {
     expect(wrapper.find(Select).props().value).toEqual('');
   });
   test('Renders form with 2 KeyboardDateTimePicker elements (for timeIn and timeOut)', () => {
@@ -51,7 +51,7 @@ describe('Form tests', () => {
     expect(props.setTimeIn).not.toHaveBeenCalled();
     expect(props.setTimeOut).not.toHaveBeenCalled();
   });
-  test('Test that all Date/Time pickers have the has proper initial value', () => {
+  test('Test that all Date/Time pickers have the has proper default value', () => {
     expect(
       wrapper
         .find(KeyboardDateTimePicker)
