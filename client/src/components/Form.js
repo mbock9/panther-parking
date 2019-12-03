@@ -21,6 +21,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import MenuIcon from '@material-ui/icons/Menu';
+import InfoIcon from '@material-ui/icons/Info';
+import Button from '@material-ui/core/Button';
 import Sidebar from './Sidebar';
 
 // Define styles for material-ui components
@@ -31,8 +33,17 @@ const useStyles = makeStyles(theme => ({
     maxWidth: 300
   },
   logo: {
-    maxWidth: 50,
-    transform: 'rotate(-30deg)'
+    maxWidth: 40,
+    transform: 'rotate(-30deg)',
+    cursor: 'pointer',
+    [theme.breakpoints.down('sm')]: {
+      display: 'none'
+    }
+  },
+  logoToolbar: {
+    [theme.breakpoints.down('sm')]: {
+      display: 'none'
+    }
   },
   root: {
     display: 'flex'
@@ -43,6 +54,12 @@ const useStyles = makeStyles(theme => ({
   menuButton: {
     marginRight: theme.spacing(2),
     [theme.breakpoints.up('sm')]: {
+      display: 'none'
+    }
+  },
+  button: {
+    margin: theme.spacing(1),
+    [theme.breakpoints.down('sm')]: {
       display: 'none'
     }
   }
@@ -77,18 +94,20 @@ const Form = ({
   setTimeIn,
   timeOut,
   setTimeOut,
-  landing,
   update,
   mobileOpen,
   setMobileOpen,
   lotSelected,
-  setLotSelected
+  setLotSelected,
+  landing,
+  changeLandingPage
 }) => {
   // Instantiate style classes
   const classes = useStyles();
   // const [mobileOpen, setMobileOpen] = React.useState(false);
 
   // For mobile, hide sidebar on smalle screens
+  // This is used to conditionally hide the sidebar behind the hamburger menu
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -109,7 +128,6 @@ const Form = ({
       setTimeOut(time);
     }
   };
-
   /*
    * Build the HTML
    */
@@ -130,7 +148,7 @@ const Form = ({
                   <FormControl className={classes.formControl}>
                     <InputLabel>User type</InputLabel>
                     <Select
-                      value={userType === 'initial' ? '' : userType}
+                      value={userType === 'default' ? '' : userType}
                       onChange={event => {
                         setUser(event.target.value);
                         update(true);
@@ -179,7 +197,6 @@ const Form = ({
       </div>
     );
   }
-
   return (
     <div>
       <div className={classes.root}>
@@ -196,14 +213,21 @@ const Form = ({
               <MenuIcon />
             </IconButton>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
-              <Toolbar>
-                <img src={logo} alt="logo" className={classes.logo} />
+              <Toolbar className={classes.logoToolbar}>
+                <img
+                  src={logo}
+                  alt="logo"
+                  onClick={() => {
+                    setUser('default');
+                  }}
+                  className={classes.logo}
+                />
               </Toolbar>
               <Grid container justify="space-around" spacing={1}>
                 <FormControl className={classes.formControl}>
                   <InputLabel>User type</InputLabel>
                   <Select
-                    value={userType === 'initial' ? '' : userType}
+                    value={userType === 'default' ? '' : userType}
                     onChange={event => {
                       setUser(event.target.value);
                     }}
@@ -244,6 +268,17 @@ const Form = ({
                   }}
                 />
               </Grid>
+              <Button
+                color="inherit"
+                className={classes.button}
+                startIcon={<InfoIcon />}
+                size="large"
+                onClick={() => {
+                  changeLandingPage(!landing);
+                }}
+              >
+                Info
+              </Button>
             </MuiPickersUtilsProvider>
           </Toolbar>
         </AppBar>
@@ -255,6 +290,9 @@ const Form = ({
           setMobileOpen={setMobileOpen}
           lotSelected={lotSelected}
           setLotSelected={setLotSelected}
+          landing={landing}
+          changeLandingPage={changeLandingPage}
+          setUser={setUser}
         />
       </div>
     </div>
@@ -271,7 +309,9 @@ Form.propTypes = {
   mobileOpen: PropTypes.bool.isRequired,
   setMobileOpen: PropTypes.func.isRequired,
   lotSelected: PropTypes.string.isRequired,
-  setLotSelected: PropTypes.func.isRequired
+  setLotSelected: PropTypes.func.isRequired,
+  landing: PropTypes.bool.isRequired,
+  changeLandingPage: PropTypes.func.isRequired
 };
 
 export default Form;

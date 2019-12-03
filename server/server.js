@@ -21,7 +21,7 @@ const validUsers = [
   'Student-uPass',
   'Visitor',
   'Faculty',
-  'initial'
+  'default'
 ];
 
 // TODO: Add any middleware here

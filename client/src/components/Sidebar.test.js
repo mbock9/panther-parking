@@ -8,7 +8,8 @@ const testCase1 = {
   userType: 'initial',
   timeIn: dateProp,
   timeOut: dateProp,
-  mobileOpen: false
+  mobileOpen: false,
+  landing: false
 };
 
 const props = {
@@ -16,7 +17,10 @@ const props = {
   timeIn: testCase1.timeIn,
   timeOut: testCase1.timeOut,
   mobileOpen: testCase1.mobileOpen,
-  setMobileOpen: jest.fn()
+  setMobileOpen: jest.fn(),
+  landing: testCase1.landing,
+  changeLandingPage: jest.fn(),
+  setUser: jest.fn()
 };
 
 describe('Sidebar tests', () => {

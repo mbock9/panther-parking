@@ -8,10 +8,11 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Hidden from '@material-ui/core/Hidden';
-// import LocalParkingIcon from '@material-ui/icons/LocalParking';
+import InfoIcon from '@material-ui/icons/Info';
 import DriveEtaIcon from '@material-ui/icons/DriveEta';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
+import LayersClearIcon from '@material-ui/icons/LayersClear';
 import PropTypes from 'prop-types';
 
 const drawerWidth = 300;
@@ -24,6 +25,11 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.up('sm')]: {
       width: drawerWidth,
       flexShrink: 0
+    }
+  },
+  clearFilter: {
+    [theme.breakpoints.up('sm')]: {
+      display: 'none'
     }
   },
   appBar: {
@@ -56,7 +62,10 @@ const Sidebar = ({
   mobileOpen,
   setMobileOpen,
   lotSelected,
-  setLotSelected
+  setLotSelected,
+  landing,
+  changeLandingPage,
+  setUser
 }) => {
   const classes = useStyles();
   const theme = useTheme();
@@ -115,6 +124,21 @@ const Sidebar = ({
               />
             </ListItem>
           ))}
+          <Divider />
+          <ListItem
+            button
+            onClick={() => {
+              changeLandingPage(!landing);
+              if (mobileOpen) {
+                setMobileOpen(!mobileOpen);
+              }
+            }}
+          >
+            <ListItemIcon>
+              <InfoIcon />
+            </ListItemIcon>
+            <ListItemText primary={'More information'} />
+          </ListItem>
         </List>
       </div>
     );
@@ -172,7 +196,10 @@ Sidebar.propTypes = {
   mobileOpen: PropTypes.bool.isRequired,
   setMobileOpen: PropTypes.func.isRequired,
   lotSelected: PropTypes.string.isRequired,
-  setLotSelected: PropTypes.func.isRequired
+  setLotSelected: PropTypes.func.isRequired,
+  landing: PropTypes.bool.isRequired,
+  changeLandingPage: PropTypes.func.isRequired,
+  setUser: PropTypes.func.isRequired
 };
 
 export default Sidebar;
