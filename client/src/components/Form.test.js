@@ -1,6 +1,7 @@
 import React from 'react';
 import Select from '@material-ui/core/Select';
 import { KeyboardDateTimePicker } from '@material-ui/pickers';
+import Button from '@material-ui/core/Button';
 import Form from './Form';
 import { createMount, createShallow } from '@material-ui/core/test-utils';
 
@@ -36,6 +37,12 @@ describe('Form tests', () => {
     wrapper = shallow(<Form {...props} />);
   });
 
+  test('Renders logo', () => {
+    expect(wrapper.find('img')).toHaveLength(1);
+  });
+  test('Renders info icon', () => {
+    expect(wrapper.find(Button)).toHaveLength(1);
+  });
   test('Renders form with 1 select field (for user type)', () => {
     expect(wrapper.find(Select)).toHaveLength(1);
   });
