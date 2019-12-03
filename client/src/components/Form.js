@@ -221,7 +221,7 @@ const Form = ({
                   className={classes.logo}
                 />
               </Toolbar>
-              <Grid container justify="space-around" spacing={1}>
+              <Grid container justify="space-evenly" spacing={1}>
                 <FormControl className={classes.formControl}>
                   <InputLabel>User type</InputLabel>
                   <Select
@@ -240,7 +240,6 @@ const Form = ({
                   </Select>
                 </FormControl>
                 <KeyboardDateTimePicker
-                  disableToolbar
                   disablePast
                   variant="inline"
                   format="MM/dd/yyyy hh:mm a"
@@ -253,7 +252,6 @@ const Form = ({
                   }}
                 />
                 <KeyboardDateTimePicker
-                  disableToolbar
                   disablePast
                   variant="inline"
                   format="MM/dd/yyyy hh:mm a"
