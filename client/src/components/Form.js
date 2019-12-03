@@ -23,6 +23,8 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import MenuIcon from '@material-ui/icons/Menu';
 import InfoIcon from '@material-ui/icons/Info';
 import Button from '@material-ui/core/Button';
+import { useTheme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Sidebar from './Sidebar';
 
 // Define styles for material-ui components
@@ -38,6 +40,12 @@ const useStyles = makeStyles(theme => ({
     cursor: 'pointer',
     [theme.breakpoints.down('sm')]: {
       display: 'none'
+    }
+  },
+  formContainer: {
+    justify: 'space-evenly',
+    [theme.breakpoints.down('sm')]: {
+      display: 'flex-start'
     }
   },
   logoToolbar: {
@@ -125,6 +133,13 @@ const Form = ({
     if (Object.prototype.toString.call(time) === '[object Date]') {
       setTimeOut(time);
     }
+  };
+
+  // Set the break point properly
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.up('sm'));
+  const formGridProps = {
+    justify: isSmallScreen ? 'space-evenly' : 'flex-start'
   };
   /*
    * Build the HTML
@@ -221,7 +236,8 @@ const Form = ({
                   className={classes.logo}
                 />
               </Toolbar>
-              <Grid container justify="space-evenly" spacing={1}>
+              <Grid container {...formGridProps}>
+                {/* <Grid container justify="flex-start">  */}
                 <FormControl className={classes.formControl}>
                   <InputLabel>User type</InputLabel>
                   <Select
