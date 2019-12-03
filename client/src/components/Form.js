@@ -42,12 +42,6 @@ const useStyles = makeStyles(theme => ({
       display: 'none'
     }
   },
-  formContainer: {
-    justify: 'space-evenly',
-    [theme.breakpoints.down('sm')]: {
-      display: 'flex-start'
-    }
-  },
   logoToolbar: {
     [theme.breakpoints.down('sm')]: {
       display: 'none'
