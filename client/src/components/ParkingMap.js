@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import ReactMapGL, { Source, Layer } from 'react-map-gl';
+import ReactMapGL, { Source, Layer, Popup, Marker } from 'react-map-gl';
 import PropTypes from 'prop-types';
-
+import LocalParkingIcon from '@material-ui/icons/LocalParking';
 const ParkingMap = props => {
   // Represent the viewport for the map as a state. Pass the setting function
   // to Mapbox as the callback for changes to viewport
@@ -9,8 +9,8 @@ const ParkingMap = props => {
     viewport: {
       width: '100vw',
       height: '100vh',
-      latitude: 44.0086,
       longitude: -73.1783,
+      latitude: 44.0086,
       zoom: 15
     }
   });
@@ -44,7 +44,71 @@ const ParkingMap = props => {
       .catch(err => console.log(err));
   }, [props.userType, props.timeIn, props.timeOut]);
 
-  if (key !== '' && props.parkable) {
+  // Input is a list of 4 lists, each with a longitude and a latitude as elements
+  const findCenter = coordinates => {
+    let x1 = 180; // Placeholder for lowest longitude
+    let x2 = -180; // Placeholder for highest longitude
+    let y1 = 90; // Placeholder for lowest latitude
+    let y2 = -90; // Placeholder for highest latitude
+
+    coordinates.forEach(coordinate => {
+      const [xcord, ycord] = coordinate;
+      if (xcord < x1) {
+        x1 = xcord;
+      }
+      if (xcord > x2) {
+        x2 = xcord;
+      }
+      if (ycord < y1) {
+        y1 = ycord;
+      }
+      if (ycord > y2) {
+        y2 = ycord;
+      }
+    });
+    const centerX = x1 + (x2 - x1) / 2;
+    const centerY = y1 + (y2 - y1) / 2;
+    return [centerX, centerY];
+  };
+
+  const drawPopup = feature => {
+    if (feature._id === props.lotSelected) {
+      const center = findCenter(feature.geometry.coordinates[0]);
+      return (
+        <Popup
+          tipSize={5}
+          anchor="top"
+          longitude={center[0]}
+          latitude={center[1]}
+          closeOnClick={false}
+          onClose={() => props.setLotSelected('false')}
+        >
+          {feature.properties.name}
+        </Popup>
+      );
+    }
+  };
+
+  const drawMarker = feature => {
+    const center = findCenter(feature.geometry.coordinates[0]);
+    return (
+      <Marker
+        key={`marker-${feature.properties.name}`}
+        longitude={center[0]}
+        latitude={center[1]}
+      >
+        <LocalParkingIcon
+          onClick={() => {
+            props.setLotSelected(
+              props.lotSelected === feature._id ? 'false' : feature._id
+            );
+          }}
+        />
+      </Marker>
+    );
+  };
+
+  if (key !== '' && props.parkable.features) {
     return (
       <ReactMapGL
         {...mapState.viewport}
@@ -78,6 +142,8 @@ const ParkingMap = props => {
             }}
           />
         </Source>
+        {props.parkable.features.map(drawMarker)}
+        {props.parkable.features.map(drawPopup)}
       </ReactMapGL>
     );
   } else {
@@ -92,7 +158,9 @@ ParkingMap.propTypes = {
   parkable: PropTypes.object.isRequired,
   nonparkable: PropTypes.object.isRequired,
   setParkable: PropTypes.func.isRequired,
-  setNonparkable: PropTypes.func.isRequired
+  setNonparkable: PropTypes.func.isRequired,
+  lotSelected: PropTypes.string.isRequired,
+  setLotSelected: PropTypes.func.isRequired
 };
 
 export default ParkingMap;

@@ -12,8 +12,8 @@ import InfoIcon from '@material-ui/icons/Info';
 import DriveEtaIcon from '@material-ui/icons/DriveEta';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
-import LayersClearIcon from '@material-ui/icons/LayersClear';
 import PropTypes from 'prop-types';
+import LayersClearIcon from '@material-ui/icons/LayersClear';
 
 const drawerWidth = 300;
 
@@ -61,6 +61,8 @@ const Sidebar = ({
   timeOut,
   mobileOpen,
   setMobileOpen,
+  lotSelected,
+  setLotSelected,
   landing,
   changeLandingPage,
   setUser
@@ -76,9 +78,7 @@ const Sidebar = ({
   useEffect(() => {
     const timeInConverted = timeIn.toString().replace(/\s+/g, '-');
     const timeOutConverted = timeOut.toString().replace(/\s+/g, '-');
-    fetch(
-      `/api/lots/basicInfo/${userType}/${timeInConverted}/${timeOutConverted}`
-    )
+    fetch(`/api/map/filter/${userType}/${timeInConverted}/${timeOutConverted}`)
       .then(response => {
         if (!response.ok) {
           throw new Error(response.statusText);
@@ -86,36 +86,46 @@ const Sidebar = ({
         return response.json();
       })
       .then(data => {
-        setParkable(data);
+        setParkable(data.parkable);
       })
       .catch(err => console.log(err));
   }, [userType, timeIn, timeOut]);
 
   if (parkable.features && mobileOpen !== undefined) {
+    const selectedLots = [];
+    parkable.features.forEach(lot => {
+      if (lotSelected === 'false') {
+        selectedLots.push(lot);
+      } else if (lotSelected === lot._id) {
+        selectedLots.push(lot);
+      }
+    });
     const drawer = (
       <div>
         <div className={classes.toolbar} />
         <Divider />
+        <ListItem
+          button
+          onClick={() => {
+            setUser('default');
+          }}
+          className={classes.clearFilter}
+        >
+          <ListItemIcon>
+            <LayersClearIcon />
+          </ListItemIcon>
+          <ListItemText primary={'Clear filters'} />
+        </ListItem>
+        <Divider className={classes.clearFilter} />
         <List>
-          <ListItem
-            button
-            onClick={() => {
-              setUser('default');
-            }}
-            className={classes.clearFilter}
-          >
-            <ListItemIcon>
-              <LayersClearIcon />
-            </ListItemIcon>
-            <ListItemText primary={'Clear filters'} />
-          </ListItem>
-          <Divider className={classes.clearFilter} />
-          {parkable.features.map(element => (
+          {selectedLots.map(element => (
             <ListItem
               button
               key={element.properties._id}
               onClick={() => {
-                console.log(element.properties.name);
+                setLotSelected(
+                  lotSelected === element._id ? 'false' : element._id
+                );
               }}
             >
               <ListItemIcon>
@@ -198,6 +208,8 @@ Sidebar.propTypes = {
   timeOut: PropTypes.instanceOf(Date).isRequired,
   mobileOpen: PropTypes.bool.isRequired,
   setMobileOpen: PropTypes.func.isRequired,
+  lotSelected: PropTypes.string.isRequired,
+  setLotSelected: PropTypes.func.isRequired,
   landing: PropTypes.bool.isRequired,
   changeLandingPage: PropTypes.func.isRequired,
   setUser: PropTypes.func.isRequired
