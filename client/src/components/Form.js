@@ -133,9 +133,9 @@ const Form = ({
 
   // Set the break point properly
   const theme = useTheme();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.up('sm'));
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
   const formGridProps = {
-    justify: isSmallScreen ? 'space-evenly' : 'flex-start'
+    justify: isSmallScreen ? 'flex-start' : 'space-evenly'
   };
   /*
    * Build the HTML

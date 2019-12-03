@@ -11,7 +11,8 @@ const testCase1 = {
   timeIn: dateProp,
   timeOut: dateProp,
   mobileOpen: false,
-  landing: false
+  landing: false,
+  lotSelected: 'false'
 };
 
 const props = {
@@ -23,6 +24,8 @@ const props = {
   setTimeOut: jest.fn(),
   mobileOpen: testCase1.mobileOpen,
   setMobileOpen: jest.fn(),
+  lotSelected: testCase1.lotSelected,
+  setLotSelected: jest.fn(),
   landing: testCase1.landing,
   changeLandingPage: jest.fn()
 };
