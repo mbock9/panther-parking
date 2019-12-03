@@ -105,6 +105,8 @@ const Form = ({
   update,
   mobileOpen,
   setMobileOpen,
+  lotSelected,
+  setLotSelected,
   landing,
   changeLandingPage
 }) => {
@@ -300,6 +302,8 @@ const Form = ({
           timeOut={timeOut}
           mobileOpen={mobileOpen}
           setMobileOpen={setMobileOpen}
+          lotSelected={lotSelected}
+          setLotSelected={setLotSelected}
           landing={landing}
           changeLandingPage={changeLandingPage}
           setUser={setUser}
@@ -318,6 +322,8 @@ Form.propTypes = {
   setTimeOut: PropTypes.func.isRequired,
   mobileOpen: PropTypes.bool.isRequired,
   setMobileOpen: PropTypes.func.isRequired,
+  lotSelected: PropTypes.string.isRequired,
+  setLotSelected: PropTypes.func.isRequired,
   landing: PropTypes.bool.isRequired,
   changeLandingPage: PropTypes.func.isRequired
 };

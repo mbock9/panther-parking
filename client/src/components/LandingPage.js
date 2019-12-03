@@ -63,6 +63,8 @@ const LandingPage = props => {
           setMobileOpen={props.setMobileOpen}
           landing={props.landing}
           changeLandingPage={props.changeLandingPage}
+          lotSelected={props.lotSelected}
+          setLotSelected={props.setLotSelected}
         />
         <button
           style={{

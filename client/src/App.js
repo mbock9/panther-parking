@@ -12,7 +12,7 @@ function App() {
   const [parkable, setParkable] = useState({});
   const [nonparkable, setNonparkable] = useState({});
   const [updated, setUpdate] = useState(false);
-
+  const [lotSelected, setLotSelected] = useState('false');
   // State to enable sidebar reactivity on mobile.
   // Handles interacting with sidebar on mobile devices.
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -30,6 +30,8 @@ function App() {
         update={setUpdate}
         mobileOpen={mobileOpen}
         setMobileOpen={setMobileOpen}
+        lotSelected={lotSelected}
+        setLotSelected={setLotSelected}
       />
     );
   }
@@ -48,6 +50,8 @@ function App() {
           setMobileOpen={setMobileOpen}
           landing={landingPage}
           changeLandingPage={changeLandingPage}
+          lotSelected={lotSelected}
+          setLotSelected={setLotSelected}
         />
         <div id="map">
           <ParkingMap
@@ -58,6 +62,8 @@ function App() {
             userType={userType}
             timeIn={timeIn}
             timeOut={timeOut}
+            lotSelected={lotSelected}
+            setLotSelected={setLotSelected}
           />
         </div>
       </div>
@@ -78,6 +84,8 @@ function App() {
         setMobileOpen={setMobileOpen}
         landing={landingPage}
         changeLandingPage={changeLandingPage}
+        lotSelected={lotSelected}
+        setLotSelected={setLotSelected}
       />
       <div id="map">
         <ParkingMap
@@ -88,6 +96,8 @@ function App() {
           userType={userType}
           timeIn={timeIn}
           timeOut={timeOut}
+          lotSelected={lotSelected}
+          setLotSelected={setLotSelected}
         />
       </div>
     </div>
