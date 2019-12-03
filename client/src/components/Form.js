@@ -24,6 +24,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import InfoIcon from '@material-ui/icons/Info';
 import Button from '@material-ui/core/Button';
 import Sidebar from './Sidebar';
+import { Typography } from '@material-ui/core';
 
 // Define styles for material-ui components
 const useStyles = makeStyles(theme => ({
@@ -58,7 +59,10 @@ const useStyles = makeStyles(theme => ({
     }
   },
   button: {
-    margin: theme.spacing(1)
+    margin: theme.spacing(1),
+    [theme.breakpoints.down('sm')]: {
+      display: 'none'
+    }
   }
 }));
 
