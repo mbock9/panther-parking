@@ -233,7 +233,6 @@ const Form = ({
                 />
               </Toolbar>
               <Grid container {...formGridProps}>
-                {/* <Grid container justify="flex-start">  */}
                 <FormControl className={classes.formControl}>
                   <InputLabel>User type</InputLabel>
                   <Select
