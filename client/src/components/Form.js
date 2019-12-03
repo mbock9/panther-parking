@@ -40,6 +40,11 @@ const useStyles = makeStyles(theme => ({
       display: 'none'
     }
   },
+  logoToolbar: {
+    [theme.breakpoints.down('sm')]: {
+      display: 'none'
+    }
+  },
   root: {
     display: 'flex'
   },
@@ -53,7 +58,10 @@ const useStyles = makeStyles(theme => ({
     }
   },
   button: {
-    margin: theme.spacing(1)
+    margin: theme.spacing(1),
+    [theme.breakpoints.down('sm')]: {
+      display: 'none'
+    }
   }
 }));
 
@@ -203,7 +211,7 @@ const Form = ({
               <MenuIcon />
             </IconButton>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
-              <Toolbar>
+              <Toolbar className={classes.logoToolbar}>
                 <img
                   src={logo}
                   alt="logo"
