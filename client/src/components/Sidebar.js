@@ -13,6 +13,7 @@ import DriveEtaIcon from '@material-ui/icons/DriveEta';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import PropTypes from 'prop-types';
+import LayersClearIcon from '@material-ui/icons/LayersClear';
 
 const drawerWidth = 300;
 
@@ -63,7 +64,8 @@ const Sidebar = ({
   lotSelected,
   setLotSelected,
   landing,
-  changeLandingPage
+  changeLandingPage,
+  setUser
 }) => {
   const classes = useStyles();
   const theme = useTheme();
@@ -102,6 +104,19 @@ const Sidebar = ({
       <div>
         <div className={classes.toolbar} />
         <Divider />
+        <ListItem
+          button
+          onClick={() => {
+            setUser('default');
+          }}
+          className={classes.clearFilter}
+        >
+          <ListItemIcon>
+            <LayersClearIcon />
+          </ListItemIcon>
+          <ListItemText primary={'Clear filters'} />
+        </ListItem>
+        <Divider className={classes.clearFilter} />
         <List>
           {selectedLots.map(element => (
             <ListItem
@@ -196,7 +211,8 @@ Sidebar.propTypes = {
   lotSelected: PropTypes.string.isRequired,
   setLotSelected: PropTypes.func.isRequired,
   landing: PropTypes.bool.isRequired,
-  changeLandingPage: PropTypes.func.isRequired
+  changeLandingPage: PropTypes.func.isRequired,
+  setUser: PropTypes.func.isRequired
 };
 
 export default Sidebar;

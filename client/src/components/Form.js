@@ -292,6 +292,7 @@ const Form = ({
           setLotSelected={setLotSelected}
           landing={landing}
           changeLandingPage={changeLandingPage}
+          setUser={setUser}
         />
       </div>
     </div>
