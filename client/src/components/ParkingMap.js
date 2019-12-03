@@ -52,17 +52,18 @@ const ParkingMap = props => {
     let y2 = -90; // Placeholder for highest latitude
 
     coordinates.forEach(coordinate => {
-      if (coordinate[0] < x1) {
-        x1 = coordinate[0];
+      const [xcord, ycord] = coordinate;
+      if (xcord < x1) {
+        x1 = xcord;
       }
-      if (coordinate[0] > x2) {
-        x2 = coordinate[0];
+      if (xcord > x2) {
+        x2 = xcord;
       }
-      if (coordinate[1] < y1) {
-        y1 = coordinate[1];
+      if (ycord < y1) {
+        y1 = ycord;
       }
-      if (coordinate[1] > y2) {
-        y2 = coordinate[1];
+      if (ycord > y2) {
+        y2 = ycord;
       }
     });
     const centerX = x1 + (x2 - x1) / 2;
