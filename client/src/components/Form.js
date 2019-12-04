@@ -182,11 +182,7 @@ const Form = ({
                   <KeyboardDateTimePicker
                     className={classes.picker}
                     disablePast
-                    variant={
-                      useMediaQuery(theme.breakpoints.down('sm'))
-                        ? 'dialog'
-                        : 'inline'
-                    }
+                    variant="dialog"
                     format="MM/dd/yyyy hh:mm a"
                     margin="normal"
                     label="TimeIn"
@@ -199,11 +195,7 @@ const Form = ({
                   <KeyboardDateTimePicker
                     className={classes.picker}
                     disablePast
-                    variant={
-                      useMediaQuery(theme.breakpoints.down('sm'))
-                        ? 'dialog'
-                        : 'inline'
-                    }
+                    variant="dialog"
                     format="MM/dd/yyyy hh:mm a"
                     margin="normal"
                     label="Time Out"
