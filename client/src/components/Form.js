@@ -182,7 +182,11 @@ const Form = ({
                   <KeyboardDateTimePicker
                     className={classes.picker}
                     disablePast
-                    variant="inline"
+                    variant={
+                      useMediaQuery(theme.breakpoints.down('sm'))
+                        ? 'dialog'
+                        : 'inline'
+                    }
                     format="MM/dd/yyyy hh:mm a"
                     margin="normal"
                     label="TimeIn"
@@ -195,7 +199,11 @@ const Form = ({
                   <KeyboardDateTimePicker
                     className={classes.picker}
                     disablePast
-                    variant="inline"
+                    variant={
+                      useMediaQuery(theme.breakpoints.down('sm'))
+                        ? 'dialog'
+                        : 'inline'
+                    }
                     format="MM/dd/yyyy hh:mm a"
                     margin="normal"
                     label="Time Out"
@@ -264,7 +272,11 @@ const Form = ({
                 <KeyboardDateTimePicker
                   className={classes.picker}
                   disablePast
-                  variant="inline"
+                  variant={
+                    useMediaQuery(theme.breakpoints.down('sm'))
+                      ? 'dialog'
+                      : 'inline'
+                  }
                   format="MM/dd/yyyy hh:mm a"
                   margin="normal"
                   label="Time In"
@@ -277,7 +289,11 @@ const Form = ({
                 <KeyboardDateTimePicker
                   className={classes.picker}
                   disablePast
-                  variant="inline"
+                  variant={
+                    useMediaQuery(theme.breakpoints.down('sm'))
+                      ? 'dialog'
+                      : 'inline'
+                  }
                   format="MM/dd/yyyy hh:mm a"
                   margin="normal"
                   label="Time Out"
