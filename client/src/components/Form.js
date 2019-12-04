@@ -181,7 +181,6 @@ const Form = ({
                   </FormControl>
                   <KeyboardDateTimePicker
                     className={classes.picker}
-                    disableToolbar
                     disablePast
                     variant="inline"
                     format="MM/dd/yyyy hh:mm a"
@@ -195,7 +194,6 @@ const Form = ({
                   />
                   <KeyboardDateTimePicker
                     className={classes.picker}
-                    disableToolbar
                     disablePast
                     variant="inline"
                     format="MM/dd/yyyy hh:mm a"
