@@ -30,9 +30,8 @@ import Sidebar from './Sidebar';
 // Define styles for material-ui components
 const useStyles = makeStyles(theme => ({
   formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-    maxWidth: 300
+    width: 250,
+    padding: '0px 10px 0px 0px'
   },
   logo: {
     maxWidth: 40,
@@ -64,6 +63,10 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down('sm')]: {
       display: 'none'
     }
+  },
+  picker: {
+    width: 250,
+    padding: '0px 10px 0px 0px'
   }
 }));
 
@@ -154,7 +157,11 @@ const Form = ({
               />
               <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <Grid container justify="space-around" spacing={1}>
-                  <FormControl className={classes.formControl}>
+                  <FormControl
+                    className={classes.formControl}
+                    margin="normal"
+                    fullWidth
+                  >
                     <InputLabel>User type</InputLabel>
                     <Select
                       value={userType === 'default' ? '' : userType}
@@ -173,6 +180,7 @@ const Form = ({
                     </Select>
                   </FormControl>
                   <KeyboardDateTimePicker
+                    className={classes.picker}
                     disableToolbar
                     disablePast
                     variant="inline"
@@ -186,6 +194,7 @@ const Form = ({
                     }}
                   />
                   <KeyboardDateTimePicker
+                    className={classes.picker}
                     disableToolbar
                     disablePast
                     variant="inline"
@@ -233,7 +242,11 @@ const Form = ({
                 />
               </Toolbar>
               <Grid container {...formGridProps}>
-                <FormControl className={classes.formControl}>
+                <FormControl
+                  className={classes.formControl}
+                  margin="normal"
+                  fullWidth
+                >
                   <InputLabel>User type</InputLabel>
                   <Select
                     value={userType === 'default' ? '' : userType}
@@ -251,6 +264,7 @@ const Form = ({
                   </Select>
                 </FormControl>
                 <KeyboardDateTimePicker
+                  className={classes.picker}
                   disablePast
                   variant="inline"
                   format="MM/dd/yyyy hh:mm a"
@@ -263,6 +277,7 @@ const Form = ({
                   }}
                 />
                 <KeyboardDateTimePicker
+                  className={classes.picker}
                   disablePast
                   variant="inline"
                   format="MM/dd/yyyy hh:mm a"
