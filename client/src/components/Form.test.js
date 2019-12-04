@@ -1,6 +1,7 @@
 import React from 'react';
 import Select from '@material-ui/core/Select';
 import { KeyboardDateTimePicker } from '@material-ui/pickers';
+import Button from '@material-ui/core/Button';
 import Form from './Form';
 import { createMount, createShallow } from '@material-ui/core/test-utils';
 
@@ -11,7 +12,8 @@ const testCase1 = {
   timeIn: dateProp,
   timeOut: dateProp,
   mobileOpen: false,
-  landing: false
+  landing: false,
+  lotSelected: 'false'
 };
 
 const props = {
@@ -23,6 +25,8 @@ const props = {
   setTimeOut: jest.fn(),
   mobileOpen: testCase1.mobileOpen,
   setMobileOpen: jest.fn(),
+  lotSelected: testCase1.lotSelected,
+  setLotSelected: jest.fn(),
   landing: testCase1.landing,
   changeLandingPage: jest.fn()
 };
@@ -36,6 +40,12 @@ describe('Form tests', () => {
     wrapper = shallow(<Form {...props} />);
   });
 
+  test('Renders logo', () => {
+    expect(wrapper.find('img')).toHaveLength(1);
+  });
+  test('Renders info icon', () => {
+    expect(wrapper.find(Button)).toHaveLength(1);
+  });
   test('Renders form with 1 select field (for user type)', () => {
     expect(wrapper.find(Select)).toHaveLength(1);
   });

@@ -23,6 +23,8 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import MenuIcon from '@material-ui/icons/Menu';
 import InfoIcon from '@material-ui/icons/Info';
 import Button from '@material-ui/core/Button';
+import { useTheme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Sidebar from './Sidebar';
 
 // Define styles for material-ui components
@@ -128,6 +130,13 @@ const Form = ({
       setTimeOut(time);
     }
   };
+
+  // Set the break point properly
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+  const formGridProps = {
+    justify: isSmallScreen ? 'flex-start' : 'space-evenly'
+  };
   /*
    * Build the HTML
    */
@@ -223,7 +232,7 @@ const Form = ({
                   className={classes.logo}
                 />
               </Toolbar>
-              <Grid container justify="space-around" spacing={1}>
+              <Grid container {...formGridProps}>
                 <FormControl className={classes.formControl}>
                   <InputLabel>User type</InputLabel>
                   <Select
@@ -242,7 +251,6 @@ const Form = ({
                   </Select>
                 </FormControl>
                 <KeyboardDateTimePicker
-                  disableToolbar
                   disablePast
                   variant="inline"
                   format="MM/dd/yyyy hh:mm a"
@@ -255,7 +263,6 @@ const Form = ({
                   }}
                 />
                 <KeyboardDateTimePicker
-                  disableToolbar
                   disablePast
                   variant="inline"
                   format="MM/dd/yyyy hh:mm a"
