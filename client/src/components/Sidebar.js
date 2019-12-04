@@ -14,6 +14,11 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import PropTypes from 'prop-types';
 import LayersClearIcon from '@material-ui/icons/LayersClear';
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import Typography from '@material-ui/core/Typography';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const drawerWidth = 300;
 
@@ -70,6 +75,7 @@ const Sidebar = ({
   const classes = useStyles();
   const theme = useTheme();
   const [parkable, setParkable] = useState({});
+  const [info, showInfo] = useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -141,11 +147,8 @@ const Sidebar = ({
           <ListItem
             button
             onClick={() => {
-              changeLandingPage(!landing);
-              if (mobileOpen) {
-                setMobileOpen(!mobileOpen);
-                console.log('found it');
-              }
+              showInfo(true);
+              console.log('come out info drawer');
             }}
           >
             <ListItemIcon>

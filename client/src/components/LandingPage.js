@@ -119,6 +119,7 @@ const LandingPage = props => {
           src={carMiddle}
           alt="car"
           style={{
+            justifyContent: 'center',
             position: 'fixed',
             bottom: '0px',
             left: '45%',
