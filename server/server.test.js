@@ -143,10 +143,27 @@ describe('Argument validation tests', () => {
       .get(`/api/map/filter/${userType}/${secondDate}/${firstDate}`)
       .expect(400);
   });
+
   test('userType must be one of the accepted states', () => {
     const userType = 'not-a-type';
     return request(app)
       .get(`/api/map/filter/${userType}/${firstDate}/${secondDate}`)
+      .expect(400);
+  });
+
+  test('timeIn must be a date object', () => {
+    const userType = 'Visitor';
+    const fakeDate = 'not-a-date';
+    return request(app)
+      .get(`/api/map/filter/${userType}/${fakeDate}/${secondDate}`)
+      .expect(400);
+  });
+
+  test('timeOut must be a date object', () => {
+    const userType = 'Visitor';
+    const fakeDate = 'not-a-date';
+    return request(app)
+      .get(`/api/map/filter/${userType}/${firstDate}/${fakeDate}`)
       .expect(400);
   });
 

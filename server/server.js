@@ -45,7 +45,7 @@ app.get(
       response.sendStatus(400);
       return;
     }
-    if (Number.isNaN(timeIn) || Number.isNaN(timeIn)) {
+    if (Number.isNaN(Date.parse(timeIn)) || Number.isNaN(Date.parse(timeOut))) {
       response.sendStatus(400);
       return;
     }
