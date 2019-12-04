@@ -127,20 +127,29 @@ describe('Filtering endpoint', () => {
   afterEach(() => {
     return db.collection('parkingLots').deleteMany({});
   });
+});
+test('GET /api/map/filter/:userType/:timeIn/:timeOut should return json object.', () => {
+  const userType = 'Student-sPass';
+  return request(app)
+    .get(`/api/map/filter/${userType}/${firstDate}/${secondDate}`)
+    .expect(200)
+    .expect('Content-Type', /json/);
+});
 
-  test('GET /api/map/filter/:userType/:timeIn/:timeOut timeOut must be after timeIn', () => {
+describe('Argument validation tests', () => {
+  test('timeOut must be after timeIn', () => {
     const userType = 'Visitor';
     return request(app)
       .get(`/api/map/filter/${userType}/${secondDate}/${firstDate}`)
       .expect(400);
   });
-  test('GET /api/map/filter/:userType/:timeIn/:timeOut should return json object.', () => {
-    const userType = 'Student-sPass';
+  test('userType must be one of the accepted states', () => {
+    const userType = 'not-a-type';
     return request(app)
       .get(`/api/map/filter/${userType}/${firstDate}/${secondDate}`)
-      .expect(200)
-      .expect('Content-Type', /json/);
+      .expect(400);
   });
+
   // test('GET /api/map/filter should return all lots', () => {
   //   const userType = 'initial';
   //   return request(app)
