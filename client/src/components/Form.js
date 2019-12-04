@@ -30,9 +30,8 @@ import Sidebar from './Sidebar';
 // Define styles for material-ui components
 const useStyles = makeStyles(theme => ({
   formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-    maxWidth: 300
+    width: 250,
+    padding: '0px 10px 0px 0px'
   },
   logo: {
     maxWidth: 40,
@@ -64,6 +63,10 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down('sm')]: {
       display: 'none'
     }
+  },
+  picker: {
+    width: 250,
+    padding: '0px 10px 0px 0px'
   }
 }));
 
@@ -144,6 +147,7 @@ const Form = ({
     return (
       <div>
         <div className={classes.root}>
+          <CssBaseline />
           <AppBar position="static" color="inherit">
             <Toolbar variant="dense">
               <IconButton
@@ -154,7 +158,11 @@ const Form = ({
               />
               <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <Grid container justify="space-around" spacing={1}>
-                  <FormControl className={classes.formControl}>
+                  <FormControl
+                    className={classes.formControl}
+                    margin="normal"
+                    fullWidth
+                  >
                     <InputLabel>User type</InputLabel>
                     <Select
                       value={userType === 'default' ? '' : userType}
@@ -173,12 +181,16 @@ const Form = ({
                     </Select>
                   </FormControl>
                   <KeyboardDateTimePicker
-                    disableToolbar
+                    className={classes.picker}
                     disablePast
-                    variant="inline"
+                    variant={
+                      useMediaQuery(theme.breakpoints.down('sm'))
+                        ? 'dialog'
+                        : 'inline'
+                    }
                     format="MM/dd/yyyy hh:mm a"
                     margin="normal"
-                    label="TimeIn"
+                    label="Time In"
                     value={timeIn}
                     onChange={handleTimeInChange}
                     KeyboardButtonProps={{
@@ -186,9 +198,13 @@ const Form = ({
                     }}
                   />
                   <KeyboardDateTimePicker
-                    disableToolbar
+                    className={classes.picker}
                     disablePast
-                    variant="inline"
+                    variant={
+                      useMediaQuery(theme.breakpoints.down('sm'))
+                        ? 'dialog'
+                        : 'inline'
+                    }
                     format="MM/dd/yyyy hh:mm a"
                     margin="normal"
                     label="Time Out"
@@ -233,7 +249,11 @@ const Form = ({
                 />
               </Toolbar>
               <Grid container {...formGridProps}>
-                <FormControl className={classes.formControl}>
+                <FormControl
+                  className={classes.formControl}
+                  margin="normal"
+                  fullWidth
+                >
                   <InputLabel>User type</InputLabel>
                   <Select
                     value={userType === 'default' ? '' : userType}
@@ -251,8 +271,13 @@ const Form = ({
                   </Select>
                 </FormControl>
                 <KeyboardDateTimePicker
+                  className={classes.picker}
                   disablePast
-                  variant="inline"
+                  variant={
+                    useMediaQuery(theme.breakpoints.down('sm'))
+                      ? 'dialog'
+                      : 'inline'
+                  }
                   format="MM/dd/yyyy hh:mm a"
                   margin="normal"
                   label="Time In"
@@ -263,8 +288,13 @@ const Form = ({
                   }}
                 />
                 <KeyboardDateTimePicker
+                  className={classes.picker}
                   disablePast
-                  variant="inline"
+                  variant={
+                    useMediaQuery(theme.breakpoints.down('sm'))
+                      ? 'dialog'
+                      : 'inline'
+                  }
                   format="MM/dd/yyyy hh:mm a"
                   margin="normal"
                   label="Time Out"

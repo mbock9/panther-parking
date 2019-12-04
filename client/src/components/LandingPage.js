@@ -6,11 +6,30 @@ import carMiddle from '../static/carMiddle.png';
 import carLeft from '../static/carLeft.png';
 import carRight from '../static/carRight.png';
 import styled from 'styled-components';
+import { makeStyles } from '@material-ui/core/styles';
+
+// Define styles for material-ui components
+const useStyles = makeStyles(() => ({
+  landingPage: {
+    padding: 0,
+    background: '#5e1a54',
+    overflowX: 'hidden',
+    width: '100vw',
+    height: '100vh'
+  },
+  wrapper: {
+    marginTop: '-1%'
+  },
+  heading: {
+    color: 'white',
+    marginTop: '19%',
+    marginLeft: '35%',
+    position: 'absolute'
+  }
+}));
 
 const LandingPage = props => {
-  const Wrapper = styled.div`
-    margin-top: -1%;
-  `;
+  const classes = useStyles();
 
   const Landingpage = styled.section`
     padding: 0;
@@ -19,6 +38,7 @@ const LandingPage = props => {
     width: 100vw;
     height: 100vh;
   `;
+
   const ImageBottom = styled.div`
     display: flex;
   `;
@@ -29,16 +49,7 @@ const LandingPage = props => {
         alt="car"
         style={{ position: 'fixed', top: '0px', width: '10%' }}
       />
-      <h1
-        style={{
-          color: 'white',
-          marginTop: '19%',
-          marginLeft: '35%',
-          position: 'absolute'
-        }}
-      >
-        Making parking at Middlebury easier!
-      </h1>
+      <h1 className={classes.heading}>Making parking at Middlebury easier!</h1>
       <img
         src={logoLanding}
         alt="logo"
@@ -49,8 +60,7 @@ const LandingPage = props => {
           marginTop: '2%'
         }}
       />
-
-      <Wrapper>
+      <div className={classes.wrapper}>
         <Form
           userType={props.userType}
           setUser={props.setUser}
@@ -82,7 +92,7 @@ const LandingPage = props => {
         >
           Search
         </button>
-      </Wrapper>
+      </div>
       <ImageBottom>
         <img
           src={carLeft}
