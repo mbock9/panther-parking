@@ -9,7 +9,7 @@ import styled from 'styled-components';
 import { makeStyles } from '@material-ui/core/styles';
 
 // Define styles for material-ui components
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
   landingPage: {
     padding: 0,
     background: '#5e1a54',
@@ -30,10 +30,6 @@ const useStyles = makeStyles(theme => ({
 
 const LandingPage = props => {
   const classes = useStyles();
-
-  const Wrapper = styled.div`
-    margin-top: -1%;
-  `;
 
   const Landingpage = styled.section`
     padding: 0;
