@@ -31,19 +31,11 @@ const useStyles = makeStyles(() => ({
 const LandingPage = props => {
   const classes = useStyles();
 
-  const Landingpage = styled.section`
-    padding: 0;
-    background: #5e1a54;
-    overflow-x: hidden;
-    width: 100vw;
-    height: 100vh;
-  `;
-
   const ImageBottom = styled.div`
     display: flex;
   `;
   return (
-    <Landingpage>
+    <div className={classes.landingPage}>
       <img
         src={carTop}
         alt="car"
@@ -120,7 +112,7 @@ const LandingPage = props => {
           }}
         />
       </ImageBottom>
-    </Landingpage>
+    </div>
   );
 };
 
