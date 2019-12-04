@@ -144,6 +144,7 @@ const Sidebar = ({
               changeLandingPage(!landing);
               if (mobileOpen) {
                 setMobileOpen(!mobileOpen);
+                console.log('found it');
               }
             }}
           >

@@ -6,6 +6,7 @@ import carMiddle from '../static/carMiddle.png';
 import carLeft from '../static/carLeft.png';
 import carRight from '../static/carRight.png';
 import styled from 'styled-components';
+import { inherits } from 'util';
 
 const LandingPage = props => {
   const Wrapper = styled.div`
@@ -29,16 +30,26 @@ const LandingPage = props => {
         alt="car"
         style={{ position: 'fixed', top: '0px', width: '10%' }}
       />
-      <h1
+      <div
         style={{
-          color: 'white',
-          marginTop: '19%',
-          marginLeft: '35%',
-          position: 'absolute'
+          textAlign: 'center',
+          flexDirection: 'row'
         }}
       >
-        Making parking at Middlebury easier!
-      </h1>
+        <h1
+          style={{
+            color: 'white',
+            marginTop: '19%',
+            marginLeft: '35%',
+            textAlign: 'justify',
+            position: 'absolute',
+            flex: '1',
+            flexDirection: 'column'
+          }}
+        >
+          Making parking at Middlebury easier!
+        </h1>
+      </div>
       <img
         src={logoLanding}
         alt="logo"
@@ -71,8 +82,12 @@ const LandingPage = props => {
             borderRadius: '5px',
             background: 'orange',
             color: 'white',
-            height: '30px',
-            width: '150px',
+            height: '40px',
+            //width: '150px',
+            justifyContent: 'center',
+            width: 'inherit',
+            overflow: 'hidden',
+
             marginLeft: '45%',
             marginTop: '2%'
           }}
