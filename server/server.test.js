@@ -2,6 +2,7 @@ const request = require('supertest');
 const { app } = require('./server');
 const MongodbMemoryServer = require('mongodb-memory-server').default;
 const { MongoClient } = require('mongodb');
+const assert = require('assert');
 
 let mongoServer;
 let db;
@@ -71,7 +72,7 @@ let firstDate;
 let secondDate;
 beforeAll(() => {
   firstDate = 'Fri-Nov-29-2019-21:57:51-GMT-0500-(Eastern-Standard-Time)';
-  secondDate = 'Fri-Nov-29-2019-22:57:51-GMT-0500-(Eastern-Standard-Time)';
+  secondDate = 'Fri-Nov-30-2019-22:57:51-GMT-0500-(Eastern-Standard-Time)';
   mongoServer = new MongodbMemoryServer();
   // By return a Promise, Jest won't proceed with tests until the Promise
   // resolves
@@ -120,59 +121,62 @@ test('GET /api/map/keys should return the key to the client', () => {
 
 describe('Filtering endpoint', () => {
   beforeEach(() => {
-    // By default insert adds the _id to the object, i.e. modifies article
     return db.collection('parkingLots').insertMany(parkingLots);
   });
 
   afterEach(() => {
     return db.collection('parkingLots').deleteMany({});
   });
-});
-test('GET /api/map/filter/:userType/:timeIn/:timeOut should return json object.', () => {
-  const userType = 'Student-sPass';
-  return request(app)
-    .get(`/api/map/filter/${userType}/${firstDate}/${secondDate}`)
-    .expect(200)
-    .expect('Content-Type', /json/);
-});
 
-describe('Argument validation tests', () => {
-  test('timeOut must be after timeIn', () => {
-    const userType = 'Visitor';
-    return request(app)
-      .get(`/api/map/filter/${userType}/${secondDate}/${firstDate}`)
-      .expect(400);
-  });
-
-  test('userType must be one of the accepted states', () => {
-    const userType = 'not-a-type';
+  test('GET /api/map/filter/:userType/:timeIn/:timeOut should return json object.', () => {
+    const userType = 'Student-sPass';
     return request(app)
       .get(`/api/map/filter/${userType}/${firstDate}/${secondDate}`)
-      .expect(400);
+      .expect(200)
+      .expect('Content-Type', /json/);
   });
 
-  test('timeIn must be a date object', () => {
-    const userType = 'Visitor';
-    const fakeDate = 'not-a-date';
+  test('GET /api/map/filter should return all lots', () => {
+    const userType = 'default';
     return request(app)
-      .get(`/api/map/filter/${userType}/${fakeDate}/${secondDate}`)
-      .expect(400);
+      .get(`/api/map/filter/${userType}/${firstDate}/${secondDate}`)
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .then(response => {
+        assert(response.parkable.features.includes(parkingLots));
+      });
   });
 
-  test('timeOut must be a date object', () => {
-    const userType = 'Visitor';
-    const fakeDate = 'not-a-date';
-    return request(app)
-      .get(`/api/map/filter/${userType}/${firstDate}/${fakeDate}`)
-      .expect(400);
-  });
+  describe('Test argument validation', () => {
+    // Test that endpoints return 400 when invalid input is received
+    test('timeOut must be after timeIn', () => {
+      const userType = 'Visitor';
+      return request(app)
+        .get(`/api/map/filter/${userType}/${secondDate}/${firstDate}`)
+        .expect(400);
+    });
 
-  // test('GET /api/map/filter should return all lots', () => {
-  //   const userType = 'initial';
-  //   return request(app)
-  //     .get(`/api/map/filter/${userType}/${firstDate}/${secondDate}`)
-  //     .expect(200)
-  //     .expect('Content-Type', /json/)
-  //     .expect(parkingLots);
-  // });
+    test('userType must be one of the accepted states', () => {
+      const userType = 'not-a-type';
+      return request(app)
+        .get(`/api/map/filter/${userType}/${firstDate}/${secondDate}`)
+        .expect(400);
+    });
+
+    test('timeIn must be a date object', () => {
+      const userType = 'Visitor';
+      const fakeDate = 'not-a-date';
+      return request(app)
+        .get(`/api/map/filter/${userType}/${fakeDate}/${secondDate}`)
+        .expect(400);
+    });
+
+    test('timeOut must be a date object', () => {
+      const userType = 'Visitor';
+      const fakeDate = 'not-a-date';
+      return request(app)
+        .get(`/api/map/filter/${userType}/${firstDate}/${fakeDate}`)
+        .expect(400);
+    });
+  });
 });

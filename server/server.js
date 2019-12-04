@@ -99,7 +99,7 @@ app.use((error, request, response, next) => {
     next(error);
   }
   // uncomment next line to see error messages during testing
-  // console.log('Error: ', error);
+  console.log('Error: ', error);
   if (error instanceof MongoError) {
     response.status(400).send(error.errmsg || {});
   } else {
