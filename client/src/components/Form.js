@@ -147,6 +147,7 @@ const Form = ({
     return (
       <div>
         <div className={classes.root}>
+          <CssBaseline />
           <AppBar position="static" color="inherit">
             <Toolbar variant="dense">
               <IconButton
@@ -182,7 +183,11 @@ const Form = ({
                   <KeyboardDateTimePicker
                     className={classes.picker}
                     disablePast
-                    variant="dialog"
+                    variant={
+                      useMediaQuery(theme.breakpoints.down('sm'))
+                        ? 'dialog'
+                        : 'inline'
+                    }
                     format="MM/dd/yyyy hh:mm a"
                     margin="normal"
                     label="Time In"
@@ -195,7 +200,11 @@ const Form = ({
                   <KeyboardDateTimePicker
                     className={classes.picker}
                     disablePast
-                    variant="dialog"
+                    variant={
+                      useMediaQuery(theme.breakpoints.down('sm'))
+                        ? 'dialog'
+                        : 'inline'
+                    }
                     format="MM/dd/yyyy hh:mm a"
                     margin="normal"
                     label="Time Out"
