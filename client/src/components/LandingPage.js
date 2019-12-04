@@ -7,6 +7,7 @@ import carLeft from '../static/carLeft.png';
 import carRight from '../static/carRight.png';
 import styled from 'styled-components';
 import { inherits } from 'util';
+import Button from '@material-ui/core/Button';
 
 const LandingPage = props => {
   const Wrapper = styled.div`
@@ -77,7 +78,7 @@ const LandingPage = props => {
           lotSelected={props.lotSelected}
           setLotSelected={props.setLotSelected}
         />
-        <button
+        <Button
           style={{
             borderRadius: '5px',
             background: 'orange',
@@ -96,7 +97,7 @@ const LandingPage = props => {
           }}
         >
           Search
-        </button>
+        </Button>
       </Wrapper>
       <ImageBottom>
         <img
