@@ -66,6 +66,63 @@ const parkingLots = [
       type: 'Polygon'
     },
     id: '0e4b8a62b0830fe988fef86e62713e34'
+  },
+  {
+    type: 'Feature',
+    properties: {
+      lot_type: 'N',
+      name: 'Proctor Hall',
+      permits: ['f/s_r'],
+      description:
+        'Restricted faculty and staff spaces in between Proctor Hall and the Hillcrest Environmental Center.'
+    },
+    geometry: {
+      coordinates: [
+        [
+          [-73.18069, 44.009515],
+          [-73.180677, 44.009788],
+          [-73.180227, 44.00982],
+          [-73.180224, 44.009626],
+          [-73.179803, 44.009655],
+          [-73.179791, 44.009565],
+          [-73.18069, 44.009515]
+        ]
+      ],
+      type: 'Polygon'
+    },
+    id: '4b9f1714295703b4ec6d7e1a64629f8b'
+  },
+  {
+    type: 'Feature',
+    properties: {
+      lot_type: 'T',
+      name: 'Field House Lot',
+      description:
+        'Multi-purpose lot positioned at the end of the Peterson Family Athletics Complex. Pay attention to signage.',
+      permits: [
+        'sPass',
+        'pPass',
+        'uPass',
+        'ePass',
+        'tPass',
+        'visitors',
+        'f/s',
+        'f/s_r'
+      ]
+    },
+    geometry: {
+      coordinates: [
+        [
+          [-73.180101, 44.00249],
+          [-73.179423, 44.00306],
+          [-73.178643, 44.002628],
+          [-73.178816, 44.00248],
+          [-73.180101, 44.00249]
+        ]
+      ],
+      type: 'Polygon'
+    },
+    id: '0e4b8a62b0830fe988fef86e62713e34'
   }
 ];
 
@@ -75,8 +132,8 @@ const parkingLots = [
 let firstDate;
 let secondDate;
 beforeAll(() => {
-  firstDate = 'Fri-Nov-29-2019-21:57:51-GMT-0500-(Eastern-Standard-Time)';
-  secondDate = 'Fri-Nov-30-2019-22:57:51-GMT-0500-(Eastern-Standard-Time)';
+  firstDate = 'Thu-Nov-28-2019-12:57:51-GMT-0500-(Eastern-Standard-Time)';
+  secondDate = 'Fri-Nov-29-2019-01:57:51-GMT-0500-(Eastern-Standard-Time)';
   mongoServer = new MongodbMemoryServer();
   // By return a Promise, Jest won't proceed with tests until the Promise
   // resolves
@@ -132,26 +189,53 @@ describe('Filtering endpoint', () => {
     return db.collection('parkingLots').deleteMany({});
   });
 
-  test('GET /api/map/filter/:userType/:timeIn/:timeOut should return json object.', () => {
-    const userType = 'Student-sPass';
-    return request(app)
-      .get(`/api/map/filter/${userType}/${firstDate}/${secondDate}`)
-      .expect(200)
-      .expect('Content-Type', /json/);
+  describe('Endpoint smoke tests', () => {
+    test('Endpoint should return json object.', () => {
+      let userType = 'Student-sPass';
+      return request(app)
+        .get(`/api/map/filter/${userType}/${firstDate}/${secondDate}`)
+        .expect(200)
+        .expect('Content-Type', /json/);
+    });
+
+    test('All lots should be returned when default userType is selected', () => {
+      const userType = 'default';
+      return request(app)
+        .get(`/api/map/filter/${userType}/${firstDate}/${secondDate}`)
+        .expect(200)
+        .expect('Content-Type', /json/)
+        .then(response => {
+          expect(response.body.parkable.features).toMatchObject(
+            parkingLots.map(lotToJSON)
+          );
+        });
+    });
   });
 
-  test('All lots should be returned when default userType is selected', () => {
-    const userType = 'default';
+  describe('Filtering by user type', () => {
+    test('sPass: userType filtering works properly during school hours', () => {
+      const userType = 'Student-sPass';
+      return request(app)
+        .get(`/api/map/filter/${userType}/${firstDate}/${secondDate}`)
+        .then(response => {
+          expect(response.body.parkable.features).toMatchObject([
+            parkingLots.map(lotToJSON)[1],
+            parkingLots.map(lotToJSON)[3]
+          ]);
+        });
+    });
 
-    return request(app)
-      .get(`/api/map/filter/${userType}/${firstDate}/${secondDate}`)
-      .expect(200)
-      .expect('Content-Type', /json/)
-      .then(response => {
-        expect(response.body.parkable.features).toMatchObject(
-          parkingLots.map(lotToJSON)
-        );
-      });
+    test('pPass: userType filtering works properly during school hours', () => {
+      const userType = 'Student-sPass';
+      return request(app)
+        .get(`/api/map/filter/${userType}/${firstDate}/${secondDate}`)
+        .then(response => {
+          expect(response.body.parkable.features).toMatchObject([
+            parkingLots.map(lotToJSON)[1],
+            parkingLots.map(lotToJSON)[3]
+          ]);
+        });
+    });
   });
 
   describe('Test argument validation', () => {
