@@ -191,7 +191,7 @@ describe('Filtering endpoint', () => {
 
   describe('Endpoint smoke tests', () => {
     test('Endpoint should return json object.', () => {
-      let userType = 'Student-sPass';
+      const userType = 'Student-sPass';
       return request(app)
         .get(`/api/map/filter/${userType}/${firstDate}/${secondDate}`)
         .expect(200)
