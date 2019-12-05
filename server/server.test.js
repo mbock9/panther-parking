@@ -7,6 +7,11 @@ const assert = require('assert');
 let mongoServer;
 let db;
 
+const deleteMongoID = element => {
+  delete element._id;
+  return element;
+};
+
 const parkingLots = [
   {
     type: 'Feature',
@@ -138,12 +143,17 @@ describe('Filtering endpoint', () => {
 
   test('GET /api/map/filter should return all lots', () => {
     const userType = 'default';
+
     return request(app)
       .get(`/api/map/filter/${userType}/${firstDate}/${secondDate}`)
       .expect(200)
       .expect('Content-Type', /json/)
       .then(response => {
-        assert(response.parkable.features.includes(parkingLots));
+        const strippedResponse = response.body.parkable.features.map(element =>
+          deleteMongoID(element)
+        );
+        assert(strippedResponse[0].name == parkingLots[0].name);
+        assert(strippedResponse[1].name == parkingLots[1].name);
       });
   });
 
