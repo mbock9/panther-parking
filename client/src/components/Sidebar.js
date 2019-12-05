@@ -147,7 +147,11 @@ const Sidebar = ({
           <ListItem
             button
             onClick={() => {
-              showInfo(true);
+              if (mobileOpen) {
+                setMobileOpen(!mobileOpen);
+                showInfo(true);
+              }
+
               console.log('come out info drawer');
             }}
           >

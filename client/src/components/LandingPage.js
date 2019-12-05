@@ -31,6 +31,22 @@ const LandingPage = props => {
         alt="car"
         style={{ position: 'fixed', top: '0px', width: '10%' }}
       />
+
+      <img
+        src={logoLanding}
+        alt="logo"
+        style={{
+          // width: '25%',
+          // height: '45%',
+          // marginLeft: '40%',
+          //marginTop: '%',
+          marginBottom: '0%',
+          display: 'flex',
+          justifyContent: 'center',
+          width: 'inherit',
+          overflow: 'hidden'
+        }}
+      />
       <div
         style={{
           textAlign: 'center',
@@ -40,10 +56,11 @@ const LandingPage = props => {
         <h1
           style={{
             color: 'white',
-            marginTop: '19%',
-            marginLeft: '35%',
-            textAlign: 'justify',
-            position: 'absolute',
+            display: 'flex',
+            justifyContent: 'center',
+            width: 'inherit',
+            overflow: 'hidden',
+
             flex: '1',
             flexDirection: 'column'
           }}
@@ -51,16 +68,6 @@ const LandingPage = props => {
           Making parking at Middlebury easier!
         </h1>
       </div>
-      <img
-        src={logoLanding}
-        alt="logo"
-        style={{
-          width: '25%',
-          height: '45%',
-          marginLeft: '40%',
-          marginTop: '2%'
-        }}
-      />
 
       <Wrapper>
         <Form
@@ -85,7 +92,8 @@ const LandingPage = props => {
             color: 'white',
             height: '40px',
             //width: '150px',
-            justifyContent: 'center',
+            flex: '1',
+            alignItems: 'center',
             width: 'inherit',
             overflow: 'hidden',
 
