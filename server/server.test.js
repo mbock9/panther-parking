@@ -1,5 +1,4 @@
 /* eslint no-underscore-dangle: 0 */
-/* eslint no-param-reassign: 0 */
 const request = require('supertest');
 const { app } = require('./server');
 const MongodbMemoryServer = require('mongodb-memory-server').default;
@@ -8,12 +7,9 @@ const { MongoClient } = require('mongodb');
 let mongoServer;
 let db;
 
-const deleteMongoID = array => {
-  array.forEach(element => {
-    delete element._id;
-  });
-  return array;
-};
+// Convert ObjectID type to string (as would occur in toJSON method)
+const lotToJSON = localLot =>
+  Object.assign({}, localLot, { _id: localLot._id.toHexString() });
 
 const parkingLots = [
   {
@@ -147,17 +143,13 @@ describe('Filtering endpoint', () => {
   test('All lots should be returned when default userType is selected', () => {
     const userType = 'default';
 
-    // Use Jest matcher because we won't know the _id ahead of time, and
-    // so only want to match the properties in newArticle
-    // expect(response.body).toMatchObject(newArticle);
-
     return request(app)
       .get(`/api/map/filter/${userType}/${firstDate}/${secondDate}`)
       .expect(200)
       .expect('Content-Type', /json/)
       .then(response => {
-        expect(deleteMongoID(response.body.parkable.features)).toMatchObject(
-          deleteMongoID(parkingLots)
+        expect(response.body.parkable.features).toMatchObject(
+          parkingLots.map(lotToJSON)
         );
       });
   });
