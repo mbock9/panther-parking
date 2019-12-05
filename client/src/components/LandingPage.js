@@ -13,10 +13,10 @@ const LandingPage = props => {
   const Wrapper = styled.div`
     margin-top: -1%;
   `;
-
+  // #5e1a54;
   const Landingpage = styled.section`
     padding: 0;
-    background: #5e1a54;
+    background: #013c66;
     overflow-x: hidden;
     width: 100vw;
     height: 100vh;
@@ -26,6 +26,35 @@ const LandingPage = props => {
   `;
   return (
     <Landingpage>
+      <ImageBottom>
+        <img
+          src={carLeft}
+          alt="car"
+          style={{ position: 'fixed', bottom: '0px', width: '13%' }}
+        />
+        <img
+          src={carRight}
+          alt="car"
+          style={{
+            position: 'fixed',
+            bottom: '0px',
+            right: '0px',
+            width: '20%'
+          }}
+        />
+        <img
+          src={carMiddle}
+          alt="car"
+          style={{
+            justifyContent: 'center',
+            position: 'absolute',
+            bottom: '0px',
+            left: '45%',
+            width: '15%'
+          }}
+        />
+      </ImageBottom>
+
       <img
         src={carTop}
         alt="car"
@@ -36,14 +65,14 @@ const LandingPage = props => {
         src={logoLanding}
         alt="logo"
         style={{
-          // width: '25%',
-          // height: '45%',
-          // marginLeft: '40%',
-          //marginTop: '%',
+          display: 'block',
+          maxWidth: '35%',
+          height: 'auto',
+          marginLeft: 'auto',
+          marginRight: 'auto',
           marginBottom: '0%',
           display: 'flex',
           justifyContent: 'center',
-          width: 'inherit',
           overflow: 'hidden'
         }}
       />
@@ -60,12 +89,12 @@ const LandingPage = props => {
             justifyContent: 'center',
             width: 'inherit',
             overflow: 'hidden',
-
+            fontFamily: 'Gill Sans, sans-serif',
             flex: '1',
             flexDirection: 'column'
           }}
         >
-          Making parking at Middlebury easier!
+          Making parking at Middlebury fun!
         </h1>
       </div>
 
@@ -107,34 +136,6 @@ const LandingPage = props => {
           Search
         </Button>
       </Wrapper>
-      <ImageBottom>
-        <img
-          src={carLeft}
-          alt="car"
-          style={{ position: 'fixed', bottom: '0px', width: '13%' }}
-        />
-        <img
-          src={carRight}
-          alt="car"
-          style={{
-            position: 'fixed',
-            bottom: '0px',
-            right: '0px',
-            width: '20%'
-          }}
-        />
-        <img
-          src={carMiddle}
-          alt="car"
-          style={{
-            justifyContent: 'center',
-            position: 'fixed',
-            bottom: '0px',
-            left: '45%',
-            width: '15%'
-          }}
-        />
-      </ImageBottom>
     </Landingpage>
   );
 };
