@@ -94,7 +94,7 @@ const LandingPage = props => {
             flexDirection: 'column'
           }}
         >
-          Making parking at Middlebury fun!
+          Making parking at Middlebury easy!
         </h1>
       </div>
 
