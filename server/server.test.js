@@ -356,6 +356,25 @@ describe('Filtering endpoint', () => {
     });
   });
 
+  describe('Test mult-day stays', () => {
+    test('Test that a stay > 1 week is treated as business-day-overlapping', () => {
+      const userType = 'Student-sPass';
+      const firstMonday =
+        'Mon-Nov-25-2019-10:57:51-GMT-0500-(Eastern-Standard-Time)';
+      const secondMonday =
+        'Mon-Dec-02-2019-12:57:51-GMT-0500-(Eastern-Standard-Time)';
+
+      return request(app)
+        .get(`/api/map/filter/${userType}/${firstMonday}/${secondMonday}`)
+        .then(response => {
+          expect(response.body.parkable.features).toMatchObject([
+            parkingLots.map(lotToJSON)[1],
+            parkingLots.map(lotToJSON)[3]
+          ]);
+        });
+    });
+  });
+
   describe('Test argument validation', () => {
     // Test that endpoints return 400 when invalid input is received
     test('timeOut must be after timeIn', () => {
