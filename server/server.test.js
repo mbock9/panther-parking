@@ -203,7 +203,7 @@ describe('Filtering endpoint', () => {
     });
   });
 
-  describe('Filtering by user type', () => {
+  describe('Filtering by user type during the weekday', () => {
     test('sPass: userType filtering works properly during school hours', () => {
       const userType = 'Student-sPass';
       return request(app)
@@ -257,6 +257,75 @@ describe('Filtering endpoint', () => {
         .get(`/api/map/filter/${userType}/${firstDate}/${secondDate}`)
         .then(response => {
           expect(response.body.parkable.features).toMatchObject([
+            parkingLots.map(lotToJSON)[1]
+          ]);
+        });
+    });
+  });
+
+  describe('Filtering by user type during the weekend', () => {
+    beforeAll(() => {
+      firstDate = 'Sat-Nov-30-2019-10:57:51-GMT-0500-(Eastern-Standard-Time)';
+      secondDate = 'Sat-Nov-30-2019-12:57:51-GMT-0500-(Eastern-Standard-Time)';
+    });
+
+    test('sPass: userType filtering works properly on the weekend', () => {
+      const userType = 'Student-sPass';
+      return request(app)
+        .get(`/api/map/filter/${userType}/${firstDate}/${secondDate}`)
+        .then(response => {
+          expect(response.body.parkable.features).toMatchObject([
+            parkingLots.map(lotToJSON)[0],
+            parkingLots.map(lotToJSON)[1],
+            parkingLots.map(lotToJSON)[3]
+          ]);
+        });
+    });
+
+    test('pPass: userType filtering works properly on the weekend', () => {
+      const userType = 'Student-pPass';
+      return request(app)
+        .get(`/api/map/filter/${userType}/${firstDate}/${secondDate}`)
+        .then(response => {
+          expect(response.body.parkable.features).toMatchObject([
+            parkingLots.map(lotToJSON)[0],
+            parkingLots.map(lotToJSON)[1],
+            parkingLots.map(lotToJSON)[3]
+          ]);
+        });
+    });
+
+    test('uPass: userType filtering works properly on the weekend', () => {
+      const userType = 'Student-uPass';
+      return request(app)
+        .get(`/api/map/filter/${userType}/${firstDate}/${secondDate}`)
+        .then(response => {
+          expect(response.body.parkable.features).toMatchObject([
+            parkingLots.map(lotToJSON)[1]
+          ]);
+        });
+    });
+
+    test('ePass: userType filtering works properly on the weekend', () => {
+      const userType = 'Student-ePass';
+      return request(app)
+        .get(`/api/map/filter/${userType}/${firstDate}/${secondDate}`)
+        .then(response => {
+          expect(response.body.parkable.features).toMatchObject([
+            parkingLots.map(lotToJSON)[0],
+            parkingLots.map(lotToJSON)[1],
+            parkingLots.map(lotToJSON)[3]
+          ]);
+        });
+    });
+
+    test('tPass: userType filtering works properly on the weekend', () => {
+      const userType = 'Student-tPass';
+      return request(app)
+        .get(`/api/map/filter/${userType}/${firstDate}/${secondDate}`)
+        .then(response => {
+          expect(response.body.parkable.features).toMatchObject([
+            parkingLots.map(lotToJSON)[0],
             parkingLots.map(lotToJSON)[1]
           ]);
         });
