@@ -234,8 +234,7 @@ describe('Filtering endpoint', () => {
         .get(`/api/map/filter/${userType}/${firstDate}/${secondDate}`)
         .then(response => {
           expect(response.body.parkable.features).toMatchObject([
-            parkingLots.map(lotToJSON)[1],
-            parkingLots.map(lotToJSON)[3]
+            parkingLots.map(lotToJSON)[1]
           ]);
         });
     });
@@ -258,8 +257,7 @@ describe('Filtering endpoint', () => {
         .get(`/api/map/filter/${userType}/${firstDate}/${secondDate}`)
         .then(response => {
           expect(response.body.parkable.features).toMatchObject([
-            parkingLots.map(lotToJSON)[1],
-            parkingLots.map(lotToJSON)[3]
+            parkingLots.map(lotToJSON)[1]
           ]);
         });
     });
