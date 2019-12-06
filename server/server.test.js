@@ -95,20 +95,11 @@ const parkingLots = [
   {
     type: 'Feature',
     properties: {
-      lot_type: 'T',
-      name: 'Field House Lot',
+      lot_type: 'R',
+      name: 'Ridgeline',
       description:
-        'Multi-purpose lot positioned at the end of the Peterson Family Athletics Complex. Pay attention to signage.',
-      permits: [
-        'sPass',
-        'pPass',
-        'uPass',
-        'ePass',
-        'tPass',
-        'visitors',
-        'f/s',
-        'f/s_r'
-      ]
+        'Student parking lot for non-freshman located below the Ridgeline buildings and adjacent to Homer Harris House. Access via College Street.',
+      permits: ['sPass', 'pPass', 'ePass']
     },
     geometry: {
       coordinates: [
@@ -122,7 +113,7 @@ const parkingLots = [
       ],
       type: 'Polygon'
     },
-    id: '0e4b8a62b0830fe988fef86e62713e34'
+    id: '0e20f2cada86a006171c3a31e15ff7ce'
   }
 ];
 
@@ -239,6 +230,30 @@ describe('Filtering endpoint', () => {
 
     test('uPass: userType filtering works properly during school hours', () => {
       const userType = 'Student-uPass';
+      return request(app)
+        .get(`/api/map/filter/${userType}/${firstDate}/${secondDate}`)
+        .then(response => {
+          expect(response.body.parkable.features).toMatchObject([
+            parkingLots.map(lotToJSON)[1],
+            parkingLots.map(lotToJSON)[3]
+          ]);
+        });
+    });
+
+    test('ePass: userType filtering works properly during school hours', () => {
+      const userType = 'Student-ePass';
+      return request(app)
+        .get(`/api/map/filter/${userType}/${firstDate}/${secondDate}`)
+        .then(response => {
+          expect(response.body.parkable.features).toMatchObject([
+            parkingLots.map(lotToJSON)[1],
+            parkingLots.map(lotToJSON)[3]
+          ]);
+        });
+    });
+
+    test('tPass: userType filtering works properly during school hours', () => {
+      const userType = 'Student-tPass';
       return request(app)
         .get(`/api/map/filter/${userType}/${firstDate}/${secondDate}`)
         .then(response => {
