@@ -261,6 +261,30 @@ describe('Filtering endpoint', () => {
           ]);
         });
     });
+
+    test('visitors: userType filtering works properly during the week', () => {
+      const userType = 'Visitor';
+      return request(app)
+        .get(`/api/map/filter/${userType}/${firstDate}/${secondDate}`)
+        .then(response => {
+          expect(response.body.parkable.features).toMatchObject([
+            parkingLots.map(lotToJSON)[1]
+          ]);
+        });
+    });
+
+    test('faculty: userType filtering works properly during the week', () => {
+      const userType = 'Faculty';
+      return request(app)
+        .get(`/api/map/filter/${userType}/${firstDate}/${secondDate}`)
+        .then(response => {
+          expect(response.body.parkable.features).toMatchObject([
+            parkingLots.map(lotToJSON)[0],
+            parkingLots.map(lotToJSON)[1],
+            parkingLots.map(lotToJSON)[2]
+          ]);
+        });
+    });
   });
 
   describe('Filtering by user type during the weekend', () => {
