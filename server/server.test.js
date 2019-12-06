@@ -226,7 +226,19 @@ describe('Filtering endpoint', () => {
     });
 
     test('pPass: userType filtering works properly during school hours', () => {
-      const userType = 'Student-sPass';
+      const userType = 'Student-pPass';
+      return request(app)
+        .get(`/api/map/filter/${userType}/${firstDate}/${secondDate}`)
+        .then(response => {
+          expect(response.body.parkable.features).toMatchObject([
+            parkingLots.map(lotToJSON)[1],
+            parkingLots.map(lotToJSON)[3]
+          ]);
+        });
+    });
+
+    test('uPass: userType filtering works properly during school hours', () => {
+      const userType = 'Student-uPass';
       return request(app)
         .get(`/api/map/filter/${userType}/${firstDate}/${secondDate}`)
         .then(response => {
