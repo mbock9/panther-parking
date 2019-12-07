@@ -126,12 +126,12 @@ describe('App test', () => {
     comp.update();
   });
 
-  test('Snapshot test', async () => {
-    const comp = mount(<App />);
-    await act(async () => await flushPromises());
-    comp.update();
-    expect(comp).toMatchSnapshot();
-  });
+  // test('Snapshot test', async () => {
+  //   const comp = mount(<App />);
+  //   await act(async () => await flushPromises());
+  //   comp.update();
+  //   expect(comp).toMatchSnapshot();
+  // });
 });
 
 it('renders without crashing', () => {
