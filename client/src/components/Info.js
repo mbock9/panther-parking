@@ -8,13 +8,8 @@ import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import Hidden from '@material-ui/core/Hidden';
-import InfoIcon from '@material-ui/icons/Info';
-import DriveEtaIcon from '@material-ui/icons/DriveEta';
-import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
-import PropTypes from 'prop-types';
-import LayersClearIcon from '@material-ui/icons/LayersClear';
+import InboxIcon from '@material-ui/icons/MoveToInbox';
+import MailIcon from '@material-ui/icons/Mail';
 
 const useStyles = makeStyles({
   list: {
@@ -25,19 +20,18 @@ const useStyles = makeStyles({
   }
 });
 
-const Info = (infoOpen, showinfo) => {
+const Info = ({ infoOpen, showInfo }) => {
   const classes = useStyles();
 
   const handleInfoToggle = () => {
-    showinfo(!infoOpen);
+    showInfo(!infoOpen);
   };
 
   const sideList = side => (
     <div
       className={classes.list}
       role="presentation"
-      onClick={handleInfoToggle(side, false)}
-      onKeyDown={handleInfoToggle(side, false)}
+      onClick={handleInfoToggle}
     >
       <List>
         {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
@@ -65,20 +59,13 @@ const Info = (infoOpen, showinfo) => {
 
   return (
     <div>
-      <Button onClick={toggleDrawer('bottom', true)}>More Information</Button>
+      <Button onClick={handleInfoToggle()}>More Information</Button>
       <Drawer
         anchor="bottom"
-        open={state.bottom}
-        onClose={toggleDrawer('bottom', false)}
+        //open={state.bottom}
+        onClose={handleInfoToggle()}
       >
-        {fullList('bottom')}
-      </Drawer>
-      <Drawer
-        anchor="right"
-        open={state.right}
-        onClose={toggleDrawer('right', false)}
-      >
-        {sideList('right')}
+        {sideList('bottom')}
       </Drawer>
     </div>
   );

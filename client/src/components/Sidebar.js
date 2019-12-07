@@ -157,7 +157,7 @@ const Sidebar = ({
             <ListItemText primary={'More information'} />
           </ListItem>
           <Divider />
-          <Info />
+          <Info infoOpen={info} showInfo={showInfo} />
         </List>
       </div>
     );
