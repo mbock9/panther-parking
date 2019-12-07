@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import Info from './Info';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import List from '@material-ui/core/List';
@@ -70,6 +72,7 @@ const Sidebar = ({
   const classes = useStyles();
   const theme = useTheme();
   const [parkable, setParkable] = useState({});
+  const [info, showInfo] = useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -141,10 +144,11 @@ const Sidebar = ({
           <ListItem
             button
             onClick={() => {
-              changeLandingPage(!landing);
+              //changeLandingPage(!landing);
               if (mobileOpen) {
                 setMobileOpen(!mobileOpen);
               }
+              showInfo(!info);
             }}
           >
             <ListItemIcon>
@@ -152,6 +156,8 @@ const Sidebar = ({
             </ListItemIcon>
             <ListItemText primary={'More information'} />
           </ListItem>
+          <Divider />
+          <Info />
         </List>
       </div>
     );
