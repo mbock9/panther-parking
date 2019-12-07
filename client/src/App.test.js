@@ -125,6 +125,13 @@ describe('App test', () => {
     await act(async () => await flushPromises());
     comp.update();
   });
+
+  test('Snapshot test', async () => {
+    const comp = mount(<App />);
+    await act(async () => await flushPromises());
+    comp.update();
+    expect(comp).toMatchSnapshot();
+  });
 });
 
 it('renders without crashing', () => {
