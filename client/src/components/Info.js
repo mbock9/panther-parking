@@ -59,7 +59,7 @@ const Info = ({ infoOpen, showInfo }) => {
 
   return (
     <div>
-      <Button onClick={handleInfoToggle()}>More Information</Button>
+      <CssBaseline />
       <Drawer
         anchor="bottom"
         //open={state.bottom}
