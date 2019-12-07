@@ -373,6 +373,22 @@ describe('Filtering endpoint', () => {
           ]);
         });
     });
+
+    test('Test that a stay > 1 day stay is treated as business-day-overlapping', () => {
+      const userType = 'Visitor';
+      const firstMonday =
+        'Mon-Nov-25-2019-10:57:51-GMT-0500-(Eastern-Standard-Time)';
+      const secondMonday =
+        'Tue-Nov-26-2019-12:57:51-GMT-0500-(Eastern-Standard-Time)';
+
+      return request(app)
+        .get(`/api/map/filter/${userType}/${firstMonday}/${secondMonday}`)
+        .then(response => {
+          expect(response.body.parkable.features).toMatchObject([
+            parkingLots.map(lotToJSON)[1]
+          ]);
+        });
+    });
   });
 
   describe('Test argument validation', () => {
