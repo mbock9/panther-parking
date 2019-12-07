@@ -31,7 +31,7 @@ const props = {
   changeLandingPage: jest.fn()
 };
 
-describe('Form tests', () => {
+describe('LandingPage tests', () => {
   let wrapper;
   let shallow;
 
