@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 
 import App from './App';
 import Form from './components/Form';
@@ -20,6 +20,15 @@ describe('App shallow rendering tests', () => {
 
     test('Contains a parking map component', () => {
       expect(app.contains(ParkingMap)).toEqual(true);
+    });
+  });
+
+  describe('PropTypes', () => {
+    test('Form has PropTypes defined', () => {
+      expect(Form).toHaveProperty('propTypes');
+    });
+    test('ParkingMap has PropTypes defined', () => {
+      expect(ParkingMap).toHaveProperty('propTypes');
     });
   });
 });
