@@ -8,24 +8,35 @@ import carRight from '../static/carRight.png';
 import styled from 'styled-components';
 import { inherits } from 'util';
 import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
+
+// Define styles for material-ui components
+const useStyles = makeStyles(() => ({
+  landingPage: {
+    padding: 0,
+    background: '#013c66;',
+    overflowX: 'hidden',
+    width: '100vw',
+    height: '100vh'
+  },
+  wrapper: {
+    marginTop: '-1%'
+  },
+  heading: {
+    color: 'white',
+    marginTop: '19%',
+    marginLeft: '35%',
+    position: 'absolute'
+  }
+}));
 
 const LandingPage = props => {
-  const Wrapper = styled.div`
-    margin-top: -1%;
-  `;
-  // #5e1a54;
-  const Landingpage = styled.section`
-    padding: 0;
-    background: #013c66;
-    overflow-x: hidden;
-    width: 100vw;
-    height: 100vh;
-  `;
+  const classes = useStyles();
   const ImageBottom = styled.div`
     display: flex;
   `;
   return (
-    <Landingpage>
+    <div className={classes.landingPage}>
       <ImageBottom>
         <img
           src={carLeft}
@@ -97,7 +108,7 @@ const LandingPage = props => {
         </h1>
       </div>
 
-      <Wrapper>
+      <div className={classes.wrapper}>
         <Form
           userType={props.userType}
           setUser={props.setUser}
@@ -134,8 +145,8 @@ const LandingPage = props => {
         >
           Search
         </Button>
-      </Wrapper>
-    </Landingpage>
+      </div>
+    </div>
   );
 };
 
