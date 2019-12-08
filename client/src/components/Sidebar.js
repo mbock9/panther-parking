@@ -107,10 +107,10 @@ const Sidebar = ({
             <img src={logoLanding} />
           </ListItem>
           <Divider />
-          <h3 className={classes.list}>
+          <p className={classes.list}>
             Enter your desired date and time, and we will find you where you can
-            park
-          </h3>
+            park!
+          </p>
           <Divider />
           {['Inbox', 'Starred', 'Send email', 'Drafts'].map(text => (
             <ListItem button key={text}>
