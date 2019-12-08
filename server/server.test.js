@@ -439,14 +439,14 @@ describe('Sidebar endpoint', () => {
     test('timeOut must be after timeIn', () => {
       const userType = 'Visitor';
       return request(app)
-        .get(`/api/map/filter/${userType}/${secondDate}/${firstDate}`)
+        .get(`/api/sidebar/${userType}/${secondDate}/${firstDate}/test`)
         .expect(400);
     });
 
     test('userType must be one of the accepted states', () => {
       const userType = 'not-a-type';
       return request(app)
-        .get(`/api/map/filter/${userType}/${firstDate}/${secondDate}`)
+        .get(`/api/sidebar/${userType}/${firstDate}/${secondDate}/test`)
         .expect(400);
     });
 
@@ -454,7 +454,7 @@ describe('Sidebar endpoint', () => {
       const userType = 'Visitor';
       const fakeDate = 'not-a-date';
       return request(app)
-        .get(`/api/map/filter/${userType}/${fakeDate}/${secondDate}`)
+        .get(`/api/sidebar/${userType}/${fakeDate}/${secondDate}/test`)
         .expect(400);
     });
 
@@ -462,8 +462,24 @@ describe('Sidebar endpoint', () => {
       const userType = 'Visitor';
       const fakeDate = 'not-a-date';
       return request(app)
-        .get(`/api/map/filter/${userType}/${firstDate}/${fakeDate}`)
+        .get(`/api/sidebar/${userType}/${firstDate}/${fakeDate}/test`)
         .expect(400);
     });
   });
+
+  // describe('Test sidebar endpoint logic', () => {
+  //   // Test that endpoints return 400 when invalid input is received
+  //   test('test that lotSelected===false causes all parkable lots to be returned', () => {
+  //     const userType = 'Student-sPass';
+  //     return request(app)
+  //       .get(`/api/map/filter/${userType}/${firstDate}/${secondDate}`)
+  //       .then(response => {
+  //         expect(response.body.parkable.features).toMatchObject([
+  //           parkingLots.map(lotToJSON)[0],
+  //           parkingLots.map(lotToJSON)[1],
+  //           parkingLots.map(lotToJSON)[3]
+  //         ]);
+  //       });
+  //   });
+  // });
 });

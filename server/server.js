@@ -98,12 +98,12 @@ app.get(
 );
 
 app.get(
-  '/api/map/filter/:userType/:timeIn/:timeOut/:lotSelected',
+  '/api/sidebar/:userType/:timeIn/:timeOut/:lotSelected',
   (request, response, next) => {
     // Reformat date strings
     const timeIn = new Date(request.params.timeIn.replace(/-+/g, ' '));
     const timeOut = new Date(request.params.timeOut.replace(/-+/g, ' '));
-    const { userType } = request.params;
+    const { userType, lotSelected } = request.params;
 
     // Validations
     if (!isFilterArgsValid(timeIn, timeOut, userType)) {
