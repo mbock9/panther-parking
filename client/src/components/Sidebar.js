@@ -63,13 +63,12 @@ const Sidebar = ({
   setMobileOpen,
   lotSelected,
   setLotSelected,
-  landing,
-  changeLandingPage,
   setUser
 }) => {
   const classes = useStyles();
   const theme = useTheme();
   const [parkable, setParkable] = useState({});
+  const [info, showInfo] = useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -141,10 +140,12 @@ const Sidebar = ({
           <ListItem
             button
             onClick={() => {
-              changeLandingPage(!landing);
               if (mobileOpen) {
                 setMobileOpen(!mobileOpen);
+                showInfo(!info);
               }
+
+              console.log('come out info drawer');
             }}
           >
             <ListItemIcon>
