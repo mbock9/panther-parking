@@ -72,13 +72,10 @@ const Sidebar = ({
   const classes = useStyles();
   const theme = useTheme();
   const [parkable, setParkable] = useState({});
+  //const [info, showInfo] = useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
-  };
-
-  const handleInfoToggle = () => {
-    showInfo(!info);
   };
 
   useEffect(() => {
@@ -112,6 +109,7 @@ const Sidebar = ({
                 width: '70%',
                 marginTop: '20%'
               }}
+              alt={'Legend'}
             />
           </ListItem>
           <Divider />
@@ -130,9 +128,7 @@ const Sidebar = ({
         <Divider />
         <List>
           <ListItem
-            button
             key="go/Parking"
-            button
             onClick={() => {
               //changeLandingPage(!landing);
               if (mobileOpen) {

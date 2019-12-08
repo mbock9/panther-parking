@@ -569,7 +569,7 @@
       "type": "Feature",
       "properties": {
         "lot_type": "A",
-        "name": "Admissions (Emma Willard House)",
+        "name": "Admissions (Emma Willard House Auxiliary)",
         "description": "Auxiliary parking lot for admissions. Faculty, staff, and student spaces.",
         "permits": ["visitors", "f/s"]
       },

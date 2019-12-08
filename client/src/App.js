@@ -3,7 +3,7 @@ import './App.css';
 import ParkingMap from './components/ParkingMap';
 import Form from './components/Form';
 import LandingPage from './components/LandingPage';
-import Sidebar from './components/Sidebar';
+//import Sidebar from './components/Sidebar';
 
 function App() {
   const [userType, setUser] = useState('default');
