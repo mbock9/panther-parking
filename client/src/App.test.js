@@ -1,38 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { mount, shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import { act } from 'react-dom/test-utils';
-import Select from '@material-ui/core/Select';
-import { KeyboardDateTimePicker } from '@material-ui/pickers';
-import Button from '@material-ui/core/Button';
-import { createMount, createShallow } from '@material-ui/core/test-utils';
 
 import App from './App';
 import Form from './components/Form';
 import ParkingMap from './components/ParkingMap';
 import LandingPage from './components/LandingPage';
-import {
-  parkingLots,
-  findButton,
-  testCase1,
-  testCase2,
-  mockResp
-} from './setupTests';
-
-const props = {
-  userType: testCase1.userType,
-  setUser: jest.fn(),
-  timeIn: testCase1.timeIn,
-  setTimeIn: jest.fn(),
-  timeOut: testCase1.timeOut,
-  setTimeOut: jest.fn(),
-  mobileOpen: testCase1.mobileOpen,
-  setMobileOpen: jest.fn(),
-  lotSelected: testCase1.lotSelected,
-  setLotSelected: jest.fn(),
-  landingPage: testCase1.landingPage,
-  changeLandingPage: jest.fn()
-};
+import { findButton, mockResp } from './setupTests';
+//
+// const props = {
+//   userType: testCase1.userType,
+//   setUser: jest.fn(),
+//   timeIn: testCase1.timeIn,
+//   setTimeIn: jest.fn(),
+//   timeOut: testCase1.timeOut,
+//   setTimeOut: jest.fn(),
+//   mobileOpen: testCase1.mobileOpen,
+//   setMobileOpen: jest.fn(),
+//   lotSelected: testCase1.lotSelected,
+//   setLotSelected: jest.fn(),
+//   landingPage: testCase1.landingPage,
+//   changeLandingPage: jest.fn()
+// };
 
 function flushPromises() {
   return new Promise(resolve => setImmediate(resolve));
@@ -41,7 +31,7 @@ function flushPromises() {
 const mockResponse = data =>
   Promise.resolve({ ok: true, json: () => Promise.resolve(data) });
 
-const mockFetch = url => {
+const mockFetch = () => {
   return mockResponse(mockResp);
 };
 
