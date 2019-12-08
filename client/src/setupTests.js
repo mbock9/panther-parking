@@ -62,6 +62,27 @@ export const parkingLots = [
   }
 ];
 
+const dateProp = new Date();
+
+export const testCase1 = {
+  userType: 'default',
+  timeIn: dateProp,
+  timeOut: dateProp,
+  mobileOpen: false,
+  landingPage: true,
+  lotSelected: 'false'
+};
+
+export const testCase2 = {
+  userType: 'Visitor',
+  timeIn: dateProp,
+  timeOut: dateProp,
+  mobileOpen: false,
+  landingPage: false,
+  lotSelected: 'false'
+};
+
+// borrowed from prof. Andrews pa4 skeleton
 export const findButton = (comp, labelRegEx) => {
   // Find <input type="button" ... />
   let button = comp

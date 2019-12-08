@@ -10,18 +10,8 @@ import { createMount, createShallow } from '@material-ui/core/test-utils';
 import App from './App';
 import Form from './components/Form';
 import ParkingMap from './components/ParkingMap';
-import { parkingLots, findButton } from './setupTests';
-
-const dateProp = new Date();
-
-const testCase1 = {
-  userType: 'default',
-  timeIn: dateProp,
-  timeOut: dateProp,
-  mobileOpen: false,
-  landing: false,
-  lotSelected: 'false'
-};
+import LandingPage from './components/LandingPage';
+import { parkingLots, findButton, testCase1, testCase2 } from './setupTests';
 
 const props = {
   userType: testCase1.userType,
@@ -34,7 +24,7 @@ const props = {
   setMobileOpen: jest.fn(),
   lotSelected: testCase1.lotSelected,
   setLotSelected: jest.fn(),
-  landing: testCase1.landing,
+  landingPage: testCase1.landingPage,
   changeLandingPage: jest.fn()
 };
 
@@ -57,22 +47,6 @@ const mockFetch = (url, options) => {
   }
 };
 
-// describe('App shallow rendering tests', () => {
-//   let app;
-//   beforeEach(() => {
-//     app = shallow(<App />);
-//   });
-//
-//   describe('App component initial content', () => {
-//     test('Contains a form component', () => {
-//       expect(app.contains(Form)).toEqual(true);
-//     });
-//
-//     test('Contains a parking map component', () => {
-//       expect(app.contains(ParkingMap)).toEqual(true);
-//     });
-//   });
-
 describe('App rendering tests', () => {
   let app;
 
@@ -84,18 +58,32 @@ describe('App rendering tests', () => {
 
   describe('App component initial content', () => {
     test('Contains a form component', () => {
-      expect(app).toContainExactlyOneMatchingElement(Form);
+      expect(app.contains(Form)).toBeTruthy();
+    });
+
+    test('Displays landing page', () => {
+      expect(app.contains(LandingPage)).toBeTruthy();
     });
 
     test('Does not display parking map at startup', () => {
-      expect(app)
-        .containsMatchingElement(ParkingMap)
-        .toBeFalsy();
+      expect(app.contains(ParkingMap)).toBeFalsy();
     });
 
     test("There should be a 'Search' button", () => {
       const button = findButton(app, /Search/i);
       expect(button.exists()).toBe(true);
+    });
+  });
+  describe('LandingPage transition tests', () => {
+    beforeEach(() => {
+      const button = findButton(app, /Search/i);
+      expect(button.exists()).toBe(true);
+    });
+
+    test('Test that parking map appears after form is submitted on landing page', () => {
+      expect(app.contains(ParkingMap)).toBeFalsy();
+      button.simulate('click');
+      expect(app.contains(ParkingMap)).toBeTruthy();
     });
   });
 
@@ -108,29 +96,6 @@ describe('App rendering tests', () => {
     });
   });
 });
-
-// describe('LandingPage transition tests', () => {
-//   let newDate;
-//   let mount;
-//   beforeEach(() => {
-//     newDate = new Date();
-//     mount = createMount();
-//   });
-//
-//   afterEach(() => {
-//     mount.cleanUp();
-//   });
-//
-//   test('Test that parking map appears after form is submitted on landing page', () => {
-//     const comp = mount(<App />);
-//     await act(async()=> await flushPromises());
-//     comp.update();
-//     button = comp.find('button');
-//     expect(comp.find('ParkingMap')).toBeFalsy();
-//     button.simulate('click');
-//     expect(comp.find('ParkingMap')).toBeTruthy();
-//   });
-// });
 
 describe('App test', () => {
   let app;
@@ -147,18 +112,9 @@ describe('App test', () => {
     await act(async () => await flushPromises());
     app.update();
   });
-  //
-  // test('Test that parking map appears after form is submitted on landing page', async () => {
-  //   await act(async () => await flushPromises());
-  //   app.update();
-  //   const button = findButton(app, /Search/i);
-  //   expect(app.find('ParkingMap')).toBeFalsy();
-  //   button.simulate('click');
-  //   expect(app.find('ParkingMap')).toBeTruthy();
-  // });
 });
 
-it('renders without crashing', () => {
+it('Renders without crashing', () => {
   const div = document.createElement('div');
   ReactDOM.render(<App />, div);
   ReactDOM.unmountComponentAtNode(div);

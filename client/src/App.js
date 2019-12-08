@@ -17,6 +17,7 @@ function App() {
   // Handles interacting with sidebar on mobile devices.
   const [mobileOpen, setMobileOpen] = useState(false);
   if (landingPage) {
+    console.log('A');
     return (
       <LandingPage
         userType={userType}
@@ -36,6 +37,7 @@ function App() {
     );
   }
   if (updated) {
+    console.log('B');
     return (
       <div className="App">
         <Form
@@ -69,7 +71,7 @@ function App() {
       </div>
     );
   }
-
+  console.log('C');
   return (
     <div className="App">
       <Form
