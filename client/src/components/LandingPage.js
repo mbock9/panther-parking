@@ -60,7 +60,6 @@ const LandingPage = props => {
         alt="car"
         style={{ position: 'fixed', top: '0px', width: '10%' }}
       />
-
       <img
         src={logoLanding}
         alt="logo"
