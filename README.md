@@ -41,7 +41,7 @@ npm install --save reactstrap --prefix client
 
 ## Running the Application
 
-The combined application, client and server, can be run with `npm start` in the top-level directory. `npm start` launches the CRA development server on <http://localhost:3000> and the backend server on http://localhost:3001. By setting the `proxy` field in the client `package.json`, the client development server will proxy any unrecognized requests to the server. By default this starts the server in hot-reloading mode (like with the client application).
+In order to run the application, follow the instructions in the server README. It explains how to seed the database before starting the application with `npm start`. This launches the CRA development server on <http://localhost:3000> and the backend server on http://localhost:3001. By setting the `proxy` field in the client `package.json`, the client development server will proxy any unrecognized requests to the server. By default this starts the server in hot-reloading mode (like with the client application).
 
 ## Testing
 
