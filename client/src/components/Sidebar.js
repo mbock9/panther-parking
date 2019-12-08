@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import logoLanding from './../static/logo4.png';
+import legend from './../static/legend.png';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -13,6 +13,7 @@ import InfoIcon from '@material-ui/icons/Info';
 import DriveEtaIcon from '@material-ui/icons/DriveEta';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
+import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 import PropTypes from 'prop-types';
 import LayersClearIcon from '@material-ui/icons/LayersClear';
 
@@ -64,12 +65,13 @@ const Sidebar = ({
   setMobileOpen,
   lotSelected,
   setLotSelected,
-  setUser
+  setUser,
+  info,
+  showInfo
 }) => {
   const classes = useStyles();
   const theme = useTheme();
   const [parkable, setParkable] = useState({});
-  const [info, showInfo] = useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -100,23 +102,30 @@ const Sidebar = ({
       <div
         className={classes.list}
         role="presentation"
-        onClick={handleInfoToggle}
+        //onClick={handleInfoToggle}
       >
         <List>
           <ListItem>
-            <img src={logoLanding} />
+            <img
+              src={legend}
+              style={{
+                width: '70%',
+                marginTop: '20%'
+              }}
+            />
           </ListItem>
           <Divider />
-          <p className={classes.list}>
+          <p
+            className={classes.list}
+            style={{
+              marginTop: '5%',
+              marginLeft: '5%',
+              marginBottom: '5%'
+            }}
+          >
             Enter your desired date and time, and we will find you where you can
-            park!
+            park
           </p>
-          <Divider />
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map(text => (
-            <ListItem button key={text}>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
         </List>
         <Divider />
         <List>
@@ -129,7 +138,6 @@ const Sidebar = ({
               if (mobileOpen) {
                 setMobileOpen(!mobileOpen);
               }
-              showInfo(!info);
               window.open(
                 'http://www.middlebury.edu/offices/health/publicsafety/parking'
               );
@@ -139,6 +147,18 @@ const Sidebar = ({
               <InfoIcon />
             </ListItemIcon>
             <ListItemText primary="go/Parking" />
+          </ListItem>
+          <ListItem
+            onClick={() => {
+              //changeLandingPage(!landing);
+              showInfo(!info);
+            }}
+          >
+            <ListItemIcon>
+              <KeyboardBackspaceIcon />
+            </ListItemIcon>
+
+            <ListItemText primary="Back" />
           </ListItem>
         </List>
       </div>
@@ -239,9 +259,7 @@ const Sidebar = ({
             button
             onClick={() => {
               //changeLandingPage(!landing);
-              if (mobileOpen) {
-                setMobileOpen(!mobileOpen);
-              }
+
               showInfo(!info);
             }}
           >
