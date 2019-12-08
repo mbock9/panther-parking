@@ -27,7 +27,7 @@ const Info = ({ infoOpen, showInfo }) => {
     showInfo(!infoOpen);
   };
 
-  const sideList = side => (
+  const sideList = () => (
     <div
       className={classes.list}
       role="presentation"
@@ -65,7 +65,7 @@ const Info = ({ infoOpen, showInfo }) => {
         //open={state.bottom}
         onClose={handleInfoToggle()}
       >
-        {sideList('bottom')}
+        {sideList()}
       </Drawer>
     </div>
   );

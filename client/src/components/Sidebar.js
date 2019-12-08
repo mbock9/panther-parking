@@ -15,6 +15,8 @@ import DriveEtaIcon from '@material-ui/icons/DriveEta';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import PropTypes from 'prop-types';
+import InboxIcon from '@material-ui/icons/MoveToInbox';
+import MailIcon from '@material-ui/icons/Mail';
 import LayersClearIcon from '@material-ui/icons/LayersClear';
 
 const drawerWidth = 300;
@@ -78,6 +80,10 @@ const Sidebar = ({
     setMobileOpen(!mobileOpen);
   };
 
+  const handleInfoToggle = () => {
+    showInfo(!info);
+  };
+
   useEffect(() => {
     const timeInConverted = timeIn.toString().replace(/\s+/g, '-');
     const timeOutConverted = timeOut.toString().replace(/\s+/g, '-');
@@ -94,6 +100,56 @@ const Sidebar = ({
       .catch(err => console.log(err));
   }, [userType, timeIn, timeOut]);
 
+  if (info) {
+    const infoBar = (
+      <div
+        className={classes.list}
+        role="presentation"
+        onClick={handleInfoToggle}
+      >
+        <List>
+          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon>
+                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              </ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
+        </List>
+        <Divider />
+        <List>
+          {['All mail', 'Trash', 'Spam'].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon>
+                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              </ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
+        </List>
+      </div>
+    );
+
+    return (
+      <div>
+        <CssBaseline />
+        <Drawer
+          anchor="bottom"
+          className={classes.drawer}
+          variant="permanent"
+          classes={{
+            paper: classes.drawerPaper
+          }}
+          onClose={handleInfoToggle()}
+        >
+          {infoBar}
+        </Drawer>
+        {console.log('info drawer')}
+      </div>
+    );
+  }
+
   if (parkable.features && mobileOpen !== undefined) {
     const selectedLots = [];
     parkable.features.forEach(lot => {
@@ -103,6 +159,7 @@ const Sidebar = ({
         selectedLots.push(lot);
       }
     });
+
     const drawer = (
       <div>
         <div className={classes.toolbar} />
@@ -197,7 +254,6 @@ const Sidebar = ({
             >
               {drawer}
             </Drawer>
-            {info && <info showInfo={showInfo} infoOpen={info} />}
           </Hidden>
         </nav>
         <div className={classes.content} />
