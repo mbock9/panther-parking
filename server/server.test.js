@@ -467,19 +467,51 @@ describe('Sidebar endpoint', () => {
     });
   });
 
-  // describe('Test sidebar endpoint logic', () => {
-  //   // Test that endpoints return 400 when invalid input is received
-  //   test('test that lotSelected===false causes all parkable lots to be returned', () => {
-  //     const userType = 'Student-sPass';
-  //     return request(app)
-  //       .get(`/api/map/filter/${userType}/${firstDate}/${secondDate}`)
-  //       .then(response => {
-  //         expect(response.body.parkable.features).toMatchObject([
-  //           parkingLots.map(lotToJSON)[0],
-  //           parkingLots.map(lotToJSON)[1],
-  //           parkingLots.map(lotToJSON)[3]
-  //         ]);
-  //       });
-  //   });
-  // });
+  describe('Test sidebar endpoint logic', () => {
+    // Test that endpoints return 400 when invalid input is received
+    test('test that lotSelected===false causes all parkable lots to be returned', () => {
+      firstDate = 'Sat-Nov-30-2019-10:57:51-GMT-0500-(Eastern-Standard-Time)';
+      secondDate = 'Sat-Nov-30-2019-12:57:51-GMT-0500-(Eastern-Standard-Time)';
+
+      const userType = 'Student-sPass';
+      return request(app)
+        .get(`/api/sidebar/${userType}/${firstDate}/${secondDate}/false`)
+        .then(response => {
+          expect(response.body).toMatchObject([
+            {
+              name: 'Fitness Center',
+              description:
+                'Non-restricted faculty and staff lot outside of the fitness center and indoor tennis courts.'
+            },
+            {
+              name: 'Field House Lot',
+              description:
+                'Multi-purpose lot positioned at the end of the Peterson Family Athletics Complex.'
+            },
+            {
+              name: 'Ridgeline',
+              description:
+                'Student parking lot for non-freshman located below the Ridgeline buildings and adjacent to Homer Harris House. Access via College Street.'
+            }
+          ]);
+        });
+    });
+
+    // Test that endpoints return 400 when invalid input is received
+    test('test that lotSelected equals a lot name only that lot is returned', () => {
+      const userType = 'Student-sPass';
+
+      return request(app)
+        .get(`/api/sidebar/${userType}/${firstDate}/${secondDate}/Ridgeline`)
+        .then(response => {
+          expect(response.body).toMatchObject([
+            {
+              name: 'Ridgeline',
+              description:
+                'Student parking lot for non-freshman located below the Ridgeline buildings and adjacent to Homer Harris House. Access via College Street.'
+            }
+          ]);
+        });
+    });
+  });
 });
