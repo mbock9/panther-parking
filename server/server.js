@@ -103,7 +103,8 @@ app.get(
     // Reformat date strings
     const timeIn = new Date(request.params.timeIn.replace(/-+/g, ' '));
     const timeOut = new Date(request.params.timeOut.replace(/-+/g, ' '));
-    const { userType, lotSelected } = request.params;
+    const { userType } = request.params;
+    const lotSelected = request.params.lotSelected.replace(/-+/g, ' ');
 
     // Validations
     if (!isFilterArgsValid(timeIn, timeOut, userType)) {
@@ -128,7 +129,7 @@ app.get(
       .find(query)
       .toArray()
       .then(documents => {
-        let sidebarLots = documents.map(lot => ({
+        const sidebarLots = documents.map(lot => ({
           name: lot.properties.name,
           description: lot.properties.description
         }));

@@ -502,13 +502,15 @@ describe('Sidebar endpoint', () => {
       const userType = 'Student-sPass';
 
       return request(app)
-        .get(`/api/sidebar/${userType}/${firstDate}/${secondDate}/Ridgeline`)
+        .get(
+          `/api/sidebar/${userType}/${firstDate}/${secondDate}/Field-House-Lot`
+        )
         .then(response => {
           expect(response.body).toMatchObject([
             {
-              name: 'Ridgeline',
+              name: 'Field House Lot',
               description:
-                'Student parking lot for non-freshman located below the Ridgeline buildings and adjacent to Homer Harris House. Access via College Street.'
+                'Multi-purpose lot positioned at the end of the Peterson Family Athletics Complex.'
             }
           ]);
         });
