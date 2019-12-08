@@ -2,6 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { mount } from 'enzyme';
 import { act } from 'react-dom/test-utils';
+import Select from '@material-ui/core/Select';
+import { KeyboardDateTimePicker } from '@material-ui/pickers';
+import Button from '@material-ui/core/Button';
+import { createMount, createShallow } from '@material-ui/core/test-utils';
 
 import App from './App';
 import Form from './components/Form';
@@ -65,6 +69,32 @@ const parkingLots = [
   }
 ];
 
+const dateProp = new Date();
+
+const testCase1 = {
+  userType: 'default',
+  timeIn: dateProp,
+  timeOut: dateProp,
+  mobileOpen: false,
+  landing: false,
+  lotSelected: 'false'
+};
+
+const props = {
+  userType: testCase1.userType,
+  setUser: jest.fn(),
+  timeIn: testCase1.timeIn,
+  setTimeIn: jest.fn(),
+  timeOut: testCase1.timeOut,
+  setTimeOut: jest.fn(),
+  mobileOpen: testCase1.mobileOpen,
+  setMobileOpen: jest.fn(),
+  lotSelected: testCase1.lotSelected,
+  setLotSelected: jest.fn(),
+  landing: testCase1.landing,
+  changeLandingPage: jest.fn()
+};
+
 function flushPromises() {
   return new Promise(resolve => setImmediate(resolve));
 }
@@ -111,6 +141,29 @@ describe('App shallow rendering tests', () => {
   });
 });
 
+// describe('LandingPage transition tests', () => {
+//   let newDate;
+//   let mount;
+//   beforeEach(() => {
+//     newDate = new Date();
+//     mount = createMount();
+//   });
+//
+//   afterEach(() => {
+//     mount.cleanUp();
+//   });
+//
+//   test('Test that parking map appears after form is submitted on landing page', () => {
+//     const comp = mount(<App />);
+//     await act(async()=> await flushPromises());
+//     comp.update();
+//     button = comp.find('button');
+//     expect(comp.find('ParkingMap')).toBeFalsy();
+//     button.simulate('click');
+//     expect(comp.find('ParkingMap')).toBeTruthy();
+//   });
+// });
+
 describe('App test', () => {
   beforeAll(() => {
     jest.spyOn(global, 'fetch').mockImplementation(mockFetch);
@@ -126,12 +179,15 @@ describe('App test', () => {
     comp.update();
   });
 
-  // test('Snapshot test', async () => {
-  //   const comp = mount(<App />);
-  //   await act(async () => await flushPromises());
-  //   comp.update();
-  //   expect(comp).toMatchSnapshot();
-  // });
+  test('Test that parking map appears after form is submitted on landing page', async () => {
+    const comp = mount(<App />);
+    await act(async () => await flushPromises());
+    comp.update();
+    button = comp.find('button');
+    expect(comp.find('ParkingMap')).toBeFalsy();
+    button.simulate('click');
+    expect(comp.find('ParkingMap')).toBeTruthy();
+  });
 });
 
 it('renders without crashing', () => {
