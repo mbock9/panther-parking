@@ -20,7 +20,10 @@ const ParkingMap = props => {
   // Fetch and set the API key from server (saved in the .env)
   useEffect(() => {
     fetch('/api/map/key')
-      .then(response => response.text())
+      .then(response => {
+        console.log(response);
+        response.text();
+      })
       .then(body => {
         setKey(body);
       })
