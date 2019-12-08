@@ -6,7 +6,6 @@ import carMiddle from '../static/carMiddle.png';
 import carLeft from '../static/carLeft.png';
 import carRight from '../static/carRight.png';
 import styled from 'styled-components';
-import { inherits } from 'util';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -75,7 +74,6 @@ const LandingPage = props => {
         src={logoLanding}
         alt="logo"
         style={{
-          display: 'block',
           maxWidth: '35%',
           height: 'auto',
           marginLeft: 'auto',

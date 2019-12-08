@@ -14,11 +14,6 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import PropTypes from 'prop-types';
 import LayersClearIcon from '@material-ui/icons/LayersClear';
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import Typography from '@material-ui/core/Typography';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const drawerWidth = 300;
 
@@ -68,8 +63,6 @@ const Sidebar = ({
   setMobileOpen,
   lotSelected,
   setLotSelected,
-  landing,
-  changeLandingPage,
   setUser
 }) => {
   const classes = useStyles();
@@ -149,7 +142,7 @@ const Sidebar = ({
             onClick={() => {
               if (mobileOpen) {
                 setMobileOpen(!mobileOpen);
-                showInfo(true);
+                showInfo(!info);
               }
 
               console.log('come out info drawer');
