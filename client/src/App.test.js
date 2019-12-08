@@ -58,32 +58,40 @@ describe('App rendering tests', () => {
 
   describe('App component initial content', () => {
     test('Contains a form component', () => {
-      expect(app.contains(Form)).toBeTruthy();
+      expect(app.exists(Form)).toBeTruthy();
     });
 
     test('Displays landing page', () => {
-      expect(app.contains(LandingPage)).toBeTruthy();
+      expect(app.exists(LandingPage)).toBeTruthy();
     });
 
     test('Does not display parking map at startup', () => {
-      expect(app.contains(ParkingMap)).toBeFalsy();
+      expect(app.exists(ParkingMap)).toBeFalsy();
     });
 
     test("There should be a 'Search' button", () => {
-      const button = findButton(app, /Search/i);
-      expect(button.exists()).toBe(true);
+      const searchButton = findButton(app, /Search/i);
+      expect(searchButton.exists()).toBe(true);
     });
   });
+
   describe('LandingPage transition tests', () => {
     beforeEach(() => {
-      const button = findButton(app, /Search/i);
-      expect(button.exists()).toBe(true);
+      const searchButton = findButton(app, /Search/i);
+      expect(searchButton.exists()).toBe(true);
+      expect(app.exists(LandingPage)).toBeTruthy();
+      expect(app.exists(ParkingMap)).toBeFalsy();
+      searchButton.simulate('click');
     });
 
-    test('Test that parking map appears after form is submitted on landing page', () => {
-      expect(app.contains(ParkingMap)).toBeFalsy();
-      button.simulate('click');
-      expect(app.contains(ParkingMap)).toBeTruthy();
+    test('App transitions back and forth from landing page to parking map', () => {
+      expect(app.exists(LandingPage)).toBeFalsy();
+      expect(app.exists(ParkingMap)).toBeTruthy();
+      const infoButton = findButton(app, /info/i);
+      expect(infoButton.exists()).toBe(true);
+      infoButton.simulate('click');
+      expect(app.exists(LandingPage)).toBeTruthy();
+      expect(app.exists(ParkingMap)).toBeFalsy();
     });
   });
 
