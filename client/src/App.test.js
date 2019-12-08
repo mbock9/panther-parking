@@ -49,6 +49,13 @@ const mockFetch = (url, options) => {
 
 describe('App rendering tests', () => {
   let app;
+  beforeAll(() => {
+    jest.spyOn(global, 'fetch').mockImplementation(mockFetch);
+  });
+
+  afterAll(() => {
+    global.fetch.mockClear();
+  });
 
   beforeEach(async () => {
     app = mount(<App />);
