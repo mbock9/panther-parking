@@ -40,6 +40,7 @@ const ParkingMap = props => {
       .then(data => {
         props.setParkable(data.parkable);
         props.setNonparkable(data.nonparkable);
+        props.setLotSelected('false');
       })
       .catch(err => console.log(err));
   }, [props.userType, props.timeIn, props.timeOut]);
