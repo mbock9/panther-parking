@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import logoLanding from './../static/logo4.png';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import List from '@material-ui/core/List';
@@ -15,8 +14,6 @@ import DriveEtaIcon from '@material-ui/icons/DriveEta';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import PropTypes from 'prop-types';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 import LayersClearIcon from '@material-ui/icons/LayersClear';
 
 const drawerWidth = 300;
@@ -67,8 +64,6 @@ const Sidebar = ({
   setMobileOpen,
   lotSelected,
   setLotSelected,
-  landing,
-  changeLandingPage,
   setUser
 }) => {
   const classes = useStyles();
@@ -108,12 +103,17 @@ const Sidebar = ({
         onClick={handleInfoToggle}
       >
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+          <ListItem>
+            <img src={logoLanding} />
+          </ListItem>
+          <Divider />
+          <h3 className={classes.list}>
+            Enter your desired date and time, and we will find you where you can
+            park
+          </h3>
+          <Divider />
+          {['Inbox', 'Starred', 'Send email', 'Drafts'].map(text => (
             <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                <img src={logoLanding} />
-              </ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
           ))}
