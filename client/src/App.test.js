@@ -11,7 +11,13 @@ import App from './App';
 import Form from './components/Form';
 import ParkingMap from './components/ParkingMap';
 import LandingPage from './components/LandingPage';
-import { parkingLots, findButton, testCase1, testCase2 } from './setupTests';
+import {
+  parkingLots,
+  findButton,
+  testCase1,
+  testCase2,
+  mockResp
+} from './setupTests';
 
 const props = {
   userType: testCase1.userType,
@@ -35,16 +41,8 @@ function flushPromises() {
 const mockResponse = data =>
   Promise.resolve({ ok: true, json: () => Promise.resolve(data) });
 
-const mockFetch = (url, options) => {
-  if (options) {
-    if (options.method === 'PUT') {
-      // we don't store any changes, we just return the same object
-      const data = JSON.parse(options.body);
-      return mockResponse(data);
-    }
-  } else {
-    return mockResponse(parkingLots);
-  }
+const mockFetch = url => {
+  return mockResponse(mockResp);
 };
 
 describe('App rendering tests', () => {
