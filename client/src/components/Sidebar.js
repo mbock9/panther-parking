@@ -158,7 +158,6 @@ const Sidebar = ({
           </ListItem>
           <Divider />
         </List>
-        <Info />
       </div>
     );
 
@@ -198,6 +197,7 @@ const Sidebar = ({
             >
               {drawer}
             </Drawer>
+            {info && <info showInfo={showInfo} infoOpen={info} />}
           </Hidden>
         </nav>
         <div className={classes.content} />
