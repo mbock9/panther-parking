@@ -8,21 +8,6 @@ import Form from './components/Form';
 import ParkingMap from './components/ParkingMap';
 import LandingPage from './components/LandingPage';
 import { findButton, mockResp } from './setupTests';
-//
-// const props = {
-//   userType: testCase1.userType,
-//   setUser: jest.fn(),
-//   timeIn: testCase1.timeIn,
-//   setTimeIn: jest.fn(),
-//   timeOut: testCase1.timeOut,
-//   setTimeOut: jest.fn(),
-//   mobileOpen: testCase1.mobileOpen,
-//   setMobileOpen: jest.fn(),
-//   lotSelected: testCase1.lotSelected,
-//   setLotSelected: jest.fn(),
-//   landingPage: testCase1.landingPage,
-//   changeLandingPage: jest.fn()
-// };
 
 function flushPromises() {
   return new Promise(resolve => setImmediate(resolve));
@@ -67,26 +52,6 @@ describe('App rendering tests', () => {
     test("There should be a 'Search' button", () => {
       const searchButton = findButton(app, /Search/i);
       expect(searchButton.exists()).toBe(true);
-    });
-  });
-
-  describe('LandingPage transition tests', () => {
-    beforeEach(() => {
-      const searchButton = findButton(app, /Search/i);
-      expect(searchButton.exists()).toBe(true);
-      expect(app.exists(LandingPage)).toBeTruthy();
-      expect(app.exists(ParkingMap)).toBeFalsy();
-      searchButton.simulate('click');
-    });
-
-    test('App transitions back and forth from landing page to parking map', () => {
-      expect(app.exists(LandingPage)).toBeFalsy();
-      expect(app.exists(ParkingMap)).toBeTruthy();
-      const infoButton = findButton(app, /info/i);
-      expect(infoButton.exists()).toBe(true);
-      infoButton.simulate('click');
-      expect(app.exists(LandingPage)).toBeTruthy();
-      expect(app.exists(ParkingMap)).toBeFalsy();
     });
   });
 
