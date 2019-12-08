@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Info from './Info';
+import logoLanding from './../static/logo4.png';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Drawer from '@material-ui/core/Drawer';
@@ -112,6 +112,7 @@ const Sidebar = ({
             <ListItem button key={text}>
               <ListItemIcon>
                 {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                <img src={logoLanding} />
               </ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
@@ -119,33 +120,69 @@ const Sidebar = ({
         </List>
         <Divider />
         <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
+          <ListItem
+            button
+            key="go/Parking"
+            button
+            onClick={() => {
+              //changeLandingPage(!landing);
+              if (mobileOpen) {
+                setMobileOpen(!mobileOpen);
+              }
+              showInfo(!info);
+              window.open(
+                'http://www.middlebury.edu/offices/health/publicsafety/parking'
+              );
+            }}
+          >
+            <ListItemIcon>
+              <InfoIcon />
+            </ListItemIcon>
+            <ListItemText primary="go/Parking" />
+          </ListItem>
         </List>
       </div>
     );
 
     return (
-      <div>
+      <div className={classes.root}>
         <CssBaseline />
-        <Drawer
-          anchor="bottom"
-          className={classes.drawer}
-          variant="permanent"
-          classes={{
-            paper: classes.drawerPaper
-          }}
-          onClose={handleInfoToggle()}
-        >
-          {infoBar}
-        </Drawer>
-        {console.log('info drawer')}
+        <nav className={classes.drawer}>
+          <Hidden smUp implementation="css">
+            <Drawer
+              variant="temporary"
+              anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+              open={mobileOpen}
+              onClose={handleDrawerToggle}
+              classes={{
+                paper: classes.drawerPaper
+              }}
+              ModalProps={{
+                keepMounted: true // Better open performance on mobile.
+              }}
+            >
+              <IconButton
+                onClick={handleDrawerToggle}
+                className={classes.closeMenuButton}
+              >
+                <CloseIcon />
+              </IconButton>
+              {infoBar}
+            </Drawer>
+          </Hidden>
+          <Hidden xsDown implementation="css">
+            <Drawer
+              className={classes.drawer}
+              variant="permanent"
+              classes={{
+                paper: classes.drawerPaper
+              }}
+            >
+              {infoBar}
+            </Drawer>
+          </Hidden>
+        </nav>
+        <div className={classes.content} />
       </div>
     );
   }
