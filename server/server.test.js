@@ -424,3 +424,96 @@ describe('Filtering endpoint', () => {
     });
   });
 });
+
+describe('Sidebar endpoint', () => {
+  beforeEach(() => {
+    return db.collection('parkingLots').insertMany(parkingLots);
+  });
+
+  afterEach(() => {
+    return db.collection('parkingLots').deleteMany({});
+  });
+
+  describe('Test argument validation', () => {
+    // Test that endpoints return 400 when invalid input is received
+    test('timeOut must be after timeIn', () => {
+      const userType = 'Visitor';
+      return request(app)
+        .get(`/api/sidebar/${userType}/${secondDate}/${firstDate}/test`)
+        .expect(400);
+    });
+
+    test('userType must be one of the accepted states', () => {
+      const userType = 'not-a-type';
+      return request(app)
+        .get(`/api/sidebar/${userType}/${firstDate}/${secondDate}/test`)
+        .expect(400);
+    });
+
+    test('timeIn must be a date object', () => {
+      const userType = 'Visitor';
+      const fakeDate = 'not-a-date';
+      return request(app)
+        .get(`/api/sidebar/${userType}/${fakeDate}/${secondDate}/test`)
+        .expect(400);
+    });
+
+    test('timeOut must be a date object', () => {
+      const userType = 'Visitor';
+      const fakeDate = 'not-a-date';
+      return request(app)
+        .get(`/api/sidebar/${userType}/${firstDate}/${fakeDate}/test`)
+        .expect(400);
+    });
+  });
+
+  describe('Test sidebar endpoint logic', () => {
+    // Test that endpoints return 400 when invalid input is received
+    test('test that lotSelected===false causes all parkable lots to be returned', () => {
+      firstDate = 'Sat-Nov-30-2019-10:57:51-GMT-0500-(Eastern-Standard-Time)';
+      secondDate = 'Sat-Nov-30-2019-12:57:51-GMT-0500-(Eastern-Standard-Time)';
+
+      const userType = 'Student-sPass';
+      return request(app)
+        .get(`/api/sidebar/${userType}/${firstDate}/${secondDate}/false`)
+        .then(response => {
+          expect(response.body).toMatchObject([
+            {
+              name: 'Fitness Center',
+              description:
+                'Non-restricted faculty and staff lot outside of the fitness center and indoor tennis courts.'
+            },
+            {
+              name: 'Field House Lot',
+              description:
+                'Multi-purpose lot positioned at the end of the Peterson Family Athletics Complex.'
+            },
+            {
+              name: 'Ridgeline',
+              description:
+                'Student parking lot for non-freshman located below the Ridgeline buildings and adjacent to Homer Harris House. Access via College Street.'
+            }
+          ]);
+        });
+    });
+
+    // Test that endpoints return 400 when invalid input is received
+    test('test that lotSelected equals a lot name only that lot is returned', () => {
+      const userType = 'Student-sPass';
+
+      return request(app)
+        .get(
+          `/api/sidebar/${userType}/${firstDate}/${secondDate}/Field-House-Lot`
+        )
+        .then(response => {
+          expect(response.body).toMatchObject([
+            {
+              name: 'Field House Lot',
+              description:
+                'Multi-purpose lot positioned at the end of the Peterson Family Athletics Complex.'
+            }
+          ]);
+        });
+    });
+  });
+});

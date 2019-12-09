@@ -73,7 +73,7 @@ const ParkingMap = props => {
   };
 
   const drawPopup = feature => {
-    if (feature._id === props.lotSelected) {
+    if (feature.properties.name === props.lotSelected) {
       const center = findCenter(feature.geometry.coordinates[0]);
       return (
         <Popup
@@ -101,7 +101,9 @@ const ParkingMap = props => {
         <LocalParkingIcon
           onClick={() => {
             props.setLotSelected(
-              props.lotSelected === feature._id ? 'false' : feature._id
+              props.lotSelected === feature.properties.name
+                ? 'false'
+                : feature.properties.name
             );
           }}
         />
