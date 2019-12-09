@@ -71,8 +71,7 @@ const Sidebar = ({
 }) => {
   const classes = useStyles();
   const theme = useTheme();
-  const [parkable, setParkable] = useState({});
-  //const [info, showInfo] = useState(false);
+  const [sidebarLots, setSidebarLots] = useState(undefined);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -81,7 +80,10 @@ const Sidebar = ({
   useEffect(() => {
     const timeInConverted = timeIn.toString().replace(/\s+/g, '-');
     const timeOutConverted = timeOut.toString().replace(/\s+/g, '-');
-    fetch(`/api/map/filter/${userType}/${timeInConverted}/${timeOutConverted}`)
+    const lotSelectedConverted = lotSelected.replace(/\s+/g, '-');
+    fetch(
+      `/api/sidebar/${userType}/${timeInConverted}/${timeOutConverted}/${lotSelectedConverted}`
+    )
       .then(response => {
         if (!response.ok) {
           throw new Error(response.statusText);
@@ -89,10 +91,11 @@ const Sidebar = ({
         return response.json();
       })
       .then(data => {
-        setParkable(data.parkable);
+        setSidebarLots(data);
+        console.log(sidebarLots);
       })
       .catch(err => console.log(err));
-  }, [userType, timeIn, timeOut]);
+  }, [lotSelected]);
 
   if (info) {
     const infoBar = (
@@ -203,16 +206,7 @@ const Sidebar = ({
     );
   }
 
-  if (parkable.features && mobileOpen !== undefined) {
-    const selectedLots = [];
-    parkable.features.forEach(lot => {
-      if (lotSelected === 'false') {
-        selectedLots.push(lot);
-      } else if (lotSelected === lot._id) {
-        selectedLots.push(lot);
-      }
-    });
-
+  if (mobileOpen !== undefined && sidebarLots !== undefined) {
     const drawer = (
       <div>
         <div className={classes.toolbar} />
@@ -231,13 +225,13 @@ const Sidebar = ({
         </ListItem>
         <Divider className={classes.clearFilter} />
         <List>
-          {selectedLots.map(element => (
+          {sidebarLots.map(element => (
             <ListItem
               button
-              key={element.properties._id}
+              key={element.name}
               onClick={() => {
                 setLotSelected(
-                  lotSelected === element._id ? 'false' : element._id
+                  lotSelected === element.name ? 'false' : element.name
                 );
               }}
             >
@@ -245,8 +239,8 @@ const Sidebar = ({
                 <DriveEtaIcon />
               </ListItemIcon>
               <ListItemText
-                primary={element.properties.name}
-                secondary={element.properties.description}
+                primary={element.name}
+                secondary={element.description}
               />
             </ListItem>
           ))}

@@ -124,6 +124,9 @@ app.get(
       query = { 'properties.name': lotSelected };
     }
 
+    console.log(lotSelected);
+    console.log(query);
+
     app.locals.db
       .collection('parkingLots')
       .find(query)
