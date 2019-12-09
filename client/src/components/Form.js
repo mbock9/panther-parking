@@ -105,7 +105,9 @@ const Form = ({
   lotSelected,
   setLotSelected,
   landing,
-  changeLandingPage
+  changeLandingPage,
+  info,
+  showInfo
 }) => {
   // Instantiate style classes
   const classes = useStyles();
@@ -311,7 +313,7 @@ const Form = ({
                 startIcon={<InfoIcon />}
                 size="large"
                 onClick={() => {
-                  changeLandingPage(!landing);
+                  showInfo(!info);
                 }}
               >
                 Info
@@ -329,6 +331,8 @@ const Form = ({
           setLotSelected={setLotSelected}
           landing={landing}
           changeLandingPage={changeLandingPage}
+          info={info}
+          showInfo={showInfo}
           setUser={setUser}
         />
       </div>

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import legend from './../static/legend.png';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,6 +13,7 @@ import InfoIcon from '@material-ui/icons/Info';
 import DriveEtaIcon from '@material-ui/icons/DriveEta';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
+import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 import PropTypes from 'prop-types';
 import LayersClearIcon from '@material-ui/icons/LayersClear';
 
@@ -63,13 +65,14 @@ const Sidebar = ({
   setMobileOpen,
   lotSelected,
   setLotSelected,
-  landing,
-  changeLandingPage,
-  setUser
+  setUser,
+  info,
+  showInfo
 }) => {
   const classes = useStyles();
   const theme = useTheme();
   const [parkable, setParkable] = useState({});
+  //const [info, showInfo] = useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -91,6 +94,115 @@ const Sidebar = ({
       .catch(err => console.log(err));
   }, [userType, timeIn, timeOut]);
 
+  if (info) {
+    const infoBar = (
+      <div
+        className={classes.list}
+        role="presentation"
+        //onClick={handleInfoToggle}
+      >
+        <List>
+          <ListItem>
+            <img
+              src={legend}
+              style={{
+                width: '70%',
+                marginTop: '20%'
+              }}
+              alt={'Legend'}
+            />
+          </ListItem>
+          <Divider />
+          <p
+            className={classes.list}
+            style={{
+              marginTop: '5%',
+              marginLeft: '5%',
+              marginBottom: '5%'
+            }}
+          >
+            Enter your desired date and time, and we will find you where you can
+            park
+          </p>
+        </List>
+        <Divider />
+        <List>
+          <ListItem
+            key="go/Parking"
+            onClick={() => {
+              //changeLandingPage(!landing);
+              if (mobileOpen) {
+                setMobileOpen(!mobileOpen);
+              }
+              window.open(
+                'http://www.middlebury.edu/offices/health/publicsafety/parking'
+              );
+            }}
+          >
+            <ListItemIcon>
+              <InfoIcon />
+            </ListItemIcon>
+            <ListItemText primary="go/Parking" />
+          </ListItem>
+          <ListItem
+            onClick={() => {
+              //changeLandingPage(!landing);
+              showInfo(!info);
+            }}
+          >
+            <ListItemIcon>
+              <KeyboardBackspaceIcon />
+            </ListItemIcon>
+
+            <ListItemText primary="Back" />
+          </ListItem>
+        </List>
+      </div>
+    );
+
+    return (
+      <div className={classes.root}>
+        <CssBaseline />
+        <nav className={classes.drawer}>
+          <Hidden smUp implementation="css">
+            <Drawer
+              variant="temporary"
+              anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+              open={mobileOpen}
+              onClose={handleDrawerToggle}
+              classes={{
+                paper: classes.drawerPaper
+              }}
+              ModalProps={{
+                keepMounted: true // Better open performance on mobile.
+              }}
+            >
+              <IconButton
+                onClick={handleDrawerToggle}
+                className={classes.closeMenuButton}
+              >
+                <CloseIcon />
+              </IconButton>
+              {infoBar}
+            </Drawer>
+          </Hidden>
+          <Hidden xsDown implementation="css">
+            <Drawer
+              className={classes.drawer}
+              variant="permanent"
+              classes={{
+                paper: classes.drawerPaper
+              }}
+            >
+              {infoBar}
+            </Drawer>
+          </Hidden>
+        </nav>
+        <div className={classes.content} />
+      </div>
+    );
+  }
+
   if (parkable.features && mobileOpen !== undefined) {
     const selectedLots = [];
     parkable.features.forEach(lot => {
@@ -100,6 +212,7 @@ const Sidebar = ({
         selectedLots.push(lot);
       }
     });
+
     const drawer = (
       <div>
         <div className={classes.toolbar} />
@@ -141,10 +254,9 @@ const Sidebar = ({
           <ListItem
             button
             onClick={() => {
-              changeLandingPage(!landing);
-              if (mobileOpen) {
-                setMobileOpen(!mobileOpen);
-              }
+              //changeLandingPage(!landing);
+
+              showInfo(!info);
             }}
           >
             <ListItemIcon>
@@ -152,6 +264,7 @@ const Sidebar = ({
             </ListItemIcon>
             <ListItemText primary={'More information'} />
           </ListItem>
+          <Divider />
         </List>
       </div>
     );
