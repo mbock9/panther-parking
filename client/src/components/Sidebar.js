@@ -92,7 +92,6 @@ const Sidebar = ({
       })
       .then(data => {
         setSidebarLots(data);
-        console.log(sidebarLots);
       })
       .catch(err => console.log(err));
   }, [lotSelected]);
