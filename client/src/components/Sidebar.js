@@ -94,7 +94,7 @@ const Sidebar = ({
         setSidebarLots(data);
       })
       .catch(err => console.log(err));
-  }, [lotSelected]);
+  }, [lotSelected, timeIn, timeOut, userType]);
 
   if (info) {
     const infoBar = (
