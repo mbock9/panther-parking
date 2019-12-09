@@ -134,7 +134,9 @@ const LandingPage = props => {
             width: 'inherit',
             overflow: 'hidden',
 
-            marginLeft: '45%',
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            display: 'flex',
             marginTop: '2%'
           }}
           onClick={() => {
