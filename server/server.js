@@ -97,6 +97,7 @@ app.get(
   }
 );
 
+// Return lightweight lot objects to fill the sidebar
 app.get(
   '/api/sidebar/:userType/:timeIn/:timeOut/:lotSelected',
   (request, response, next) => {
